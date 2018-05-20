@@ -1,7 +1,7 @@
 function Stroking() {
     sendMessage("%startStroking%");
     startStroking(60);
-    duration = 10;
+    duration = 70;
     timeSoFar = 0;
     while (timeSoFar < duration) {
         java.lang.Thread.sleep(500);
@@ -11,7 +11,7 @@ function Stroking() {
 function andStroking() {
     sendMessage("And %startstroking%");
     startStroking(60);
-    duration = 10;
+    duration = 70;
     timeSoFar = 0;
     while (timeSoFar < duration) {
         java.lang.Thread.sleep(500);

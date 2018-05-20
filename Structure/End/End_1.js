@@ -60,16 +60,3 @@ else
 }
 sendMessage("Thanks for giving me such a good time tonight %PetName%");
 sendMessage("I can't wait to see you again %EmoteHappy%");
-
-
-
-
-
-
-
-
-
-
-function randomInteger(lowest, highest) {
-    return Math.floor(Math.random() * highest) + lowest;
-}

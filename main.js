@@ -1,2 +1,2 @@
-sendMessage("This is a test. Original TeaseAI Layout", 0);
+run("utils.js");
 run("Structure\\originalTeaseAI.js");

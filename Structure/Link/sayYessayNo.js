@@ -11,18 +11,3 @@ else {
     sendMessage("But it will definitely turn me on %EmoteRandom%");
 }
 Stroking();
-
-function Stroking() {
-    sendMessage("%startStroking%");
-    startStroking(60);
-    duration = 10;
-    timeSoFar = 0;
-    while (timeSoFar < duration) {
-        java.lang.Thread.sleep(500);
-        timeSoFar += .5;
-    }
-}
-
-function randomInteger(lowest, highest) {
-    return Math.floor(Math.random() * highest) + lowest;
-}

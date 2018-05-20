@@ -21,7 +21,7 @@ else
     else
     {
         sendMessage("%Holdtheedge%", 0);
-        holdEdge(randomInteger(10, 20));
+        holdEdge(randomInteger(10, 60));
     }
 }
 sendMessage("Don't worry %PetName%");

@@ -40,7 +40,7 @@ sendMessage("My words");
 sendMessage("My will");
 sendMessage("Edge, and be ready to hold it");
 startEdging();
-holdEdge(randomInteger(10, 20));
+holdEdge(randomInteger(10, 50));
 sendMessage("%lettheedgefade%");
 sendMessage("From now own, the only pain you will truly feel");
 sendMessage("Is the pain of disappointing me");
