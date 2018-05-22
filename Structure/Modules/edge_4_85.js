@@ -5,6 +5,7 @@ if (answer.isLike("yes", "yea", "yep"))
     sendMessage("I want you to ache MORE");
     sendMessage("%edge%");
     startEdging();
+    sendMessage("%stopstrokingedge%");
     sendMessage("%lettheedgefade%", 0);
     stopEdging();
 }
@@ -16,12 +17,15 @@ else
     startEdging();
     if (randomInteger(0, 10) <= 6)
     {
+        sendMessage("%stopstrokingedge%");
         sendMessage("%lettheedgefade%", 0);
     }
     else
     {
         sendMessage("%Holdtheedge%", 0);
         holdEdge(randomInteger(10, 60));
+        sendMessage("%stopstrokingedge%");
+        sendMessage("%lettheedgefade%", 0);
     }
 }
 sendMessage("Don't worry %PetName%");

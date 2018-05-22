@@ -8,4 +8,5 @@ while ((randomInteger(0, 10) > 2)) {
 }
 sendMessage("Okay that's enough of that");
 startEdging();
+sendMessage("%stopstrokingedge%");
 sendMessage("%lettheedgefade%");

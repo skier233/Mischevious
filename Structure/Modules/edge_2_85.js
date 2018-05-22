@@ -4,4 +4,5 @@ sendMessage("On second thought");
 startStroking();
 sendMessage("%edge%, 0");
 startEdging();
+sendMessage("%stopstrokingedge%");
 sendMessage("%lettheedgefade%");

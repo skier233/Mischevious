@@ -5,6 +5,7 @@ if (randomInteger(0, 2) == 1) {
 else {
     sendMessage("%edge%", 0);
     startEdging();
+    sendMessage("%stopstrokingedge%");
     sendMessage("%lettheedgefade%");
 }
 sendMessage("Even though you just took your hand away");
@@ -16,6 +17,7 @@ sendMessage("And to prove it");
 sendMessage("I think you should edge for me right now");
 sendMessage("%edge%", 0);
 startEdging();
+sendMessage("%stopstrokingedge%");
 sendMessage("%lettheedgefade%");
 sendMessage("No matter how much I made your %Cock% ache just now");
 sendMessage("You didn't REALLY want me to let you cum");

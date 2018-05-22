@@ -10,6 +10,7 @@ else
     startEdging();
     if (randomInteger(0, 10) <= 6)
     {
+        sendMessage("%stopstrokingedge%");
         sendMessage("%lettheedgefade%", 0);
     }
     else

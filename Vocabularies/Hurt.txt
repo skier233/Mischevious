@@ -17,18 +17,3 @@ harm
 punish
 mistreat
 pummel
-@Crazy destroy
-@Crazy annihilate
-@Crazy obliterate
-@DommeLevel4 bruise
-@DommeLevel5 bruise
-@DommeLevel5 damage
-@DommeLevel5 damage
-@DommeLevel4 injure
-@DommeLevel5 injure
-@DommeLevel4 wound
-@DommeLevel5 wound
-@DommeLevel4 maul
-@DommeLevel5 maul
-@DommeLevel4 maim
-@DommeLevel5 maim

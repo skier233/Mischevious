@@ -3,7 +3,7 @@ sendMessage("%goodeveningsub%");
 answer = sendInput("%haveyoubeenbehavingyourself%");
 if (answer.isLike("yes", "yep", "yea")) {
     sendMessage("Good boy :)");
-    sendMessage("Since you were so good and didn't touch your #Cock while you were gone");
+    sendMessage("Since you were so good and didn't touch your %Cock% while you were gone");
     sendMessage("I'm going to reward you");
     sendMessage("By letting you touch it a LOT %Grin%");
 }

@@ -23,9 +23,9 @@ function randomInteger(lowest, highest) {
     return Math.floor(Math.random() * highest) + lowest;
 }
 function startEdging() {
-    if (!isStroking)
+    if (!isStroking())
     {
-        startStroking();
+        startStroking(120);
     }
     setTempVar("edging", true);
     while (isEdging()) {

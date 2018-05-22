@@ -11,6 +11,7 @@ sendMessage("Stroking is supposed to feel GOOD, right? %Lol%");
 sendMessage("But instead, well");
 sendMessage("Why don't you %edge% for me real quick and see for yourself");
 startEdging();
+sendMessage("%stopstrokingedge%");
 sendMessage("%lettheedgefade%");
 sendMessage("See what I mean though?");
 sendMessage("Sometimes I think I've got you so worked up you can't even think straight %Lol%");
