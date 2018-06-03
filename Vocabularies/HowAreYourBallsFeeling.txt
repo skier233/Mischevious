@@ -1,0 +1,36 @@
+How are your %Balls% feeling? %EmoteRandom%
+How are your %Balls% feeling %SubName%? %EmoteRandom%
+How are your %Balls% doing? %EmoteRandom%
+How are your %Balls% doing %SubName%? %EmoteRandom%
+How are those %Balls% feeling? %EmoteRandom%
+How are those %Balls% feeling %SubName%? %EmoteRandom%
+How are those %Balls% doing? %EmoteRandom%
+How are those %Balls% doing %SubName%? %EmoteRandom%
+How are your %Balls% holding up? %EmoteRandom%
+How are your %Balls% holding up %SubName%? %EmoteRandom%
+How are those %Balls% holding up? %EmoteRandom%
+How are those %Balls% holding up %SubName%? %EmoteRandom%
+How are your %Balls% feeling now? %EmoteRandom%
+How are your %Balls% feeling now %SubName%? %EmoteRandom%
+How are your %Balls% doing now? %EmoteRandom%
+How are your %Balls% doing now %SubName%? %EmoteRandom%
+How are those %Balls% feeling now? %EmoteRandom%
+How are those %Balls% feeling now %SubName%? %EmoteRandom%
+How are those %Balls% doing now? %EmoteRandom%
+How are those %Balls% doing now %SubName%? %EmoteRandom%
+How are your %Balls% holding up now? %EmoteRandom%
+How are your %Balls% holding up now %SubName%? %EmoteRandom%
+How are those %Balls% holding up now? %EmoteRandom%
+How are those %Balls% holding up now %SubName%? %EmoteRandom%
+How are your %Balls% feeling right now? %EmoteRandom%
+How are your %Balls% feeling right now %SubName%? %EmoteRandom%
+How are your %Balls% doing right now? %EmoteRandom%
+How are your %Balls% doing right now %SubName%? %EmoteRandom%
+How are those %Balls% feeling right now? %EmoteRandom%
+How are those %Balls% feeling right now %SubName%? %EmoteRandom%
+How are those %Balls% doing right now? %EmoteRandom%
+How are those %Balls% doing right now %SubName%? %EmoteRandom%
+How are your %Balls% holding up right now? %EmoteRandom%
+How are your %Balls% holding up right now %SubName%? %EmoteRandom%
+How are those %Balls% holding up right now? %EmoteRandom%
+How are those %Balls% holding up right now %SubName%? %EmoteRandom%
