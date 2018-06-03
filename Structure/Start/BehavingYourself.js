@@ -14,11 +14,7 @@ else
 {
     sendMessage("Oh?");
     answer2 = sendInput("Something I should know about?");
-<<<<<<< HEAD
     if (answer2.isLike("yes", "yep", "yea", "came", "cum", "accident", "orgasm", "edge"))
-=======
-    if (answer.isLike("yes", "yep", "yea", "came", "cum", "accident", "orgasm", "edge"))
->>>>>>> origin/master
     {
         answer3 = sendInput("Tell me what you did %SubName%");
         if (answer3.isLike("came", "cum", "accident", "orgasm", "edge"))
@@ -49,8 +45,4 @@ else
         sendMessage("And I'M the one that feels like misbehaving %Grin%");
     }
 }
-<<<<<<< HEAD
-sendMessage("flag 1");
-=======
->>>>>>> origin/master
 Stroking();

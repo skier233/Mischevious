@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-setTypeSpeed("INSTANT");
->>>>>>> origin/master
 sendMessage("%SubName%, I'm glad you're here");
 sendMessage("Check out this picture I found earlier today");
 showTeaseImage();
@@ -37,10 +33,6 @@ else
     sendMessage("And since you DID make me have to persist in finding a sexy picture");
     sendMessage("I'm going to make YOU persist in stroking that %Cock% until you're begging me for mercy %EmoteRandom%");
 }
-<<<<<<< HEAD
-sendMessage("flag 1");
-=======
->>>>>>> origin/master
 Stroking();
 
 function thisOne()

@@ -12,15 +12,7 @@ else
     sendMessage("But because I'm filled with all this anticipation");
     sendMessage("Of all the little tortuous things I want to do to your %Cock%");
     sendMessage("And unlike you...");
-<<<<<<< HEAD
     sendMessage("Waiting really isn't my strong suit %PetName% %Grin%.", 0);
     setDate("waitingisnotmystrongsuit");
 }
-sendMessage("flag 1");
-=======
-    sendMessage("Waiting really isn't my strong suit %PetName% %Grin%");
-    setDate("waitingisnotmystrongsuit");
-}
-
->>>>>>> origin/master
 Stroking();

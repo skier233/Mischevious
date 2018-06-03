@@ -1,9 +1,5 @@
 sendMessage("I was just thinking about you %SubName%");
-<<<<<<< HEAD
 if (randomInteger(0, 1) == 1)
-=======
-if (randomInteger(0, 2) == 1)
->>>>>>> origin/master
 {
     sendMessage("And here you are %Grin%");
     answer = sendInput("Feel like having a little fun with me this evening?");
@@ -16,11 +12,7 @@ if (randomInteger(0, 2) == 1)
     else
     {
         sendMessage("You don't?");
-<<<<<<< HEAD
         if (randomInteger(0, 1) == 1)
-=======
-        if (randomInteger(0, 2) == 1)
->>>>>>> origin/master
         {
             answer2 = sendInput("Well whose cock is that between your legs?");
             if (answer2.isLike("you", "your", "yours"))
@@ -55,11 +47,7 @@ if (randomInteger(0, 2) == 1)
 else
 {
     sendMessage("Your %Cock% must have sensed I'm feeling a little wicked this afternoon");
-<<<<<<< HEAD
     if (randomInteger(0, 1) == 1)
-=======
-    if (randomInteger(0, 2) == 1)
->>>>>>> origin/master
     {
         sendMessage("Well since you're both here...");
         sendMessage("Why don't you pull it out of your pants...");
@@ -71,8 +59,4 @@ else
         sendMessage("So why don't you wrap your hand around that %Cock%");
     }
 }
-<<<<<<< HEAD
-sendMessage("flag 1");
-=======
->>>>>>> origin/master
 andStroking();

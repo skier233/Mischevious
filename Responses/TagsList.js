@@ -11,7 +11,7 @@ function tagsListResponse(message) {
         tagsList += " GarmetCovering(gc)";
         tagsList += " HandsCovering(hc)";
         tagsList += " SeeThrough(st)";
-        tagsList += " \\n| Visible Body Parts:";
+        tagsList += " \n| Visible Body Parts:";
         tagsList += " WetPussy(wp)";
         tagsList += " CreamyPussy(cp)";
         tagsList += " DrippingPussy(dp)";
@@ -23,7 +23,7 @@ function tagsListResponse(message) {
         tagsList += " Feet(ft)";
         tagsList += " Legs(l)";
         tagsList += " Cock(ck)";
-        tagsList += " \\n| Category*:";
+        tagsList += " \n| Category*:";
         tagsList += " Hardcore(hc)";
         tagsList += " Softcore(sc)";
         tagsList += " Lesbian(ls)";
