@@ -1,7 +1,6 @@
 addResponseIndicator("edge", "close", "there");
 
 function imCloseResponse(message) {
-<<<<<<< HEAD
     if (isEdging())
     {
         setTempVar("edging", false);
@@ -14,8 +13,5 @@ function imCloseResponse(message) {
     {
         sendMessage("You shouldnt even be stroking %petname%");
     }
-=======
-    setTempVar("edging", false);
->>>>>>> origin/master
     return true;
 }

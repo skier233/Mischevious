@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 if (randomInteger(0, 1) == 1) {
-=======
-if (randomInteger(0, 2) == 1) {
->>>>>>> origin/master
     sendMessage("%stopstroking%", 0);
     stopStroking();
 }
@@ -13,13 +9,8 @@ else {
     sendMessage("%lettheedgefade%");
 }
 sendMessage("Even though you just took your hand away");
-<<<<<<< HEAD
 sendMessage("I know you can still feel those fingers wrapped tightly around that %Cock%");
 sendMessage("Because deep down you need to believe the strokes are still coming to carry you over the edge %Grin%");
-=======
-sendMessage("I know you can still feel those fingers wrapped tightly around that #Cock");
-sendMessage("Because deep down you need to believe the strokes are still coming to carry you over the edge #Grin");
->>>>>>> origin/master
 sendMessage("I would apologize for disappointing you");
 sendMessage("But we both know that cumming would be the TRUE disappointment here");
 sendMessage("And to prove it");

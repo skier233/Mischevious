@@ -9,11 +9,7 @@ sendMessage("And your balls just weren't meant to hold so much cum");
 sendMessage("I mean");
 sendMessage("Stroking is supposed to feel GOOD, right? %Lol%");
 sendMessage("But instead, well");
-<<<<<<< HEAD
 sendMessage("Why don't you edge for me real quick and see for yourself");
-=======
-sendMessage("Why don't you %edge% for me real quick and see for yourself");
->>>>>>> origin/master
 startEdging();
 sendMessage("%stopstrokingedge%");
 sendMessage("%lettheedgefade%");

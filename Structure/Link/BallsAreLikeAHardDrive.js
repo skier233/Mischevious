@@ -43,8 +43,4 @@ else
     sendMessage("You are running low on space in %SubName%'s balls. Would you like to delete some ache?");
     sendMessage("No thanks %Lol%");
 }
-<<<<<<< HEAD
 Stroking();
-=======
-Stroking()
->>>>>>> origin/master

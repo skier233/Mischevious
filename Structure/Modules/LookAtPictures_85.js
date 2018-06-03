@@ -13,11 +13,7 @@ if (answer.isLike("yes", "yep", "yea"))
     }
     else
     {
-<<<<<<< HEAD
         sendMessage("%LAPScratchThatOne_85%");
-=======
-        sendMessage("LAPScratchThatOne_85");
->>>>>>> origin/master
     }
 
     sendMessage("Hmmm");
@@ -27,15 +23,9 @@ if (answer.isLike("yes", "yep", "yea"))
         sendMessage("%LAPIllSaveThisOne_85%");
     }
     else {
-<<<<<<< HEAD
         sendMessage("%LAPScratchThatOne_85%");
     }
     while ((randomInteger(0, 9) > 1))
-=======
-        sendMessage("LAPScratchThatOne_85");
-    }
-    while ((randomInteger(0, 10) > 1))
->>>>>>> origin/master
     {
         showTeaseImage();
         answer = sendInput("%LAPWhatAboutThisOne_85%");
@@ -43,11 +33,7 @@ if (answer.isLike("yes", "yep", "yea"))
             sendMessage("%LAPIllSaveThisOne_85%");
         }
         else {
-<<<<<<< HEAD
             sendMessage("%LAPScratchThatOne_85%");
-=======
-            sendMessage("LAPScratchThatOne_85");
->>>>>>> origin/master
         }
     }
     sendMessage("%thatsenough%");

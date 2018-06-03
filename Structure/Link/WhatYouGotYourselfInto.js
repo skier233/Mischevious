@@ -1,9 +1,5 @@
 sendMessage("Sometimes I bet you wonder what you got yourself into");
-<<<<<<< HEAD
 if (randomInteger(0, 1) == 1)
-=======
-if (randomInteger(0, 2) == 1)
->>>>>>> origin/master
 {
     sendMessage("If that #Cock can even handle all the things I want to do to it #Grin");
     sendMessage("The thing is");

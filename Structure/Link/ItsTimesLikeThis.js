@@ -1,9 +1,5 @@
 sendMessage("It's times like this I bet you wonder");
-<<<<<<< HEAD
 if (randomInteger(0, 1) == 1)
-=======
-if (randomInteger(0, 2) == 1)
->>>>>>> origin/master
 {
     sendMessage("If you're the luckiest guy in the world...");
     sendMessage("or the UNLUCKIEST %Lol%");

@@ -1,9 +1,5 @@
 sendMessage("I love the thought of you sitting there in your chair");
-<<<<<<< HEAD
 if (randomInteger(0, 1) == 1)
-=======
-if (randomInteger(0, 2) == 1)
->>>>>>> origin/master
 {
     sendMessage("Squirming with all that ache");
     sendMessage("Desperate to touch yourself");
