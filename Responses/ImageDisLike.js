@@ -1,12 +1,15 @@
-addResponseIndicator("dont like", "don't like", "bad", "1", "hate", "awful");
-run("utils.js");
+addResponseRegex("dont like", "don't like", "bad", "^1$", "^1 ", " 1$", " 1 ", "hate", "awful");
+run("allutils.js");
 
 function imageDisLikeResponse(message) {
+    if (message.toLowerCase().search("pic") != -1) {
+        sendMessage("false pic");
+        return false;
+    }
     if (getImageUrl() != null || getImagePath() != null)
     {
-        var myFile = new java.io.File("C:\\Users\\tyler\\Desktop\\test\\teaseaijava2\\" + getImagePath());
+        var myFile = new java.io.File(getAppPath() + getImagePath());
         myFile.delete();
-        //sendMessage("complete");
     }
     return true;
 }

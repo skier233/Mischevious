@@ -1,5 +1,5 @@
 addResponseRegex("^tag([ ]+[a-z|0-9]+)+", "^tagpicture([ ]+[a-z|0-9]+)+", "^t([ ]+[a-z|0-9]+)+");
-run("utils.js");
+run("allutils.js");
 
 function tagPictureResponse(message) {
     if (getImageUrl() != null || getImagePath() != null)
@@ -19,7 +19,7 @@ function tagPictureResponse(message) {
         else if (message.search("[ ]+(garmetcovering|gcovering|gc)($| )") != -1) {
             tagsList += " #GarmetCovering";
         }
-        else if (message.search("[ ]+(handsvoering|hcovering|hc)($| )") != -1) {
+        else if (message.search("[ ]+(handsvoering|hcovering|h)($| )") != -1) {
             tagsList += " #HandsCovering";
         }
         else if (message.search("[ ]+(seethrough|sthrough|st)($| )") != -1) {
@@ -48,7 +48,7 @@ function tagPictureResponse(message) {
         if (message.search("[ ]+(face|f)($| )") != -1) {
             tagsList += " #Face";
         }
-        if (message.search("[ ]+(fingers|fg|fs)($| )") != -1) {
+        if (message.search("[ ]+(fingers|fgs|fs)($| )") != -1) {
             tagsList += " #Fingers";
         }
         if (message.search("[ ]+(feet|foot|ft)($| )") != -1) {
@@ -59,6 +59,21 @@ function tagPictureResponse(message) {
         }
         if (message.search("[ ]+(cock|ck)($| )") != -1) {
             tagsList += " #Cock";
+        }
+        if (message.search("[ ]+(blonde|bl)($| )") != -1) {
+            tagsList += " #Blonde";
+        }
+        if (message.search("[ ]+(brunette|bru|bro|brown)($| )") != -1) {
+            tagsList += " #Brunette";
+        }
+        if (message.search("[ ]+(redhead|red|re|ginger)($| )") != -1) {
+            tagsList += " #Redhead";
+        }
+        if (message.search("[ ]+(skinny|sl|slim)($| )") != -1) {
+            tagsList += " #Slim";
+        }
+        if (message.search("[ ]+(thick|th|thk)($| )") != -1) {
+            tagsList += " #Thick";
         }
         tagsList += " |";
         //Now the category associated to the image
@@ -101,6 +116,12 @@ function tagPictureResponse(message) {
         if (message.search("[ ]+(outside|outdoors|out|od|os)($| )") != -1) {
             tagsList += " #Outdoors";
         }
+        if (message.search("[ ]+(closeup|cu)($| )") != -1) {
+            tagsList += " #CloseUp";
+        }
+        if (message.search("[ ]+(cumcovered|cc)($| )") != -1) {
+            tagsList += " #CumCovered";
+        }
         tagsList += " |";
         //Now the people involved
         if (message.search("[ ]+(solofemale|sologirl|solowoman|solof|sf|sg|sw)($| )") != -1) {
@@ -109,7 +130,7 @@ function tagPictureResponse(message) {
         if (message.search("[ ]+(solomale|soloman|soloboy|solom|sm|sb)($| )") != -1) {
             tagsList += " #SoloMan";
         }
-        if (message.search("[ ]+(couple|cp)($| )") != -1) {
+        if (message.search("[ ]+(couple|cpl)($| )") != -1) {
             tagsList += " #Couple";
         }
         if (message.search("[ ]+(2female|female2|2f|f2)($| )") != -1) {
@@ -142,7 +163,7 @@ function tagPictureResponse(message) {
         if (message.search("[ ]+(masturbating|mb|m)($| )") != -1) {
             tagsList += " #Masturbating";
         }
-        if (message.search("[ ]+(sucking|sc|sk|s)($| )") != -1) {
+        if (message.search("[ ]+(sucking|sck|sk|s)($| )") != -1) {
             tagsList += " #Sucking";
         }
         if (message.search("[ ]+(handjob|hj|hjob)($| )") != -1) {
@@ -200,14 +221,14 @@ function tagPictureResponse(message) {
         var z = getImagePath();
         z = "" + z;
         var x = z.split("\\");
-        sendMessage("in tag", 0);
+        sendMessage("Tags: " + tagsList, 0);
         var currentDir = "";
         for (var i = 0; i < x.length - 1; i++)
         {
             currentDir += x[i] + "\\";
         }
         var fileName = x[x.length-1];
-        var tagsFile = getOrCreateFile("C:\\Users\\tyler\\Desktop\\test\\teaseaijava2\\" + currentDir + "imagetags.txt");
+        var tagsFile = getOrCreateFile(getAppPath() + currentDir + "imagetags.txt");
         var fileReader = new java.io.FileReader(tagsFile);
         var bufferedReader = new java.io.BufferedReader(fileReader);
         var line = bufferedReader.readLine();
@@ -238,7 +259,6 @@ function tagPictureResponse(message) {
         }
         bufferedWriter.flush();
         bufferedWriter.close();
-        sendMessage("success", 0);
 
     }
     return true;

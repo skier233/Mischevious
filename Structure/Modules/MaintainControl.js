@@ -20,7 +20,8 @@ if (answer.isLike("yes", "yea", "yep"))
 }
 else
 {
-    sendMessage("It will soon, I promise you");
+    sendMessage("You wanna be sassy with me huh? You'll regret that %petname%...%grin%");
+    increaseAnger(5);
 }
 sendMessage("Your %Cock% is %Gonna% reach a point");
 sendMessage("A very desperate...");

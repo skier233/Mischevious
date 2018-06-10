@@ -1,6 +1,7 @@
 answer = sendInput("Are you aching a lot right now %subname%?", 0);
 if (answer.isLike("yes", "yea", "yep"))
 {
+    increaseAnger(-1);
     sendMessage("Mmmm");
     sendMessage("I want you to ache MORE");
     sendMessage("%edge%");
@@ -13,6 +14,7 @@ else
 {
     sendMessage("No?");
     sendMessage("Well I can't have that %Grin%");
+    increaseAnger(4);
     sendMessage("%edge%");
     startEdging();
     if (randomInteger(0, 10) <= 6)

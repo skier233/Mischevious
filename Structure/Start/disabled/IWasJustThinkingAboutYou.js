@@ -1,10 +1,11 @@
 sendMessage("I was just thinking about you %SubName%");
-if (randomInteger(0, 2) == 1)
+if (randomInteger(0, 1) == 1)
 {
     sendMessage("And here you are %Grin%");
     answer = sendInput("Feel like having a little fun with me this evening?");
     if (answer.isLike("yes", "yea", "yep"))
     {
+        increaseAnger(-1);
         sendMessage("%Yay%");
         sendMessage("Then what I want you to do");
         sendMessage("Is take that %Cock% out of your pants")
@@ -12,11 +13,12 @@ if (randomInteger(0, 2) == 1)
     else
     {
         sendMessage("You don't?");
-        if (randomInteger(0, 2) == 1)
+        if (randomInteger(0, 1) == 1)
         {
             answer2 = sendInput("Well whose cock is that between your legs?");
             if (answer2.isLike("you", "your", "yours"))
             {
+                increaseAnger(-1);
                 sendMessage("That's right %Grin%");
                 sendMessage("And since it is my cock...");
                 sendMessage("I get to have fun with it whenever I want");
@@ -26,6 +28,7 @@ if (randomInteger(0, 2) == 1)
             }
             else
             {
+                increaseAnger(4);
                 sendMessage("Oh you think it belongs to you huh?");
                 sendMessage("In that case why don't you pull YOUR cock out");
                 sendMessage("And I'll make you put it through so much ache and abuse");
@@ -35,6 +38,7 @@ if (randomInteger(0, 2) == 1)
         }
         else
         {
+            increaseAnger(2);
             sendMessage("Somehow I don't believe you %Lol%");
             sendMessage("But I guess there's only one way to really put it to the test %Grin%");
             sendMessage("%SubName%");
@@ -47,7 +51,7 @@ if (randomInteger(0, 2) == 1)
 else
 {
     sendMessage("Your %Cock% must have sensed I'm feeling a little wicked this afternoon");
-    if (randomInteger(0, 2) == 1)
+    if (randomInteger(0, 1) == 1)
     {
         sendMessage("Well since you're both here...");
         sendMessage("Why don't you pull it out of your pants...");
@@ -59,4 +63,4 @@ else
         sendMessage("So why don't you wrap your hand around that %Cock%");
     }
 }
-andStroking();
+customStroking("and %startstroking%");

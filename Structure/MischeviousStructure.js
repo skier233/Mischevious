@@ -1,11 +1,18 @@
 preferredSessionLength = getVar("prefSessionLength");
-setupVars();
+setUpVars();
+setUpMedia();
+setUpChat();
+//loadUrlImages(20, null, false);
+//getTeasePicture();
+calculateOrgasm();
+calculateRuin();
+WMessage("no pics found", 0);
 run("Structure\\Start\\*.js");
 firstRun = true;
-while ((preferredSessionLength * 60 >= (getMillisPassed() / 1000)) || firstRun)
+while (continueSession())
 {
     run("Structure\\Modules\\*.js");
-    if (randomInteger(0, 4) == 1)
+    if (randomInteger(1, 4) == 1)
     {
         run("Structure\\Modules\\*.js");
     }

@@ -1,18 +1,21 @@
-addResponseIndicator("meh", "it's ok", "its alright", "2", "it's alright", "its ok");
-run("utils.js");
+addResponseRegex("meh", "it's ok", "its alright", "^2$", "^2 ", " 2$", " 2 ", "it's alright", "its ok");
+run("allutils.js");
 
 function imageOKResponse(message) {
+    //sendMessage("in ok");
+    if (message.toLowerCase().search("pic") != -1) {
+        sendMessage("false pic");
+        return false;
+    }
+    //sendMessage("in ok 2");
     if (getImageUrl() != null || getImagePath() != null)
     {
-        /*if (java.nio.file.Files.move(java.nio.file.Paths.get("C:\\Desktop\\Test\\TeaseAIJava2\\tumblr_o9pi96pxXN1v0oj9oo1_400.gif"), java.nio.file.Paths.get("C:\\Desktop\\Test\\tumblr_o9pi96pxXN1v0oj9oo1_400.gif")) == null)
-        {
-            sendMessage("failed")
-        }*/
+        //sendMessage("in ok 3");
         var z = getImagePath();
         z = "" + z;
         var x = z.split("\\");
         var fileName = x[x.length - 1];
-        moveFile("C:\\Users\\tyler\\Desktop\\test\\teaseaijava2\\" + getImagePath(), "C:\\Users\\tyler\\Desktop\\test\\teaseaijava2\\images\\normal\\" + fileName);
+        moveFile(getAppPath() + getImagePath(), getAppPath() + "images\\normal\\" + fileName);
         //sendMessage("complete");
     }
     return true;
