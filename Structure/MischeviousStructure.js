@@ -1,6 +1,5 @@
 preferredSessionLength = getVar("prefSessionLength");
 DMessage("Starting session");
-CMessage("test message <i>abcdef<>");
 run("Structure\\Start\\*.js");
 DMessage("Starting module");
 firstRun = true;

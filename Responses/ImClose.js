@@ -24,48 +24,48 @@ function imCloseResponse(message) {
         if (decision < 0) {
             decision = 0;
         }
-        sendMessage("random " + random + " apm " + apmIndex + " percentstroke " + percentStroking, 0);
-        sendMessage(decision, 0);
+        DMessage("random " + random + " apm " + apmIndex + " percentstroke " + percentStroking, 0);
+        DMessage(decision, 0);
         switch (Math.round(decision))
         {
             case 0:
-                sendMessage("This is really hard for you %petname%.");
-                sendMessage("Strangely though, I'm feeling generous...")
+                CMessage("This is really hard for you %petname%.");
+                CMessage("Strangely though, I'm feeling generous...")
                 endStroking();
                 break;
             case 1:
-                sendMessage("I can't have you edging so easily %petname%.");
-                sendMessage("%strokeslower%");
+                CMessage("I can't have you edging so easily %petname%.");
+                CMessage("%strokeslower%");
                 slowStroking(2);
                 break;
             case 2:
-                sendMessage("Oh, you are on the edge?");
-                sendMessage("It's funny that you think that I care...");
-                sendMessage("Keep stroking %petname%");
+                CMessage("Oh, you are on the edge?");
+                CMessage("It's funny that you think that I care...");
+                CMessage("Keep stroking %petname%");
                 break;
             case 3:
-                sendMessage("I bet you want to cum so badly %grin%.");
-                sendMessage("Too bad you can't");
-                sendMessage("Keep stroking %petname%");
-                sendMessage("Oh...", 2);
-                sendMessage("And to make it harder for you...");
-                sendMessage("Stare at this while you keep stroking %grin%.");
+                CMessage("I bet you want to cum so badly %grin%.");
+                CMessage("Too bad you can't");
+                CMessage("Keep stroking %petname%");
+                CMessage("Oh...", 2);
+                CMessage("And to make it harder for you...");
+                CMessage("Stare at this while you keep stroking %grin%.");
                 getTeasePicture(4);
                 break;
             case 4:
-                sendMessage("The fact that you are on the edge right now means that I haven't been hard enough on you");
-                sendMessage("I'm very sorry about that %petname%. I'll make sure to go harder on you %grin%.");
-                sendMessage("Why don't you keep stroking while you stare at this");
+                CMessage("The fact that you are on the edge right now means that I haven't been hard enough on you");
+                CMessage("I'm very sorry about that %petname%. I'll make sure to go harder on you %grin%.");
+                CMessage("Why don't you keep stroking while you stare at this");
                 getTeasePicture(4);
-                sendMessage("Oh and also...", 2);
-                sendMessage("%strokefaster%");
+                CMessage("Oh and also...", 2);
+                CMessage("%strokefaster%");
                 speedUpStroking(3);
                 break;
         }
     }
     else
     {
-        sendMessage("You shouldnt even be stroking %petname%");
+        CMessage("You shouldnt even be stroking %petname%");
     }
     return true;
 }

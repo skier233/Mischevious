@@ -79,6 +79,6 @@ function tagsListResponse(message) {
     tagsList += "  Panties(pt or py)";
     tagsList += "  WetPanties(wpant or wpa or wpt)";
     tagsList += "  BathingSuitOrBra(br or ss)";
-    sendMessage(tagsList, 0);
+    DMessage(tagsList, 0);
     return true;
 }

@@ -5,8 +5,10 @@ answer = getInput("Want to look at some pictures with me?");
 if (answer.isLike("yes", "yep", "yea"))
 {
     CMessage("Let's see what I can find");
+	lockImages();
     getTeasePicture();
     answer = getInput("Do you like this one?");
+	unlockImages();
     if (answer.isLike("yes", "yep", "yea", "hot", "good", "3", "like"))
     {
         sortPicture(getImagePath(), 3);
@@ -25,8 +27,10 @@ if (answer.isLike("yes", "yep", "yea"))
     }
 
     CMessage("Hmmm");
+	lockImages();
     getTeasePicture();
     answer = getInput("%LAPWhatAboutThisOne_85%");
+	unlockImages();
     if (answer.isLike("yes", "yep", "yea", "hot", "good", "3", "like")) {
         sortPicture(getImagePath(), 3);
         CMessage("%LAPIllSaveThisOne_85%");
@@ -44,8 +48,10 @@ if (answer.isLike("yes", "yep", "yea"))
     }
     while ((randomInteger(0, 9) > 0))
     {
+		lockImages();
         getTeasePicture();
         answer = getInput("%LAPWhatAboutThisOne_85%");
+		unlockImages();
         if (answer.isLike("yes", "yep", "yea", "hot", "good", "3", "like")) {
             sortPicture(getImagePath(), 3);
             CMessage("%LAPIllSaveThisOne_85%");

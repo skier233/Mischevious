@@ -6,7 +6,7 @@ function picturesModeResponse(message) {
         return false;
     }
     var folderNumber;
-    sendMessage(message, 0);
+    DMessage(message, 0);
     var path = "images\\system\\tumblr";
     folderNumber = 1;
     if (message.search("liked") != -1 || message.search("3") != -1) {
@@ -52,7 +52,7 @@ function picturesModeResponse(message) {
             }
             currentFile++;
             if (currentFile >= folderImages.length) {
-                sendMessage("reached end of files", 0);
+                DMessage("reached end of files", 0);
                 break;
             }
             //sendMessage("flag 672");
@@ -74,7 +74,7 @@ function picturesModeResponse(message) {
             extension = randomimage.getName().substring(i + 1);
         }
         if ((extension == "png" || extension == "jpg" || extension == "gif")) {
-            sendMessage("path: " + getImagePath(), 0);
+            DMessage("path: " + getImagePath(), 0);
             answer = sendInput("Do you like this one? (Options: hate, ok, like, love, next (1,2,3,4,n))", 0);
             x = answer.getAnswer();
             while (x != "1" && x != "2" && x != "3" && x != "4" && x != "liked" && x != "normal" && x != "loved" && x != "hate" && x != "n" && x != "next" && x != "5" && x != "quit" && x != "exit" && x != "q" && x != "e") {

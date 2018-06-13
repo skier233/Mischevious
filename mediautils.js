@@ -52,7 +52,7 @@ function showTaggedImage(imageType, imageTags, delay) {
             localpath = "images\\normal";
     }
     var path = teasePath + localpath + "\\imagetags.txt";
-    var tagsFile = new getOrCreateFile(path);
+    var tagsFile = getOrCreateFile(path);
     var fileReader = new java.io.FileReader(tagsFile);
     var bufferedReader = new java.io.BufferedReader(fileReader);
     var line = bufferedReader.readLine();
@@ -326,17 +326,17 @@ function moveFile(path, newPath) {
             }
             setTempVar("dupemap", dupeMap);*/
         }
-        sendMessage("File moved", 0);
+        DMessage("File moved", 0);
         if (thisTag != null) {
-            sendMessage("in retag", 0);
+            DMessage("in retag", 0);
             var newFile = new java.io.File(newPath);
             currTagsFile = getOrCreateFile(newFile.getParent() + "\\imagetags.txt");
-            sendMessage(file.getParent() + "\\imagetags.txt", 0);
+            DMessage(file.getParent() + "\\imagetags.txt", 0);
             addTag(currTagsFile, file.getName(), thisTag);
         }
     }
     else {
-        sendMessage("image is a duplicate. Deleting...");
+        DMessage("image is a duplicate. Deleting...");
         file.delete();
         //TODO: need to remove from hashmap when an item in loved,liked, or normal is removed
         return false;
@@ -433,6 +433,7 @@ function internalmoveFile(path, newPath) {
 **/
 function getOrCreateFile(path) {
     var myFile = new java.io.File(path);
+	new java.io.File(myFile.getParent()).mkdirs();
     myFile.createNewFile();
     return myFile;
 }
@@ -458,7 +459,7 @@ function checkDuplicateFile(file) {
                 //sendMessage("file path: " + normalImages[i].getPath() + " md5 " + md5, 0);
             }
             else {
-                sendMessage("duplicate files " + normalImages[i].getPath() + " and " + myHashMap.get(md5), 0);
+                DMessage("duplicate files " + normalImages[i].getPath() + " and " + myHashMap.get(md5), 0);
             }
         }
     }
@@ -469,7 +470,7 @@ function checkDuplicateFile(file) {
                 myHashMap.set(md5, likedImages[i].getPath());
             }
             else {
-                sendMessage("duplicate files " + likedImages[i].getPath() + " and " + myHashMap.get(md5), 0);
+                DMessage("duplicate files " + likedImages[i].getPath() + " and " + myHashMap.get(md5), 0);
             }
         }
     }
@@ -480,7 +481,7 @@ function checkDuplicateFile(file) {
                 myHashMap.set(md5, lovedImages[i].getPath());
             }
             else {
-                sendMessage("duplicate files " + lovedImages[i].getPath() + " and " + myHashMap.get(md5), 0);
+                DMessage("duplicate files " + lovedImages[i].getPath() + " and " + myHashMap.get(md5), 0);
             }
         }
     }
@@ -517,7 +518,7 @@ function checkDuplicateFileFast(file) {
                     //sendMessage("file path: " + normalImages[i].getPath() + " md5 " + md5, 0);
                 }
                 else {
-                    sendMessage("duplicate files " + normalImages[i].getPath() + " and " + dupeMap.get(md5), 0);
+                    DMessage("duplicate files " + normalImages[i].getPath() + " and " + dupeMap.get(md5), 0);
                 }
             }
         }
@@ -528,7 +529,7 @@ function checkDuplicateFileFast(file) {
                     dupeMap.set(md5, likedImages[i].getPath());
                 }
                 else {
-                    sendMessage("duplicate files " + likedImages[i].getPath() + " and " + dupeMap.get(md5), 0);
+                    DMessage("duplicate files " + likedImages[i].getPath() + " and " + dupeMap.get(md5), 0);
                 }
             }
         }
@@ -539,7 +540,7 @@ function checkDuplicateFileFast(file) {
                     dupeMap.set(md5, lovedImages[i].getPath());
                 }
                 else {
-                    sendMessage("duplicate files " + lovedImages[i].getPath() + " and " + dupeMap.get(md5), 0);
+                    DMessage("duplicate files " + lovedImages[i].getPath() + " and " + dupeMap.get(md5), 0);
                 }
             }
         }

@@ -37,7 +37,7 @@ function canICumResponse(message) {
         }
     }
     else {
-        sendMessage("You shouldnt even be stroking %petname%");
+        CMessage("You shouldnt even be stroking %petname%");
     }
     return true;
 }

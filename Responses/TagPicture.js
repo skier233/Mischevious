@@ -224,7 +224,7 @@ function tagPictureResponse(message) {
         var z = getImagePath();
         z = "" + z;
         var x = z.split("\\");
-        sendMessage("Tags: " + tagsList, 0);
+        DMessage("Tags: " + tagsList, 0);
         var currentDir = "";
         for (var i = 0; i < x.length - 1; i++)
         {
