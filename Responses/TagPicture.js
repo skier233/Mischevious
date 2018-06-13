@@ -2,6 +2,9 @@ addResponseRegex("^tag([ ]+[a-z|0-9]+)+", "^tagpicture([ ]+[a-z|0-9]+)+", "^t([ 
 run("allutils.js");
 
 function tagPictureResponse(message) {
+    if (getResponsesDisabled()) {
+        return false;
+    }
     if (getImageUrl() != null || getImagePath() != null)
     {
         var tagsList = "|";

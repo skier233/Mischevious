@@ -1,6 +1,8 @@
 addResponseRegex("like", "it's hot", "its hot", "^3$", "^3 ", " 3$", " 3 ", "sexy", "good");
-run("allutils.js");
 function imageLikeResponse(message) {
+    if (getResponsesDisabled()) {
+        return false;
+    }
     if (message.toLowerCase().search("pic") != -1)
     {
         sendMessage("false pic");
@@ -16,7 +18,9 @@ function imageLikeResponse(message) {
         z = "" + z;
         var x = z.split("\\");
         var fileName = x[x.length - 1];
-        moveFile(getAppPath() + getImagePath(), getAppPath() + "\\images\\liked\\" + fileName);
+        sortPicture(getImagePath(), 3);
+        //sendMessage("flag 67");
+        //moveFile(getAppPath() + getImagePath(), getAppPath() + "\\images\\liked\\" + fileName);
         //sendMessage("complete");
     }
     return true;

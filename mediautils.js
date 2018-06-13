@@ -3,6 +3,10 @@ var currentPictureUrl;
 var currentPicturePath;
 var teasePath;
 var personalityPath;
+//FastCheckDupVars
+var dupeMap;
+var hashReady = false;
+
 /**
 * setUpMedia method will set up this util class. Call this at the beginning of the personality.
 **/
@@ -14,6 +18,8 @@ function setUpMedia() {
     var file2 = TeaseAI.application.getSession().getActivePersonality().getFolder();
     //The path to your personality directory
     personalityPath = file2.getAbsolutePath();
+    checkDuplicateFileFast(file2);
+    //checkDuplicateFile(file2);
 }
 
 /**
@@ -26,8 +32,8 @@ function getAppPath() {
 * showTaggedImage method will show and return a random picture of the given type (2, 3 ,4 (normal, liked, loved)) with
 * the tags provided as an array
 **/
-function showTaggedImage(imageType, imageTags) {
-    //TODO: modify this function to have more checks in place and also have a delay option
+function showTaggedImage(imageType, imageTags, delay) {
+    //TODO add functionality for what if there isnt an image with all of the tags but there is one with all but one...?
     var localpath = "";
     switch (imageType) {
         case "2":
@@ -42,6 +48,8 @@ function showTaggedImage(imageType, imageTags) {
         case "loved":
             localpath = "images\\loved";
             break;
+        default:
+            localpath = "images\\normal";
     }
     var path = teasePath + localpath + "\\imagetags.txt";
     var tagsFile = new getOrCreateFile(path);
@@ -70,63 +78,69 @@ function showTaggedImage(imageType, imageTags) {
     }
     var randomPicture = randomInteger(0, resultingFileNames.length - 1);
     var fileName = resultingFileNames[randomPicture];
-    sendMessage("image path " + localpath + "\\" + fileName, 0)
-    return showImage(localpath + "\\" + fileName);
+    //sendMessage("image path " + localpath + "\\" + fileName, 0)
+    var toReturn = showImage(localpath + "\\" + fileName);
+    currentPicturePath = localpath + "\\" + fileName;
+    if (delay != null)
+    {
+        sleep(delay);
+    }
+    return toReturn;
         
 }
 function sortPicture(file, sortPlace=2)
-{
-    CMessage(file, 0);
-    var myFile;
-    if (file instanceof java.io.File) {
-        myFile = file;
-    }
-    else if (file.search(teasePath) != -1) {
-        myFile = new java.io.File(file);
-    }
-    else {
-        myFile = new java.io.File(teasePath + "\\" + file);
-    }
-    var localpath = "";
-    switch (sortPlace) {
-        case 1:
-        case "dislike":
-            localpath = "delete";
-            break;
-        case 2:
-        case "normal":
-            localpath = "images\\normal\\";
-            break;
-        case 3:
-        case "liked":
-            localpath = "images\\liked\\";
-            break;
-        case 4:
-        case "loved":
-            localpath = "images\\loved\\";
-            break;
-        default:
-            localpath = null;
-    }
-    if (localpath == null)
     {
-        EMessage("sortPicture called with invalid args!");
+        CMessage(file, 0);
+        var myFile;
+        if (file instanceof java.io.File) {
+            myFile = file;
+        }
+        else if (file.search(teasePath) != -1) {
+            myFile = new java.io.File(file);
+        }
+        else {
+            myFile = new java.io.File(teasePath + "\\" + file);
+        }
+        var localpath = "";
+        switch (sortPlace) {
+            case 1:
+            case "dislike":
+                localpath = "delete";
+                break;
+            case 2:
+            case "normal":
+                localpath = "images\\normal\\";
+                break;
+            case 3:
+            case "liked":
+                localpath = "images\\liked\\";
+                break;
+            case 4:
+            case "loved":
+                localpath = "images\\loved\\";
+                break;
+            default:
+                localpath = null;
+        }
+        if (localpath == null)
+        {
+            EMessage("sortPicture called with invalid args!");
+        }
+        else if (localpath == "delete")
+        {
+            myFile.delete();
+            return true;
+        }
+        else
+        {
+            var z = myFile.getPath();
+            z = "" + z;
+            var x = z.split("\\");
+            var fileName = x[x.length - 1];
+            return moveFile(z, getAppPath() + localpath + fileName);
+        }
+        return false;
     }
-    else if (localpath == "delete")
-    {
-        myFile.delete();
-        return true;
-    }
-    else
-    {
-        var z = myFile.getPath();
-        z = "" + z;
-        var x = z.split("\\");
-        var fileName = x[x.length - 1];
-        return moveFile(z, getAppPath() + localpath + fileName);
-    }
-    return false;
-}
 /**
 * getTeasePicture method will show and return a random picture from a url file
 **/
@@ -147,20 +161,36 @@ function loadUrlImages(amount, urlfilename, removed) {
     }
     if (removed)
     {
-        //TODO:
-        //implement manually going thru media urls and removing them
+        Dmessage("currentUrlFile: " + urlfile);
+        var mediaUrls = urlfile.getMediaURLs();
+        var deleteFile = false;
+        var duplicates = 0;
+        if (mediaUrls.length < amount)
+        {
+            amount = mediaUrls.length;
+            deleteFile = true;
+        }
+        for (var i = 0; i < amount; i++)
+        {
+            var myfile = getFileFromUrl(mediaUrls[i]);
+            if (checkDuplicateFileFast(myfile))
+            {
+                myfile.delete();
+                i--;
+                duplicates++;
+            }
+        }
+        mediaUrls.subList(0, (amount + duplicates + 1)).clear();
+        urlfile.saveToFile();
     }
     else
     {
-
         var consecutiveDuplicates = 0;
-        //var image = showImage(urlfile);
-        //var image = showImage(urlfile);
-        //var image = showImage(urlfile);
+        var mediaUrls = urlfile.getMediaURLs();
         for (var i = 0; i < amount; i++)
         {
-            var image = showImage(urlfile, 0);
-            if (checkDuplicateFile(image))
+            var image = getFileFromUrl(mediaUrls[randomInteger(0, mediaUrls.length - 1)]);
+            if (checkDuplicateFileFast(image))
             {
                 consecutiveDuplicates++;
                 image.delete();
@@ -185,10 +215,10 @@ function loadUrlImages(amount, urlfilename, removed) {
 function getTeasePicture(flag=1, time)
 {
     var tumblrimages = listFilesInFolder("images\\system\\tumblr\\");
-    if (tumblrimages.length < 100)
+    if (tumblrimages.length < 3)
     {
         DMessage("loading images");
-        //loadUrlImages(100 - tumblrimages.length, null);
+        loadUrlImages(12 - tumblrimages.length, null, true);
     }
     var path = "images\\system\\tumblr\\";
     switch(flag)
@@ -241,32 +271,6 @@ function getTeasePicture(flag=1, time)
 }
 
 /**
-* getURLTeasePicture method will show and return a random picture from a url file
-**/
-function getURLTeasePicture() {
-    //TODO: look at this method. Might need to be removed now
-    //returns mediaurl type
-    const test = createMediaURL("URLs/test.tumblr.com.txt");
-    //returns java file object
-    //var test = showTeaseImage();
-    //sendMessage("type of createmediaurl " + Object.prototype.toString.call(test));
-    if (test != null) {
-        currentUrlFile = test;
-        currentPicturePath = null;
-        var urlFile = test.getFile();
-    }
-    sendMessage("testmsg " + test, 0);
-    //type: java.io.file
-    var image = showImage(test);
-    //checkDuplicateFile(image);
-    sendMessage("type of showimage " + Object.prototype.toString.call(image));
-
-    currentPictureUrl = getCurrentImageURL();
-    sendMessage("testmsg2 ", 0);
-    return currentPictureUrl;
-}
-
-/**
 * getImageUrl method will return the url of the current displayed image
 **/
 function getImageUrl() {
@@ -302,12 +306,26 @@ function getCurrentUrlFile() {
 function moveFile(path, newPath) {
     //still needs work
     var file = new java.io.File(path);
-    if (!checkDuplicateFile(file)) {
+    if (!checkDuplicateFileFast(file)) {
         //sendMessage("in move", 40);
         var currTagsFile = getOrCreateFile(file.getParent() + "\\imagetags.txt");
         var thisTag = deleteTag(currTagsFile, file.getName());
         //sendMessage("before move");
         file = internalmoveFile(path, newPath);
+        if (file.getPath().search("liked") != -1 || file.getPath().search("loved") != -1 || file.getPath().search("normal") != -1)
+        {
+            //DMessage("adding md5");
+            var md5 = calculateMD5(file);
+            /*if (!dupeMap.has(md5))
+            {
+                dupeMap.set(md5, file.getPath());
+            }
+            else
+            {
+                EMessage("SERIOUS ERROR WITH CHECKDUPLICATE. REPORT IMMEDIATELY!");
+            }
+            setTempVar("dupemap", dupeMap);*/
+        }
         sendMessage("File moved", 0);
         if (thisTag != null) {
             sendMessage("in retag", 0);
@@ -320,8 +338,10 @@ function moveFile(path, newPath) {
     else {
         sendMessage("image is a duplicate. Deleting...");
         file.delete();
+        //TODO: need to remove from hashmap when an item in loved,liked, or normal is removed
         return false;
     }
+    //sendMessage("flag 61");
     return true;
 }
 /**
@@ -405,7 +425,7 @@ function internalmoveFile(path, newPath) {
         var myFile = new java.io.File(path);
         myFile.renameTo(new java.io.File(newPath));
         myFile.delete();
-        return myFile;
+        return new java.io.File(newPath);
     }
 }
 /**
@@ -471,6 +491,67 @@ function checkDuplicateFile(file) {
     }
     return false;
 }
+
+/**
+* checkDuplicateFileFast method will check if there are any duplicates of the current file. Works the same as checkDuplicate except stores a local copy and will be much faster
+* in time efficiency. Useful for checking duplicates many times in a loop
+**/
+function checkDuplicateFileFast(file) {
+    if (file == null)
+    {
+        throw new Error("check duplicate called with null file");
+    }
+    var normalImages = listFilesInFolder("images\\normal");
+    var likedImages = listFilesInFolder("images\\liked");
+    var lovedImages = listFilesInFolder("images\\loved");
+    //sendMessage("normal images " + normalImages);
+    if (!hashReady)
+    {
+        dupeMap = new Map();
+        var fileMd5 = calculateMD5(file);
+        if (normalImages != null) {
+            for (var i = 0; i < normalImages.length; i++) {
+                var md5 = calculateMD5(normalImages[i]);
+                if (!dupeMap.has(md5)) {
+                    dupeMap.set(md5, normalImages[i].getPath());
+                    //sendMessage("file path: " + normalImages[i].getPath() + " md5 " + md5, 0);
+                }
+                else {
+                    sendMessage("duplicate files " + normalImages[i].getPath() + " and " + dupeMap.get(md5), 0);
+                }
+            }
+        }
+        if (likedImages != null) {
+            for (var i = 0; i < likedImages.length; i++) {
+                var md5 = calculateMD5(likedImages[i]);
+                if (!dupeMap.has(md5)) {
+                    dupeMap.set(md5, likedImages[i].getPath());
+                }
+                else {
+                    sendMessage("duplicate files " + likedImages[i].getPath() + " and " + dupeMap.get(md5), 0);
+                }
+            }
+        }
+        if (lovedImages != null) {
+            for (var i = 0; i < lovedImages.length; i++) {
+                var md5 = calculateMD5(lovedImages[i]);
+                if (!dupeMap.has(md5)) {
+                    dupeMap.set(md5, lovedImages[i].getPath());
+                }
+                else {
+                    sendMessage("duplicate files " + lovedImages[i].getPath() + " and " + dupeMap.get(md5), 0);
+                }
+            }
+        }
+        hashReady = true;
+        if (dupeMap.has(fileMd5)) {
+            if (dupeMap.get(fileMd5) != file.getPath()) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 /**
 * listFilesInFolder method that will return all files in a folder. Pass in either a path or a java file.
 **/
@@ -486,6 +567,43 @@ function listFilesInFolder(folder) {
         folderFile = new java.io.File(teasePath + "\\" + folder);
     }
     return folderFile.listFiles();
+}
+function getFileFromUrl(url)
+{
+    var split = url.split("/");
+    var path = split[split.length - 1];
+    path = teasePath + "\\images\\system\\tumblr\\" + path;
+    var file = new java.io.File(path);
+    if (file.exists())
+    {
+        return file;
+    }
+    try{
+        var inputstream = new java.io.BufferedInputStream(new java.net.URL(url).openStream());
+        var out = new java.io.ByteArrayOutputStream();
+        var buf = java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, 1024);
+        var n;
+        while (-1 != (n = inputstream.read(buf)))
+        {
+            out.write(buf, 0 , n);
+        }
+        out.close();
+        inputstream.close();
+        var response  = out.toByteArray();
+        var fos = new java.io.FileOutputStream(path);
+        fos.write(response);
+        fos.close();
+
+    }catch(e)
+    {
+        EMessage(e.message);
+        return null
+    }
+    if (file.exists())
+    {
+        return file;
+    }
+    return null;
 }
 /**
 * calculateMD5 internal method that will calculate the md5checksum for a file. 

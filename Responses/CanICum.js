@@ -1,7 +1,10 @@
 addResponseIndicator("can i cum", "can i orgasm", "please cum", "please orgasm", "let me cum", "let me orgasm");
-run("allutils.js");
+//run("allutils.js");
 
 function canICumResponse(message) {
+    if (getResponsesDisabled()) {
+        return false;
+    }
     if (isEdging())
     {
         var percentSession = (getMillisPassed() / 1000) / (getMinSessionLength() * 60);

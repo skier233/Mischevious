@@ -2,6 +2,9 @@ addResponseIndicator("tags", "taglist", "tagslist", "alltags");
 run("allutils.js");
 
 function tagsListResponse(message) {
+    if (getResponsesDisabled()) {
+        return false;
+    }
     var tagsList = "(*) after a category means required. Example tag: \"tag n p sh sf\""
     tagsList += "  \n| DressState*: ";
     tagsList += "  Naked(n)";

@@ -1,8 +1,8 @@
-sendMessage("%stopstroking%", 0);
+CMessage("%stopstroking%", 0);
 stopStroking();
-sendMessage("On second thought");
+CMessage("On second thought");
 startStroking();
-sendMessage("%edge%", 0);
+CMessage("%edge%", 0);
 startEdging();
-sendMessage("%stopstrokingedge%");
-sendMessage("%lettheedgefade%");
+CMessage("%stopstrokingedge%");
+CMessage("%lettheedgefade%");

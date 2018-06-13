@@ -2,17 +2,24 @@ addResponseRegex("picturesmode([ ]*([a-z|0-9]*[ ]*)*)", "Picturesmode([ ]*([a-z|
 run("allutils.js");
 
 function picturesModeResponse(message) {
-    
+    if (getResponsesDisabled()) {
+        return false;
+    }
+    var folderNumber;
     sendMessage(message, 0);
     var path = "images\\system\\tumblr";
+    folderNumber = 1;
     if (message.search("liked") != -1 || message.search("3") != -1) {
         path = "images\\liked";
+        folderNumber = 3;
     }
     else if (message.search("normal") != -1 || message.search("2") != -1) {
         path = "images\\normal";
+        folderNumber = 2;
     }
     else if (message.search("loved") != -1 || message.search("4") != -1) {
         path = "images\\loved";
+        folderNumber = 4;
     }
     if (message.search("untagged") != -1 || message.search("ut") != -1)
     {
@@ -34,7 +41,9 @@ function picturesModeResponse(message) {
                     var thispath = path + "\\" + folderImages[currentFile].getName();
                     getLocalTeasePicture(path, folderImages[currentFile].getName());
                     answer = sendInput("Do you like this one? (Options: hate, ok, like, love, next (1,2,3,4,n))", 0);
+                    //sendMessage("flag 47");
                     x = answer.getAnswer();
+                    //sendMessage("flag 671");
                     while (x != "1" && x != "2" && x != "3" && x != "4" && x != "liked" && x != "normal" && x != "loved" && x != "hate" && x != "n" && x != "next" && x != "5" && x != "quit" && x != "exit" && x != "q" && x != "e") {
                         answer = sendInput("Invalid answer! (Options: hate, ok, like, love, next (1,2,3,4,n))", 0);
                         x = answer.getAnswer();
@@ -46,6 +55,7 @@ function picturesModeResponse(message) {
                 sendMessage("reached end of files", 0);
                 break;
             }
+            //sendMessage("flag 672");
         }
         return true;
     }
@@ -53,7 +63,10 @@ function picturesModeResponse(message) {
     var x = "4";
     while (x != "5" && x != "quit" && x!= "exit" && x!= "q" && x != "e")
     {
-        var randomimage = getRandomLocalTeasePicture(path);
+        //sendMessage("flag 67111",0);
+        //THERE IS SOME BIZARRE TIMING ISSUE HERE. THIS FIXED IT. DO NOT REMOVE!
+        sleep(.01);
+        randomimage = getTeasePicture(folderNumber);
         var extension = "";
 
         var i = randomimage.getName().lastIndexOf('.');
@@ -68,7 +81,9 @@ function picturesModeResponse(message) {
                 answer = sendInput("Invalid answer! (Options: hate, ok, like, love, next (1,2,3,4,n))", 0);
                 x = answer.getAnswer();
             }
+            //sendMessage("flag 6713", 0);
         }
+        //sendMessage("flag 6714",0);
     }
     return true;
 }

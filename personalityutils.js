@@ -1,5 +1,6 @@
 var timeLeftStroking;
 var strokeTime;
+var angereddate;
 
 /**
 * setupVars method to setup variables used by the personality
@@ -78,21 +79,21 @@ function setUpVars() {
 * call in scripts.
 **/
 function Stroking() {
-    sendMessage("%startStroking%", 0);
+    CMessage("%startStroking%", 0);
     var strokeMinimum = getMinStrokingLength();
     var strokeMaximum = getMaxStrokingLength();
     var apathyMoodIndex = getApathyMoodIndex();
     var random = randomInteger(1, 10);
-    sendMessage("random: " + random, 0);
+    DMessage("random: " + random, 0);
     var percentSession = (getMillisPassed() / 1000) / (getMinSessionLength() * 60);
     //y = 52.2810035121697 + 6.42273993825994 * r * pS + 0.873930004197032 * r ^ 2 + 0.00137857491687123 * r * x ^ 2 - 0.00439450398010755 * x ^ 2
     var bpm = 52.2810 + 6.4227 * random * percentSession + 0.8739 * Math.pow(random, 2) + 0.0014 * random * Math.pow(apathyMoodIndex, 2) - 0.0044 * Math.pow(apathyMoodIndex, 2);
     var percentFromMinToMax = 0.00112 * bpm + (22.68182 / bpm) + .0000723 * apathyMoodIndex * bpm + .000098 * Math.pow(apathyMoodIndex, 2) - 0.29386 - .00000053 * Math.pow(apathyMoodIndex, 3) - .000000376389651825041 * apathyMoodIndex * Math.pow(bpm, 2);
-    sendMessage("bpm: " + bpm, 0);
+    DMessage("bpm: " + bpm, 0);
     var duration = ((strokeMaximum - strokeMinimum) * 60) * percentFromMinToMax + (strokeMinimum * 60);
-    sendMessage("duration: " + duration, 0);
+    DMessage("duration: " + duration, 0);
     //stroke 1000 for testing
-    customStroke(1, Math.floor(bpm));
+    customStroke(duration, Math.floor(bpm));
 }
 
 /**
@@ -100,19 +101,19 @@ function Stroking() {
 * call in scripts when you want a message other than the default.
 **/
 function customStroking(message) {
-    sendMessage(message, 0);
+    CMessage(message, 0);
     var strokeMinimum = getMinStrokingLength();
     var strokeMaximum = getMaxStrokingLength();
     var apathyMoodIndex = getApathyMoodIndex();
     var random = randomInteger(1, 10);
-    sendMessage("random: " + random, 0);
+    DMessage("random: " + random, 0);
     var percentSession = (getMillisPassed() / 1000) / (getMinSessionLength() * 60);
     //y = 52.2810035121697 + 6.42273993825994 * r * pS + 0.873930004197032 * r ^ 2 + 0.00137857491687123 * r * x ^ 2 - 0.00439450398010755 * x ^ 2
     var bpm = 52.2810 + 6.4227 * random * percentSession + 0.8739 * Math.pow(random, 2) + 0.0014 * random * Math.pow(apathyMoodIndex, 2) - 0.0044 * Math.pow(apathyMoodIndex, 2);
     var percentFromMinToMax = 0.00112 * bpm + (22.68182 / bpm) + .0000723 * apathyMoodIndex * bpm + .000098 * Math.pow(apathyMoodIndex, 2) - 0.29386 - .00000053 * Math.pow(apathyMoodIndex, 3) - .000000376389651825041 * apathyMoodIndex * Math.pow(bpm, 2);
-    sendMessage("bpm: " + bpm, 0);
+    DMessage("bpm: " + bpm, 0);
     var duration = ((strokeMaximum - strokeMinimum) * 60) * percentFromMinToMax + (strokeMinimum * 60);
-    sendMessage("duration: " + duration, 0);
+    DMessage("duration: " + duration, 0);
     customStroke(duration, Math.floor(bpm));
 
 }
@@ -194,7 +195,7 @@ function speedUpStroking(amount) {
 * bpm manually. Normally, it's better to use Stroking.
 **/
 function setStroking(duration, bpm) {
-    sendMessage("%startStroking%", 0);
+    CMessage("%startStroking%", 0);
     customStroke(duration, bpm);
 }
 
@@ -203,7 +204,7 @@ function setStroking(duration, bpm) {
 * and message manually. Normally, it's better to use Stroking or customStroking.
 **/
 function customSetStroking(duration, bpm, message) {
-    sendMessage(message, 0);
+    CMessage(message, 0);
     customStroke(duration, bpm);
 }
 
@@ -240,12 +241,50 @@ function DoEdges(minEdges, maxEdges, holdChancePerEdge)
     var numEdges = edgesPercent * (maxEdges - minEdges) + minEdges;
     for (var i = 0; i < Math.round(numEdges) ; i++)
     {
-        sendMessage("%startEdging%");
+        if (i != 0)
+        {
+            var random = randomInteger(1, 3);
+            switch (random) {
+                case 1:
+                    CMessage("The question is...", 2);
+                    CMessage("Should I make you edge again?");
+                    CMessage("Just kidding. Thats not a question at all %lol%");
+                    break;
+                case 2:
+                    CMessage("I'm going to roll a 12 sided dice.", 1);
+                    CMessage("If it lands on 1, I'm going to make you edge again.");
+                    CMessage("Good odds right? Lets roll...");
+                    CMessage("Yay! It was a 1 %petname% %grin%");
+                case 3:
+                    CMessage("That last edge wasnt so great %subname%");
+                    CMessage("Thankfully, I believe in second chances %petname%");
+                    break;
+            }
+        }
+        CMessage("%startEdging%");
         startEdging();
         if (randomInteger(1, 100) <= holdChancePerEdge) {
+            var random = randomInteger(1, 3);
+            switch (random)
+            {
+                case 1:
+                    CMessage("Youre lucky that I let you get to the edge %petname%");
+                    CMessage("I might just make you do that again... %grin%", 1.5);
+                    CMessage("But first...");
+                    break;
+                case 2:
+                    CMessage("You did a pretty good job getting to the edge %petname%");
+                    CMessage("Lets see how good of a job you do while I make you stay there %lol%", 1.5);
+                    break;
+                case 3:
+                    CMessage("That was a good edge %petname%");
+                    CMessage("Now you're going to hold that edge");
+                    break;
+
+            }           
             holdEdge();
         }
-        //TODO: add in between edges message
+        //TODO: make these messages actually use a variable file
     }
 }
 /**
@@ -257,7 +296,7 @@ function startEdging() {
     var random = randomInteger(1, 5);
     setTempVar("holdingedge", false);
     var bpm = 174.69905 + (30.99765 * random) + (0.0002257 * Math.pow(apathyMoodIndex, 3)) + (0.10081895 * apathyMoodIndex * Math.pow(random, 2)) - (0.477098 * apathyMoodIndex * random) - (0.0325047 * Math.pow(apathyMoodIndex, 2)) - (3.1204935 * Math.pow(random, 2));
-    sendMessage("bpm: " + bpm, 0);
+    DMessage("bpm: " + bpm, 0);
     if (!isStroking()) {
         startStroking(Math.floor(bpm));
     }
@@ -293,7 +332,7 @@ function startEdging() {
         sleep(.5);
         timeSoFar += .5;
         if (tauntTime == timeSoFar) {
-            sendMessage("%edgingtaunts1%")
+            CMessage("%edgingtaunts1%")
             switch (tauntFreq) {
                 case 5:
                     tauntIncrement = randomInteger(1, 3);
@@ -331,7 +370,7 @@ function isEdging() {
 * the sub hold an edge.
 **/
 function holdEdge() {
-    sendMessage("%holdtheedge%", 0);
+    CMessage("%holdtheedge%", 0);
     var timeHolding = 0;
     setTempVar("edging", false);
     setTempVar("holdingedge", true);
@@ -368,7 +407,7 @@ function holdEdge() {
         sleep(.5);
         timeHolding += .5;
         if (tauntTime == timeHolding) {
-            sendMessage("%edgingholdtaunts1%")
+            CMessage("%edgingholdtaunts1%")
             switch (tauntFreq) {
                 case 5:
                     tauntIncrement = randomInteger(1, 3);
@@ -391,8 +430,8 @@ function holdEdge() {
             tauntTime += tauntIncrement;
         }
     }
-    sendMessage("%stopstrokingedge%", 0);
-    sendMessage("%lettheedgefade%", 0);
+    CMessage("%stopstrokingedge%", 0);
+    CMessage("%lettheedgefade%", 0);
     stopEdging();
 }
 
@@ -417,14 +456,10 @@ function startHoldEdge() {
 * calculateOrgasm method to calculate if the sub will cum right now
 **/
 function calculateOrgasm() {
-    DMessage("Org Chance Def: " + getOrgasmChance());
     var defChance = getOrgasmChance() / 100;
     var mood = getMood();
-    DMessage("Org Chance Def: " + defChance + " " + mood);
     var chance = 1.39117 * defChance + 0.006631 * mood * Math.pow(defChance, 3) - 0.0083217 - 0.006919 * mood * defChance - 0.37457 * Math.pow(defChance, 3);
-    DMessage("Org Chance " + chance, 0);
     var random = randomInteger(1, 100);
-    DMessage("Random " + random + " out of " + (chance*100), 0);
     if (random <= (chance * 100)) {
         return true;
     }
@@ -436,14 +471,10 @@ function calculateOrgasm() {
 * ruined
 **/
 function calculateRuin() {
-    DMessage("Ruin Chance Def: " + getRuinChance());
     var defChance = getRuinChance() / 100;
     var mood = getMood();
-    DMessage("Ruin Chance Def: " + defChance + " " + mood);
     var chance = 0.456827 * defChance + 0.009303 * mood * defChance + 0.50545 * Math.pow(defChance, 2) - 0.008689 * mood * Math.pow(defChance, 2);
-    DMessage("Ruin Chance " + chance, 0);
     var random = randomInteger(1, 100);
-    DMessage("Random " + random + " out of " + (chance * 100), 0);
     if (random <= (chance * 100)) {
         return true;
     }
@@ -508,14 +539,16 @@ function increaseAnger(amount) {
     }
     if (mood > 70 && mood < 85)
     {
-        sendMessage("You're really starting to annoy me %badpetname%");
+        CMessage("You're really starting to annoy me %badpetname%");
     }
     else if (mood > 85)
     {
-        sendMessage("You've really pissed me off now %awfulpetname%");
+        CMessage("You've really pissed me off now %awfulpetname%");
     }
     setTempVar("mood", mood);
     DMessage("Mood: " + mood, 0);
+    angereddate = setDate();
+    angereddate.addMinute(3);
     return mood;
 }
 
@@ -536,7 +569,7 @@ function getApathyMoodIndex() {
     else if (newApathyMoodIndex > 100) {
         newApathyMoodIndex = 100;
     }
-    sendMessage("apathyMoodIndex: " + newApathyMoodIndex, 0);
+    DMessage("apathyMoodIndex: " + newApathyMoodIndex, 0);
     return newApathyMoodIndex;
 }
 
@@ -545,6 +578,10 @@ function getApathyMoodIndex() {
 * the mood, the more angry/upset the domme is. A low value means the domme is happy. 50 is neutral.
 **/
 function getMood() {
+    if (angereddate != null && angereddate.hasPassed()) {
+        increaseAnger(-2);
+        angereddate = setDate().addMinute(3);
+    }
     var mood = getVar("mood", 50);
     if (typeof mood == "number") {
         if (mood >= 1 && mood <= 100) {
@@ -662,7 +699,8 @@ function customStroke(duration, bpm) {
         timeSoFar += .5;
         timeLeftStroking -= .5;
         if (timeSoFar == tauntTime) {
-            sendMessage("%stroketaunt1%")
+            DMessage("In taunt ");
+            CMessage("%stroketaunt1%")
             switch (tauntFreq) {
                 case 5:
                     tauntIncrement = randomInteger(1, 3);
@@ -683,6 +721,8 @@ function customStroke(duration, bpm) {
                     tauntIncrement = 0;
             }
             tauntTime += tauntIncrement;
+            DMessage("current time " + timeSoFar);
+            DMessage("next taunt time " + tauntTime);
         }
     }
     timeLeftStroking = 0;
@@ -694,7 +734,7 @@ function customStroke(duration, bpm) {
 **/
 function endStroking() {
     if (timeLeftStroking <= 0) {
-        sendMessage("error: user was not stroking");
+        WMessage("error: user was not stroking");
     }
     timeLeftStroking = 0;
 }

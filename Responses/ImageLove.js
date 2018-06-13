@@ -1,7 +1,10 @@
 addResponseIndicator("love it", "it's amazing", "its hot", "^4$", " 4$", "^4 ", " 4 ", "awesome", "fuck");
-run("allutils.js");
+//run("allutils.js");
 
 function imageLoveResponse(message) {
+    if (getResponsesDisabled()) {
+        return false;
+    }
     if (message.toLowerCase().search("pic") != -1) {
         sendMessage("false pic");
         return false;
@@ -16,7 +19,9 @@ function imageLoveResponse(message) {
         z = "" + z;
         var x = z.split("\\");
         var fileName = x[x.length - 1];
-        moveFile(getAppPath() + getImagePath(), getAppPath() + "\\images\\loved\\" + fileName);
+        sortPicture(getImagePath(), 4);
+        //sendMessage("flag 617");
+        //moveFile(getAppPath() + getImagePath(), getAppPath() + "\\images\\loved\\" + fileName);
         //sendMessage("complete");
     }
     return true;

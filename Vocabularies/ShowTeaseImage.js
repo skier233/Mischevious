@@ -1,0 +1,4 @@
+function showTeaseImageVocabulary() {
+    getTeasePicture();
+    return "";
+}

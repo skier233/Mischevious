@@ -1,4 +1,4 @@
-sendMessage("%edge%");
+CMessage("%edge%");
 startEdging();
-sendMessage("%stopstrokingedge%");
-sendMessage("%lettheedgefade%");
+CMessage("%stopstrokingedge%");
+CMessage("%lettheedgefade%");

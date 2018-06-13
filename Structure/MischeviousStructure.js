@@ -1,13 +1,8 @@
 preferredSessionLength = getVar("prefSessionLength");
-setUpVars();
-setUpMedia();
-setUpChat();
-//loadUrlImages(20, null, false);
-//getTeasePicture();
-calculateOrgasm();
-calculateRuin();
-WMessage("no pics found", 0);
+DMessage("Starting session");
+CMessage("test message <i>abcdef<>");
 run("Structure\\Start\\*.js");
+DMessage("Starting module");
 firstRun = true;
 while (continueSession())
 {

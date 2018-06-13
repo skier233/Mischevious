@@ -3,6 +3,9 @@ run("allutils.js");
 
 var timesClose;
 function imCloseResponse(message) {
+    if (getResponsesDisabled()) {
+        return false;
+    }
     if (timesClose == null) {
         timesClose = 0;
     }
@@ -47,13 +50,13 @@ function imCloseResponse(message) {
                 sendMessage("Oh...", 2);
                 sendMessage("And to make it harder for you...");
                 sendMessage("Stare at this while you keep stroking %grin%.");
-                getRandomLocalTeasePicture("images\\loved");
+                getTeasePicture(4);
                 break;
             case 4:
                 sendMessage("The fact that you are on the edge right now means that I haven't been hard enough on you");
                 sendMessage("I'm very sorry about that %petname%. I'll make sure to go harder on you %grin%.");
                 sendMessage("Why don't you keep stroking while you stare at this");
-                getRandomLocalTeasePicture("images\\loved");
+                getTeasePicture(4);
                 sendMessage("Oh and also...", 2);
                 sendMessage("%strokefaster%");
                 speedUpStroking(3);

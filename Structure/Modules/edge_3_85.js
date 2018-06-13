@@ -1,6 +1,6 @@
-sendMessage("%edge%");
+CMessage("%edge%");
 startEdging();
-sendMessage("%stopstrokingedge%");
-sendMessage("%lettheedgefade%");
-sendMessage("I may not let you cum");
-sendMessage("But at least I let you get close %Grin%");
+CMessage("%stopstrokingedge%");
+CMessage("%lettheedgefade%");
+CMessage("I may not let you cum");
+CMessage("But at least I let you get close %Grin%");

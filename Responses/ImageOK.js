@@ -1,7 +1,10 @@
 addResponseRegex("meh", "it's ok", "its alright", "^2$", "^2 ", " 2$", " 2 ", "it's alright", "its ok");
-run("allutils.js");
+//run("allutils.js");
 
 function imageOKResponse(message) {
+    if (getResponsesDisabled()) {
+        return false;
+    }
     //sendMessage("in ok");
     if (message.toLowerCase().search("pic") != -1) {
         sendMessage("false pic");
@@ -15,7 +18,9 @@ function imageOKResponse(message) {
         z = "" + z;
         var x = z.split("\\");
         var fileName = x[x.length - 1];
-        moveFile(getAppPath() + getImagePath(), getAppPath() + "images\\normal\\" + fileName);
+        sortPicture(getImagePath(), 2);
+        //sendMessage("flag 6712");
+        //moveFile(getAppPath() + getImagePath(), getAppPath() + "images\\normal\\" + fileName);
         //sendMessage("complete");
     }
     return true;

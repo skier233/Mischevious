@@ -1,7 +1,7 @@
-sendMessage("I want you close to your limit");
+CMessage("I want you close to your limit");
 endMessage("Close to your breaking point");
 endMessage("I just want you close period");
-sendMessage("%edge%");
+CMessage("%edge%");
 startEdging();
-sendMessage("%stopstrokingedge%");
-sendMessage("%lettheedgefade%");
+CMessage("%stopstrokingedge%");
+CMessage("%lettheedgefade%");

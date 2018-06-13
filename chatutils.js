@@ -1,4 +1,6 @@
 var debug = false;
+var responsesDisabled;
+
 function setUpChat()
 {
     if (getVar("debug", null) == null) {
@@ -9,17 +11,24 @@ function setUpChat()
         debug = getVar("debug", null);
     }
     registerVariable("debug", "Debug Mode", "Set this to true to turn on debug mode for more info.");
+    if (getVar("responsesDisabled", null) == null) {
+        setTempVar("responsesDisabled", false);
+    }
+    else
+    {
+        getVar("responsesDisabled", false);
+    }
 }
 function DMessage(message, delay=0)
 {
     if (debug)
     {
-        CustomizedMessage("<c=lightgreen b fs=16>Info: <><c=darkslategrey b fs=15>" + message, delay);
+        CustomizedMessage("<c=lightgreen b fs=16>Info: <><c=darkslategrey b fs=15>" + message, delay, -1);
     }
 }
-function CMessage(message, delay=0)
+function CMessage(message, delay=-1)
 {
-    CustomizedMessage(replaceVocab(message), delay, null, null, 1);
+    CustomizedMessage(message, delay, 1, null, 13);
 }
 function SMessage(message, delay=0, sender)
 {
@@ -27,14 +36,33 @@ function SMessage(message, delay=0, sender)
 }
 function WMessage(message, delay=0)
 {
-    CustomizedMessage("<c=orange b fs=16>Personality Warning: <><c=darkslategrey b fs=15>" + message, delay);
+    CustomizedMessage("<c=orange b fs=16>Personality Warning: <><c=darkslategrey b fs=15>" + message, delay, -1);
 }
 function EMessage(message, delay=0)
 {
-    CustomizedMessage("<c=red b fs=16>Personality Error: <><c=darkslategrey b fs=15>" + message, delay);
+    CustomizedMessage("<c=red b fs=16>Personality Error: <><c=darkslategrey b fs=15>" + message, delay, -1);
 }
-function CustomizedMessage(message, delay=0, font, fontsize=14, sender=1){
+function getInput(message, delay)
+{
+    setTempVar("responsesDisabled", true);
+    DMessage("responses disabled", 0);
+    if (delay == null)
+    {
+        var answer = sendInput(message);
+        setTempVar("responsesDisabled", false);
+        DMessage("responses enabled", 0);
+        return answer;
+    }
+    var answer = sendInput(message, delay);
+    setTempVar("responsesDisabled", false);
+    DMessage("responses enabled", 0);
+    return answer;
+}
+function CustomizedMessage(message, delay=0, sender=1, font, fontsize=13){
+    //sendMessage("flag 222", 0);
     var chatHandler = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
+    message = replaceVocab(message);
+
     var localfontsize = fontsize;
     var localfont = font; 
     var italics = javafx.scene.text.FontPosture.REGULAR;
@@ -95,7 +123,7 @@ function CustomizedMessage(message, delay=0, font, fontsize=14, sender=1){
                 }
                 textVar.setFill(color);
             }
-            textVar.setFont(javafx.scene.text.Font.font("Verona", bold, italics, localfontsize));
+            textVar.setFont(javafx.scene.text.Font.font(localfont, bold, italics, localfontsize));
 
             //set vars back to defaults
             italics = javafx.scene.text.FontPosture.REGULAR;
@@ -106,6 +134,71 @@ function CustomizedMessage(message, delay=0, font, fontsize=14, sender=1){
         }
         texts.push(textVar);
     }
-    chatHandler.getHandler().addLine(texts);
-    sleep(delay);
+    //sendMessage("flag 315", 0);
+    if (sender < 0 || sender > 4)
+    {
+        chatHandler.getHandler().addLine(texts);
+    }
+    else
+    {
+        internalSendMessage(texts, sender);
+    }
+    //sendMessage("flag 312", 0);
+    if (delay >= 0)
+    {
+        sleep(delay);
+    }
+    else
+    {
+        //sendMessage("millistopause" + chatHandler.getHandler().getMillisToPause(message), 0);
+        sleep(chatHandler.getHandler().getMillisToPause(message) / 1000);
+    }
+}
+function internalSendMessage(texts, sender=1)
+{
+    if (sender == null || sender < 0 || sender > 3)
+    {
+        sender = 1;
+    }
+    setSender(sender);
+    //sendMessage("flag 930", 0);
+    var Text = javafx.scene.text.Text;
+    var Color = javafx.scene.paint.Color;
+    var Font = javafx.scene.text.Font;
+    var allTexts = [];
+    var handlertype = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
+    var participanttype = Java.type("me.goddragon.teaseai.api.chat.ChatParticipant");
+    var handler = handlertype.getHandler();
+    var participant = handler.getCurrentDom();
+    //sendMessage("flag 931", 0);
+    var message = "";
+    for (var i = 0; i < texts.length; i++)
+    {
+        message += texts[i].getText();
+    }
+    //sendMessage("flag 934" + participant, 0);
+    var startTyping = participanttype.class.getDeclaredMethod("startTyping", java.lang.String.class);
+    startTyping.setAccessible(true);
+    //startTyping.invoke(participant, message);
+    var dateFormat = new java.text.SimpleDateFormat("hh:mm a");
+    var dateText = new Text(dateFormat.format(new java.util.Date()) + " ");
+    dateText.setFill(Color.DARKGRAY);
+    dateText.setFont(Font.font(null, javafx.scene.text.FontWeight.MEDIUM, 12));
+    var text = new Text(participant.getName() + ": ");
+    text.setFill(participant.getChatColor());
+    text.setFont(Font.font(null, javafx.scene.text.FontWeight.BOLD, 13));
+    allTexts.push(dateText);
+    allTexts.push(text);
+    //sendMessage("flag 939", 0);
+    for (var i = 0; i < texts.length; i++)
+    {
+        allTexts.push(texts[i]);
+    }
+
+    handlertype.getHandler().addLine(allTexts);
+
+}
+function getResponsesDisabled()
+{
+    return getVar("responsesDisabled", false);
 }

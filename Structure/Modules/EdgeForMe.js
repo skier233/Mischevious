@@ -1,5 +1,5 @@
-sendMessage("%edge%", 0);
+CMessage("%edge%", 0);
 startEdging();
-sendMessage("%stopstrokingedge%");
-sendMessage("%lettheedgefade%");
-sendMessage("I love making you do that %EmoteRandom%");
+CMessage("%stopstrokingedge%");
+CMessage("%lettheedgefade%");
+CMessage("I love making you do that %EmoteRandom%");
