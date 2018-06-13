@@ -21,3 +21,16 @@ $RECYCLE.BIN/
 # =========================
 # Operating System Files
 # =========================
+
+# Tease AI Files
+*.properties
+.idea
+*.iml
+out
+target
+.settings
+.project
+.classpath
+.git
+System/*
+!personality.properties

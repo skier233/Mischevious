@@ -1,27 +1,27 @@
 //setTypeSpeed("FAST");
-sendMessage("%goodeveningsub%");
+CMessage("%goodeveningsub%");
 if (randomInteger(0, 1) == 1)
 {
     answer = sendInput("I'm really happy to see you this evening");
     if (answer.isLike("too", "as", "also"))
     {
         increaseAnger(-1);
-        sendMessage("Aww that's so sweet");
-        sendMessage("But I get the feeling your %Cock% isn't as glad to see me as you are");
-        sendMessage("Especially considering what I'm about to do to it %Grin%")
+        CMessage("Aww that's so sweet");
+        CMessage("But I get the feeling your %Cock% isn't as glad to see me as you are");
+        CMessage("Especially considering what I'm about to do to it %Grin%")
     }
     else if (answer.isLike("thanks", "thank", "nice", "sweet", "kind"))
     {
         increaseAnger(-1);
-        sendMessage("You're welcome %PetName%");
-        sendMessage("But I don't know if you should really be thanking me");
-        sendMessage("Considering that the reason I'm so happy to see you");
-        sendMessage("Is that I finally get to torment that %Cock% of yours some more %Grin%")
+        CMessage("You're welcome %PetName%");
+        CMessage("But I don't know if you should really be thanking me");
+        CMessage("Considering that the reason I'm so happy to see you");
+        CMessage("Is that I finally get to torment that %Cock% of yours some more %Grin%")
     }
     else
     {
-        sendMessage("Because I've been thinking about your %Cock%");
-        sendMessage("And how much I want it to suffer %Grin%");
+        CMessage("Because I've been thinking about your %Cock%");
+        CMessage("And how much I want it to suffer %Grin%");
     }
 }
 else
@@ -30,21 +30,21 @@ else
     if (answer.isLike("yes", "yea", "yep"))
     {
         increaseAnger(-1);
-        sendMessage("I'm glad to hear that %SubName%");
-        sendMessage("I've been thinking about all these fun ways to torment a cock this evening");
-        sendMessage("And there's not a lot of guys who can handle that");
-        sendMessage("That's why I'm always glad to see you here willing to please me");
-        sendMessage("And willing to suffer %Grin%");
-        sendMessage("Speaking of suffering...");
+        CMessage("I'm glad to hear that %SubName%");
+        CMessage("I've been thinking about all these fun ways to torment a cock this evening");
+        CMessage("And there's not a lot of guys who can handle that");
+        CMessage("That's why I'm always glad to see you here willing to please me");
+        CMessage("And willing to suffer %Grin%");
+        CMessage("Speaking of suffering...");
     }
     else
     {
         increaseAnger(3);
-        sendMessage("No?");
-        sendMessage("You must know what I'm about to do to that %Cock% then %Grin%");
-        sendMessage("But since you knew and came here anyway");
-        sendMessage("I don't have to feel guilty about it %Lol%")
+        CMessage("No?");
+        CMessage("You must know what I'm about to do to that %Cock% then %Grin%");
+        CMessage("But since you knew and came here anyway");
+        CMessage("I don't have to feel guilty about it %Lol%")
     }
 }
-sendMessage("flag 1");
+DMessage("flag 1");
 Stroking();

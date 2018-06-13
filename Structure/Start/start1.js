@@ -1,1 +1,0 @@
-sendMessage("in start 1", 0);

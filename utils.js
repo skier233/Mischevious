@@ -99,7 +99,7 @@ function customStroke(duration, bpm)
         java.lang.Thread.sleep(500);
         timeSoFar += .5;
         if (timeSoFar == tauntTime) {
-            sendMessage("%stroketaunt1%")
+            CMessage("%stroketaunt1%")
             switch (tauntFreq) {
                 case 5:
                     tauntIncrement = randomInteger(1, 3);
@@ -124,44 +124,44 @@ function customStroke(duration, bpm)
     }
 }
 function setStroking(duration, bpm) {
-    sendMessage("%startStroking%");
+    CMessage("%startStroking%");
     customStroke(duration, bpm);
 }
 function andSetStroking(duration, bpm) {
-    sendMessage("And %startstroking%");
+    CMessage("And %startstroking%");
     customStroke(duration, bpm);
 }
 function Stroking() {
-    sendMessage("%startStroking%", 0);
+    CMessage("%startStroking%", 0);
     var strokeMinimum = getMinStrokingLength();
     var strokeMaximum = getMaxStrokingLength();
     var apathyMoodIndex = getApathyMoodIndex();
     var random = randomInteger(1, 10);
-    sendMessage("random: " + random, 0);
+    DMessage("random: " + random, 0);
     var percentSession = (getMillisPassed() / 1000) / (getMinSessionLength() * 60);
     //y = 52.2810035121697 + 6.42273993825994 * r * pS + 0.873930004197032 * r ^ 2 + 0.00137857491687123 * r * x ^ 2 - 0.00439450398010755 * x ^ 2
     var bpm = 52.2810 + 6.4227 * random * percentSession + 0.8739 * Math.pow(random, 2) + 0.0014 * random * Math.pow(apathyMoodIndex, 2) - 0.0044 * Math.pow(apathyMoodIndex, 2);
     var percentFromMinToMax = 0.00112 * bpm + (22.68182 / bpm) + .0000723 * apathyMoodIndex * bpm + .000098 * Math.pow(apathyMoodIndex, 2) - 0.29386 - .00000053 * Math.pow(apathyMoodIndex, 3) - .000000376389651825041 * apathyMoodIndex * Math.pow(bpm, 2);
-    sendMessage("bpm: " + bpm, 0);
+    DMessage("bpm: " + bpm, 0);
     var duration = ((strokeMaximum - strokeMinimum) * 60) * percentFromMinToMax + (strokeMinimum * 60);
-    sendMessage("duration: " + duration, 0);
+    DMessage("duration: " + duration, 0);
     //stroke 5 for testing
     customStroke(5, Math.floor(bpm));
 }
 function andStroking() {
-    sendMessage("And %startstroking%", 0);
+    CMessage("And %startstroking%", 0);
     var strokeMinimum = getMinStrokingLength();
     var strokeMaximum = getMaxStrokingLength();
     var apathyMoodIndex = getApathyMoodIndex();
     var random = randomInteger(1, 10);
-    sendMessage("random: " + random, 0);
+    DMessage("random: " + random, 0);
     var percentSession = (getMillisPassed() / 1000) / (getMinSessionLength() * 60);
     //y = 52.2810035121697 + 6.42273993825994 * r * pS + 0.873930004197032 * r ^ 2 + 0.00137857491687123 * r * x ^ 2 - 0.00439450398010755 * x ^ 2
     var bpm = 52.2810 + 6.4227 * random * percentSession + 0.8739 * Math.pow(random, 2) + 0.0014 * random * Math.pow(apathyMoodIndex, 2) - 0.0044 * Math.pow(apathyMoodIndex, 2);
     var percentFromMinToMax = 0.00112 * bpm + (22.68182 / bpm) + .0000723 * apathyMoodIndex * bpm + .000098 * Math.pow(apathyMoodIndex, 2) - 0.29386 - .00000053 * Math.pow(apathyMoodIndex, 3) - .000000376389651825041 * apathyMoodIndex * Math.pow(bpm, 2);
-    sendMessage("bpm: " + bpm, 0);
+    DMessage("bpm: " + bpm, 0);
     var duration = ((strokeMaximum - strokeMinimum) * 60) * percentFromMinToMax + (strokeMinimum * 60);
-    sendMessage("duration: " + duration, 0);
+    DMessage("duration: " + duration, 0);
     customStroke(duration, Math.floor(bpm));
     
 }
@@ -181,7 +181,7 @@ function startEdging() {
     var apathyMoodIndex = getApathyMoodIndex();
     var random = randomInteger(1, 5); setTempVar("holdingedge", false);
     var bpm = 174.69905 + (30.99765 * random) + (0.0002257 * Math.pow(apathyMoodIndex, 3)) + (0.10081895 * apathyMoodIndex * Math.pow(random, 2)) - (0.477098 * apathyMoodIndex * random) - (0.0325047 * Math.pow(apathyMoodIndex, 2)) - (3.1204935 * Math.pow(random, 2));
-    sendMessage("bpm: " + bpm, 0);
+    DMessage("bpm: " + bpm, 0);
     if (!isStroking())
     {
         startStroking(Math.floor(bpm));
@@ -220,7 +220,7 @@ function startEdging() {
         timeSoFar += .5;
         if (tauntTime == timeSoFar)
         {
-            sendMessage("%edgingtaunts1%")
+            CMessage("%edgingtaunts1%")
             switch (tauntFreq) {
                 case 5:
                     tauntIncrement = randomInteger(1, 3);
@@ -257,7 +257,7 @@ function startHoldEdge() {
     setTempVar("holdingedge", true);
 }
 function holdEdge() {
-    sendMessage("%holdtheedge%", 0);
+    CMessage("%holdtheedge%", 0);
     var timeHolding = 0;
     setTempVar("edging", false);
     setTempVar("holdingedge", true);
@@ -294,7 +294,7 @@ function holdEdge() {
         java.lang.Thread.sleep(500);
         timeHolding += .5;
         if (tauntTime == timeHolding) {
-            sendMessage("%edgingholdtaunts1%")
+            CMessage("%edgingholdtaunts1%")
             switch (tauntFreq) {
                 case 5:
                     tauntIncrement = randomInteger(1, 3);
@@ -317,8 +317,8 @@ function holdEdge() {
             tauntTime += tauntIncrement;
         }
     }
-    sendMessage("%stopstrokingedge%", 0);
-    sendMessage("%lettheedgefade%", 0);
+    CMessage("%stopstrokingedge%", 0);
+    CMessage("%lettheedgefade%", 0);
     stopEdging();
 }
 
@@ -572,7 +572,7 @@ function getApathyMoodIndex()
     {
         newApathyMoodIndex = 100;
     }
-    sendMessage("apathyMoodIndex: " + newApathyMoodIndex, 0);
+    DMessage("apathyMoodIndex: " + newApathyMoodIndex, 0);
     return newApathyMoodIndex;
 }
 
@@ -588,7 +588,7 @@ function getTeasePicture()
     currentPicturePath = null;
     const test = createMediaURL("URLs/test.tumblr.com.txt")
     //showImage("Images/Liked/tumblr_oah6x4ffKZ1v0oj9oo1_1280.jpg");
-    sendMessage("testmsg " + test, 0);
+    DMessage("testmsg " + test, 0);
     showImage(test)
     currentPictureUrl = getCurrentImageURL();
     return currentPictureUrl;
