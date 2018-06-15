@@ -1,4 +1,3 @@
-setTypeSpeed("INSTANT");
 run("chatutils.js");
 DMessage("Setting up chat");
 setUpChat();

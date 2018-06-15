@@ -3,7 +3,7 @@ DMessage("Starting session");
 run("Structure\\Start\\*.js");
 DMessage("Starting module");
 firstRun = true;
-while (continueSession())
+while (continueSession() || firstRun)
 {
     run("Structure\\Modules\\*.js");
     if (randomInteger(1, 4) == 1)

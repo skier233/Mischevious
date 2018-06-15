@@ -48,9 +48,11 @@ function getInput(message, delay)
     DMessage("responses disabled", 0);
     if (delay == null)
     {
+        var chatHandler = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
         var answer = sendInput(message);
         setTempVar("responsesDisabled", false);
         DMessage("responses enabled", 0);
+        sleep(chatHandler.getHandler().getMillisToPause(message) / 1000);
         return answer;
     }
     var answer = sendInput(message, delay);
@@ -179,7 +181,7 @@ function internalSendMessage(texts, sender=1)
     //sendMessage("flag 934" + participant, 0);
     var startTyping = participanttype.class.getDeclaredMethod("startTyping", java.lang.String.class);
     startTyping.setAccessible(true);
-    //startTyping.invoke(participant, message);
+    startTyping.invoke(participant, message);
     var dateFormat = new java.text.SimpleDateFormat("hh:mm a");
     var dateText = new Text(dateFormat.format(new java.util.Date()) + " ");
     dateText.setFill(Color.DARKGRAY);
@@ -194,9 +196,32 @@ function internalSendMessage(texts, sender=1)
     {
         allTexts.push(texts[i]);
     }
+    var responseHandler = Java.type("me.goddragon.teaseai.api.chat.response.ResponseHandler");
+    var senderType = Java.type("me.goddragon.teaseai.api.chat.SenderType");
+    var mediaHandler = Java.type("me.goddragon.teaseai.api.media.MediaHandler");
+    var teaseAi = Java.type("me.goddragon.teaseai.TeaseAI");
 
+    var response = responseHandler.getHandler().getLatestQueuedResponse();
+    if (response != null)
+    {
+        responseHandler.getHandler().removeQueuedResponse(response);
+
+        if (response.trigger())
+        {
+            return;
+        }
+    }
+    //DMessage(/*participant.type + " " + mediaHandler.getHandler().isImagesLocked() + " " + */participant.pictureSet != null);
+    if (participant.type != senderType.SUB && !mediaHandler.getHandler().isImagesLocked() && participant.pictureSet != null)
+    {
+        var session = teaseAi.application.getSession();
+        var taggedPicture = session.getActivePersonality().getPictureSelector().getPicture(session, participant);
+        if (taggedPicture != null)
+        {
+            mediaHandler.getHandler().showPicture(session.getActivePersonality().getPictureSelector().getPicture(session, participant).getFile());
+        }
+    }
     handlertype.getHandler().addLine(allTexts);
-
 }
 function getResponsesDisabled()
 {

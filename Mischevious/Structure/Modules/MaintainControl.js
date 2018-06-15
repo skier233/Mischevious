@@ -45,8 +45,6 @@ CMessage("My will");
 CMessage("Edge, and be ready to hold it");
 startEdging();
 holdEdge(randomInteger(10, 50));
-CMessage("%stopstrokingedge%");
-CMessage("%lettheedgefade%");
 CMessage("From now own, the only pain you will truly feel");
 CMessage("Is the pain of disappointing me");
 CMessage("The only pleasure you will truly feel");

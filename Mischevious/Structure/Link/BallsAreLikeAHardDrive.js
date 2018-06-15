@@ -3,6 +3,7 @@ if (getVar("balldiskspace", false))
 {
     CMessage("Your %Balls% might have some more space on them since the last time I stored some ache there");
     CMessage("I should save a few more pictures there %Grin%");
+    lockImages();
     CMessage("Like this one", 0);
     getTeasePicture();
     CMessage("Maybe this one", 0);
@@ -18,6 +19,7 @@ if (getVar("balldiskspace", false))
     CMessage("Or this one", 0);
     getTeasePicture();
     CMessage("We might have to upgrade you to some bigger balls #Lol", 0);
+    unlockImages();
 }
 else
 {
