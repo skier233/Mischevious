@@ -431,8 +431,8 @@ function holdEdge() {
         }
     }
     CMessage("%stopstrokingedge%", 0);
-    CMessage("%lettheedgefade%", 0);
     stopEdging();
+    CMessage("%lettheedgefade%", 0);
 }
 
 /**
@@ -579,8 +579,8 @@ function getApathyMoodIndex() {
 **/
 function getMood() {
     if (angereddate != null && angereddate.hasPassed()) {
-        increaseAnger(-2);
         angereddate = setDate().addMinute(3);
+        increaseAnger(-2);
     }
     var mood = getVar("mood", 50);
     if (typeof mood == "number") {
@@ -668,65 +668,73 @@ function continueSession()
 **/
 function customStroke(duration, bpm) {
     startStroking(bpm);
-    var timeSoFar = 0;
+    lockImages();
     var tauntFreq = getTauntFrequency();
     var tauntIncrement = 1;
+    var currentTime;
     switch (tauntFreq) {
         case 5:
-            tauntIncrement = randomInteger(1, 3);
+            tauntIncrement = randomInteger(2, 4);
             break;
         case 4:
-            tauntIncrement = randomInteger(2, 5);
+            tauntIncrement = randomInteger(3, 6);
             break;
         case 3:
-            tauntIncrement = randomInteger(4, 10);
+            tauntIncrement = randomInteger(5, 11);
             break;
         case 2:
-            tauntIncrement = randomInteger(7, 15);
+            tauntIncrement = randomInteger(8, 16);
             break;
         case 1:
-            tauntIncrement = randomInteger(10, 30);
+            tauntIncrement = randomInteger(11, 31);
             break;
         default:
             tauntIncrement = 0;
     }
 
-    var tauntTime = tauntIncrement;
+    currentTime = getMillisPassed() / 1000;
+    var tauntTime = tauntIncrement + currentTime;
     timeLeftStroking = duration;
     strokeTime = duration;
-    while (timeLeftStroking > 0) {
+    var secThreshold = currentTime + duration;
+    while (currentTime < secThreshold && timeLeftStroking != -1) {
         sleep(.5);
-        timeSoFar += .5;
-        timeLeftStroking -= .5;
-        if (timeSoFar == tauntTime) {
+        currentTime = getMillisPassed() / 1000;
+        if (timeLeftStroking == -1)
+        {
+            break;
+        }
+        timeLeftStroking = secThreshold - currentTime;
+        if (currentTime > (tauntTime - .1) || currentTime < (tauntTime + .1)) {
             DMessage("In taunt ");
             CMessage("%stroketaunt1%")
             switch (tauntFreq) {
                 case 5:
-                    tauntIncrement = randomInteger(1, 3);
+                    tauntIncrement = randomInteger(2, 4);
                     break;
                 case 4:
-                    tauntIncrement = randomInteger(2, 5);
+                    tauntIncrement = randomInteger(3, 6);
                     break;
                 case 3:
-                    tauntIncrement = randomInteger(4, 10);
+                    tauntIncrement = randomInteger(5, 11);
                     break;
                 case 2:
-                    tauntIncrement = randomInteger(7, 15);
+                    tauntIncrement = randomInteger(8, 16);
                     break;
                 case 1:
-                    tauntIncrement = randomInteger(10, 30);
+                    tauntIncrement = randomInteger(11, 31);
                     break;
                 default:
                     tauntIncrement = 0;
             }
-            tauntTime += tauntIncrement;
-            DMessage("current time " + timeSoFar);
+            tauntTime = currentTime + tauntIncrement;
+            DMessage("current time " + currentTime);
             DMessage("next taunt time " + tauntTime);
         }
     }
     timeLeftStroking = 0;
     strokeTime = 0;
+    unlockImages();
 }
 
 /**
@@ -736,7 +744,7 @@ function endStroking() {
     if (timeLeftStroking <= 0) {
         WMessage("error: user was not stroking");
     }
-    timeLeftStroking = 0;
+    timeLeftStroking = -1;
 }
 
 /**

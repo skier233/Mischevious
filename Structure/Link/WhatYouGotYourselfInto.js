@@ -1,7 +1,7 @@
 CMessage("Sometimes I bet you wonder what you got yourself into");
 if (randomInteger(0, 1) == 1)
 {
-    CMessage("If that #Cock can even handle all the things I want to do to it #Grin");
+    CMessage("If that %Cock% can even handle all the things I want to do to it %Grin%");
     CMessage("The thing is");
     CMessage("I bet that no matter how bad it aches");
     CMessage("You'd want to please me more than you could ever want to cum");

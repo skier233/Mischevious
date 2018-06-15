@@ -3,5 +3,5 @@ endMessage("Close to your breaking point");
 endMessage("I just want you close period");
 CMessage("%edge%");
 startEdging();
-CMessage("%stopstrokingedge%");
+CMessage("%stopstrokingedge%", null, false);
 CMessage("%lettheedgefade%");

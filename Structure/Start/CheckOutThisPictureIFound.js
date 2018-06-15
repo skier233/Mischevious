@@ -3,7 +3,6 @@ CMessage("Check out this picture I found earlier today");
 lockImages();
 getTeasePicture();
 answer = sendInput("That's fucking hot, isn't it? %Grin%");
-unlockImages();
 if (answer.isLike("yes", "yep", "yea", "hot", "good", "3", "like"))
 {
     sortPicture(getImagePath(), 3);
@@ -60,10 +59,8 @@ Stroking();
 
 function thisOne()
 {
-	lockImages();
     getTeasePicture();
     answer3 = sendInput("Do you like this one?");
-	unlockImages();
     while (answer3.isLike("no", "nope", "not", "alright", "okay", "sort", "sorta", "2", "1", "meh", "ok")) {
         if (answer3.isLike("alright", "meh", "ok", "2", "okay")) {
             CMessage("I'll find something better than this");

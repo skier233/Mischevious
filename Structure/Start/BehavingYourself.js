@@ -1,4 +1,3 @@
-setTypeSpeed("FAST");
 CMessage("%goodeveningsub%");
 answer = sendInput("%haveyoubeenbehavingyourself%");
 if (answer.isLike("yes", "yep", "yea")) {

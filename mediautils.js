@@ -15,6 +15,7 @@ function setUpMedia() {
     var file = new java.io.File(TeaseAI.class.getProtectionDomain().getCodeSource().getLocation().toURI());
     //The path to the main directory
     teasePath = file.getParent();
+    teasePath = teasePath + "\\";
     var file2 = TeaseAI.application.getSession().getActivePersonality().getFolder();
     //The path to your personality directory
     personalityPath = file2.getAbsolutePath();
@@ -26,7 +27,7 @@ function setUpMedia() {
 * getAppPath method will return the directory path to the base directory of the app
 **/
 function getAppPath() {
-    return teasePath + "\\";
+    return teasePath;
 }
 /**
 * showTaggedImage method will show and return a random picture of the given type (2, 3 ,4 (normal, liked, loved)) with
@@ -90,7 +91,7 @@ function showTaggedImage(imageType, imageTags, delay) {
 }
 function sortPicture(file, sortPlace=2)
     {
-        CMessage(file, 0);
+        DMessage(file, 0);
         var myFile;
         if (file instanceof java.io.File) {
             myFile = file;
@@ -99,7 +100,7 @@ function sortPicture(file, sortPlace=2)
             myFile = new java.io.File(file);
         }
         else {
-            myFile = new java.io.File(teasePath + "\\" + file);
+            myFile = new java.io.File(teasePath + file);
         }
         var localpath = "";
         switch (sortPlace) {
@@ -161,7 +162,7 @@ function loadUrlImages(amount, urlfilename, removed) {
     }
     if (removed)
     {
-        Dmessage("currentUrlFile: " + urlfile);
+        DMessage("currentUrlFile: " + urlfile);
         var mediaUrls = urlfile.getMediaURLs();
         var deleteFile = false;
         var duplicates = 0;
@@ -215,10 +216,10 @@ function loadUrlImages(amount, urlfilename, removed) {
 function getTeasePicture(flag=1, time)
 {
     var tumblrimages = listFilesInFolder("images\\system\\tumblr\\");
-    if (tumblrimages.length < 3)
+    if (tumblrimages.length < 20)
     {
         DMessage("loading images");
-        loadUrlImages(12 - tumblrimages.length, null, true);
+        loadUrlImages(100 - tumblrimages.length, null, true);
     }
     var path = "images\\system\\tumblr\\";
     switch(flag)
@@ -565,7 +566,7 @@ function listFilesInFolder(folder) {
         folderFile = new java.io.File(folder);
     }
     else {
-        folderFile = new java.io.File(teasePath + "\\" + folder);
+        folderFile = new java.io.File(teasePath + folder);
     }
     return folderFile.listFiles();
 }
@@ -573,7 +574,7 @@ function getFileFromUrl(url)
 {
     var split = url.split("/");
     var path = split[split.length - 1];
-    path = teasePath + "\\images\\system\\tumblr\\" + path;
+    path = teasePath + "images\\system\\tumblr\\" + path;
     var file = new java.io.File(path);
     if (file.exists())
     {
@@ -639,7 +640,7 @@ function calculateMD5(file) {
         return output;
     }
     catch (e) {
-        sendMessage("unable to process file for md5");
+        EMessage("unable to process file for md5");
     }
     finally {
         try {

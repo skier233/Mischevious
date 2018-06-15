@@ -6,7 +6,7 @@ if (answer.isLike("yes", "yea", "yep"))
     CMessage("I want you to ache MORE");
     CMessage("%edge%");
     startEdging();
-    CMessage("%stopstrokingedge%");
+    CMessage("%stopstrokingedge%", null, false);
     CMessage("%lettheedgefade%", 0);
     stopEdging();
 }
@@ -19,14 +19,14 @@ else
     startEdging();
     if (randomInteger(0, 10) <= 6)
     {
-        CMessage("%stopstrokingedge%");
+        CMessage("%stopstrokingedge%", null, false);
         CMessage("%lettheedgefade%", 0);
     }
     else
     {
         CMessage("%Holdtheedge%", 0);
         holdEdge(randomInteger(10, 60));
-        CMessage("%stopstrokingedge%");
+        CMessage("%stopstrokingedge%", null, false);
         CMessage("%lettheedgefade%", 0);
     }
 }

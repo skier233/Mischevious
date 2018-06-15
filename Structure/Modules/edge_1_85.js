@@ -10,7 +10,7 @@ else
     startEdging();
     if (randomInteger(0, 9) <= 6)
     {
-        CMessage("%stopstrokingedge%");
+        CMessage("%stopstrokingedge%", null, false);
         CMessage("%lettheedgefade%", 0);
     }
     else

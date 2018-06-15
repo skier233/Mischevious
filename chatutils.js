@@ -26,9 +26,9 @@ function DMessage(message, delay=0)
         CustomizedMessage("<c=lightgreen b fs=16>Info: <><c=darkslategrey b fs=15>" + message, delay, -1);
     }
 }
-function CMessage(message, delay=-1)
+function CMessage(message, delay=-1, showTyping=true)
 {
-    CustomizedMessage(message, delay, 1, null, 13);
+    CustomizedMessage(message, delay, 1, null, 13, showTyping);
 }
 function SMessage(message, delay=0, sender)
 {
@@ -48,9 +48,11 @@ function getInput(message, delay)
     DMessage("responses disabled", 0);
     if (delay == null)
     {
+        var chatHandler = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
         var answer = sendInput(message);
         setTempVar("responsesDisabled", false);
         DMessage("responses enabled", 0);
+        sleep(chatHandler.getHandler().getMillisToPause(message) / 1000);
         return answer;
     }
     var answer = sendInput(message, delay);
@@ -58,7 +60,7 @@ function getInput(message, delay)
     DMessage("responses enabled", 0);
     return answer;
 }
-function CustomizedMessage(message, delay=0, sender=1, font, fontsize=13){
+function CustomizedMessage(message, delay=0, sender=1, font, fontsize=13, showTyping=false){
     //sendMessage("flag 222", 0);
     var chatHandler = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
     message = replaceVocab(message);
@@ -141,7 +143,7 @@ function CustomizedMessage(message, delay=0, sender=1, font, fontsize=13){
     }
     else
     {
-        internalSendMessage(texts, sender);
+        internalSendMessage(texts, sender, showTyping);
     }
     //sendMessage("flag 312", 0);
     if (delay >= 0)
@@ -154,7 +156,7 @@ function CustomizedMessage(message, delay=0, sender=1, font, fontsize=13){
         sleep(chatHandler.getHandler().getMillisToPause(message) / 1000);
     }
 }
-function internalSendMessage(texts, sender=1)
+function internalSendMessage(texts, sender=1, showTyping=true)
 {
     if (sender == null || sender < 0 || sender > 3)
     {
@@ -177,9 +179,12 @@ function internalSendMessage(texts, sender=1)
         message += texts[i].getText();
     }
     //sendMessage("flag 934" + participant, 0);
-    var startTyping = participanttype.class.getDeclaredMethod("startTyping", java.lang.String.class);
-    startTyping.setAccessible(true);
-    //startTyping.invoke(participant, message);
+    if (showTyping)
+    {
+        var startTyping = participanttype.class.getDeclaredMethod("startTyping", java.lang.String.class);
+        startTyping.setAccessible(true);
+        startTyping.invoke(participant, message);
+    }
     var dateFormat = new java.text.SimpleDateFormat("hh:mm a");
     var dateText = new Text(dateFormat.format(new java.util.Date()) + " ");
     dateText.setFill(Color.DARKGRAY);
@@ -194,9 +199,32 @@ function internalSendMessage(texts, sender=1)
     {
         allTexts.push(texts[i]);
     }
+    var responseHandler = Java.type("me.goddragon.teaseai.api.chat.response.ResponseHandler");
+    var senderType = Java.type("me.goddragon.teaseai.api.chat.SenderType");
+    var mediaHandler = Java.type("me.goddragon.teaseai.api.media.MediaHandler");
+    var teaseAi = Java.type("me.goddragon.teaseai.TeaseAI");
 
+    var response = responseHandler.getHandler().getLatestQueuedResponse();
+    if (response != null)
+    {
+        responseHandler.getHandler().removeQueuedResponse(response);
+
+        if (response.trigger())
+        {
+            return;
+        }
+    }
+    //DMessage(/*participant.type + " " + mediaHandler.getHandler().isImagesLocked() + " " + */participant.pictureSet != null);
+    if (participant.type != senderType.SUB && !mediaHandler.getHandler().isImagesLocked() && participant.pictureSet != null)
+    {
+        var session = teaseAi.application.getSession();
+        var taggedPicture = session.getActivePersonality().getPictureSelector().getPicture(session, participant);
+        if (taggedPicture != null)
+        {
+            mediaHandler.getHandler().showPicture(session.getActivePersonality().getPictureSelector().getPicture(session, participant).getFile());
+        }
+    }
     handlertype.getHandler().addLine(allTexts);
-
 }
 function getResponsesDisabled()
 {

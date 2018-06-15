@@ -4,5 +4,5 @@ CMessage("On second thought");
 startStroking();
 CMessage("%edge%", 0);
 startEdging();
-CMessage("%stopstrokingedge%");
+CMessage("%stopstrokingedge%", null, false);
 CMessage("%lettheedgefade%");

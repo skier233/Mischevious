@@ -10,5 +10,5 @@ while ((randomInteger(0, 9) > 1)) {
 CMessage("Okay that's enough of that");
 CMessage("%edge%");
 startEdging();
-CMessage("%stopstrokingedge%");
+CMessage("%stopstrokingedge%", null, false);
 CMessage("%lettheedgefade%");

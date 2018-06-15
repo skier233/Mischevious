@@ -20,7 +20,7 @@ if (assOrTits == "none")
         CMessage("Here's some %Boobs% you can edge to right now %Grin%", 0);
         showCategoryImage("BOOBS");
         startEdging();
-        CMessage("%stopstrokingedge%");
+        CMessage("%stopstrokingedge%", null, false);
         CMessage("%lettheedgefade%");
         CMessage("So you're a tit man...");
         CMessage("I'm %Gonna% remember that %SubName% %Grin%");
@@ -42,7 +42,7 @@ else if (assOrTits == "ass")
     }
     CMessage("Cause you're %Gonna% edge to it right now %Grin%");
     startEdging();
-    CMessage("%stopstrokingedge%");
+    CMessage("%stopstrokingedge%", null, false);
     CMessage("%lettheedgefade%");
     CMessage("I told you I'd remember you're an ass man");
     CMessage("And this won't be the last time I remind you of that %Grin%");
@@ -61,7 +61,7 @@ else
     }
     CMessage("Cause you're %Gonna% edge to it right now %Grin%");
     startEdging();
-    CMessage("%stopstrokingedge%");
+    CMessage("%stopstrokingedge%", null, false);
     CMessage("%lettheedgefade%");
     CMessage("I told you I'd remember you're a tit man");
     CMessage("And this won't be the last time I remind you of that %Grin%");

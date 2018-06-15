@@ -59,4 +59,4 @@ else
         CMessage("So why don't you wrap your hand around that %Cock%");
     }
 }
-andStroking();
+customStroking("and %startstroking%");

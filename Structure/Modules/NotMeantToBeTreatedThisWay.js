@@ -11,7 +11,7 @@ CMessage("Stroking is supposed to feel GOOD, right? %Lol%");
 CMessage("But instead, well");
 CMessage("Why don't you edge for me real quick and see for yourself");
 startEdging();
-CMessage("%stopstrokingedge%");
+CMessage("%stopstrokingedge%", null, false);
 CMessage("%lettheedgefade%");
 CMessage("See what I mean though?");
 CMessage("Sometimes I think I've got you so worked up you can't even think straight %Lol%");
