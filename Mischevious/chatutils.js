@@ -179,12 +179,18 @@ function internalSendMessage(texts, sender=1, showTyping=true)
         message += texts[i].getText();
     }
     //sendMessage("flag 934" + participant, 0);
+<<<<<<< HEAD:chatutils.js
     if (showTyping)
     {
         var startTyping = participanttype.class.getDeclaredMethod("startTyping", java.lang.String.class);
         startTyping.setAccessible(true);
         startTyping.invoke(participant, message);
     }
+=======
+    var startTyping = participanttype.class.getDeclaredMethod("startTyping", java.lang.String.class);
+    startTyping.setAccessible(true);
+    startTyping.invoke(participant, message);
+>>>>>>> origin/master:Mischevious/chatutils.js
     var dateFormat = new java.text.SimpleDateFormat("hh:mm a");
     var dateText = new Text(dateFormat.format(new java.util.Date()) + " ");
     dateText.setFill(Color.DARKGRAY);
