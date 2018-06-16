@@ -19,5 +19,5 @@ CMessage("And no matter how unnatural those words feel coming out of your mouth"
 CMessage("When I tell you to wrap your hand around that tortured cock");
 CMessage("And you feel how hard it gets at my words");
 CMessage("You'll know that you'll never be safe from me");
-CMessage("And you'll never WANT to be %Grin%");
+CMessage("And you'll never <i>want<> to be %Grin%");
 Stroking();

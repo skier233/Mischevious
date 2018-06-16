@@ -27,7 +27,7 @@ if (randomInteger(0, 1) == 1)
             else
             {
                 CMessage("Oh you think it belongs to you huh?");
-                CMessage("In that case why don't you pull YOUR cock out");
+                CMessage("In that case why don't you pull <i>your<> cock out");
                 CMessage("And I'll make you put it through so much ache and abuse");
                 CMessage("That you'll beg me to take it from you and make it mine %Grin%");
                 CMessage("So why don't you wrap your fingers around our little piece of disputed property");
@@ -54,7 +54,7 @@ else
     }
     else
     {
-        CMessage("In fact, I'm feeling SO wicked");
+        CMessage("In fact, I'm feeling <i>so<> wicked");
         CMessage("That the only thing that's going to satisfy me is making you suffer %Grin%");
         CMessage("So why don't you wrap your hand around that %Cock%");
     }

@@ -5,7 +5,7 @@ if (randomInteger(0, 1) == 1)
     CMessage("Desperate to touch yourself");
     CMessage("Even though you know it would only make the ache so much worse");
     CMessage("The thing is");
-    CMessage("I WANT the ache to be so much worse %Grin%");
+    CMessage("I <i>want<> the ache to be so much worse %Grin%");
     CMessage("Sooo...");
 }
 else

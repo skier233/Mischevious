@@ -2,14 +2,14 @@ CMessage("It's times like this I bet you wonder");
 if (randomInteger(0, 1) == 1)
 {
     CMessage("If you're the luckiest guy in the world...");
-    CMessage("or the UNLUCKIEST %Lol%");
+    CMessage("or the <i>unluckiest<> %Lol%");
     CMessage("You may never know for sure");
     CMessage("All I know is that as long as you're willing to put that %Cock% in my hands");
     CMessage("I'll be here to make it suffer %Grin%");
 }
 else
 {
-    CMessage("If I'm EVER %Gonna% let you cum");
+    CMessage("If I'm <i>ever<> %Gonna% let you cum");
     CMessage("And the truth is, I haven't quite decided");
     CMessage("I have so much fun making you suffer");
     CMessage("That it's hard for me to make up my mind");

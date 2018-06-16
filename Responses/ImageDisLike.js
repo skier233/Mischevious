@@ -14,5 +14,5 @@ function imageDisLikeResponse(message) {
         var myFile = new java.io.File(getAppPath() + getImagePath());
         myFile.delete();
     }
-    return true;
+    return false;
 }

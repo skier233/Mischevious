@@ -4,7 +4,7 @@ if (answer.isLike("yes", "yep", "yea")) {
     CMessage("Good boy :)");
     CMessage("Since you were so good and didn't touch your %Cock% while you were gone");
     CMessage("I'm going to reward you");
-    CMessage("By letting you touch it a LOT %Grin%");
+    CMessage("By letting you touch it a <i>lot<> %Grin%");
 }
 else
 {
@@ -25,20 +25,20 @@ else
             CMessage("Stroking yourself without my permission tsk tsk");
             CMessage("You're going to have to make that up to me you know");
             CMessage("And the best way I can think of to punish you for touching yourself without my permission");
-            CMessage("Is to make you touch yourself WITH my permission %Grin%");
+            CMessage("Is to make you touch yourself <i>with<> my permission %Grin%");
         }
         else
         {
             CMessage("I only care about that %Cock% and whether or not it cums, anything else isn't really my business %Lol%");
             CMessage("But since you're here now...");
-            CMessage("I feel like having a little fun with something that IS my business");
+            CMessage("I feel like having a little fun with something that <i>is<> my business");
         }
     }
     else
     {
         CMessage("Okay, I'll take your word for it %Lol%");
         CMessage("All that matters is you're here now");
-        CMessage("And I'M the one that feels like misbehaving %Grin%");
+        CMessage("And <i>I'm<> the one that feels like misbehaving %Grin%");
     }
 }
 Stroking();

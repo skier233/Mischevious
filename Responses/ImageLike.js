@@ -23,5 +23,5 @@ function imageLikeResponse(message) {
         //moveFile(getAppPath() + getImagePath(), getAppPath() + "\\images\\liked\\" + fileName);
         //sendMessage("complete");
     }
-    return true;
+    return false;
 }

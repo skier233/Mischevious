@@ -24,5 +24,5 @@ function imageLoveResponse(message) {
         //moveFile(getAppPath() + getImagePath(), getAppPath() + "\\images\\loved\\" + fileName);
         //sendMessage("complete");
     }
-    return true;
+    return false;
 }

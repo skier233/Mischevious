@@ -11,6 +11,14 @@ function setUpChat()
         debug = getVar("debug", null);
     }
     registerVariable("debug", "Debug Mode", "Set this to true to turn on debug mode for more info.");
+    if (getVar("fontsize", null) == null) {
+        setVar("fontsize", 13);
+    }
+    else
+    {
+        debug = getVar("fontsize", null);
+    }
+    registerVariable("fontsize", "Font Size", "The default font size of the domme's messages");
     if (getVar("responsesDisabled", null) == null) {
         setTempVar("responsesDisabled", false);
     }
@@ -28,7 +36,7 @@ function DMessage(message, delay=0)
 }
 function CMessage(message, delay=-1, showTyping=true)
 {
-    CustomizedMessage(message, delay, 1, null, 13, showTyping);
+    CustomizedMessage(message, delay, 1, null, null, showTyping);
 }
 function SMessage(message, delay=0, sender)
 {
@@ -46,22 +54,39 @@ function getInput(message, delay)
 {
     setTempVar("responsesDisabled", true);
     DMessage("responses disabled", 0);
-    if (delay == null)
-    {
-        var chatHandler = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
-        var answer = sendInput(message);
-        setTempVar("responsesDisabled", false);
-        DMessage("responses enabled", 0);
-        sleep(chatHandler.getHandler().getMillisToPause(message) / 1000);
-        return answer;
-    }
-    var answer = sendInput(message, delay);
+    var chatHandler = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
+    var answertype = Java.type("me.goddragon.teaseai.api.chat.Answer");
+    var teaseAi = Java.type("me.goddragon.teaseai.api.chat.Answer");
+    var answer = new answertype(0);
+    CMessage(message, 0);
+    //sendMessage("flag 123", 0);
+    chatHandler.getHandler().setCurrentCallback(answer);
+    answer.setTimeout(false);
+    answer.setAnswer(null);
+    answer.setStartedAt(java.lang.System.currentTimeMillis());
+    var teaseAi = Java.type("me.goddragon.teaseai.TeaseAI");
+    teaseAi.application.waitPossibleScripThread(answer.getMillisTimeout());
+    answer.checkTimeout();
     setTempVar("responsesDisabled", false);
     DMessage("responses enabled", 0);
+    if (delay == null)
+    {
+        sleep(chatHandler.getHandler().getMillisToPause(message) / 1000);
+    }
+    else
+    {
+        sleep(delay);
+    }
     return answer;
 }
-function CustomizedMessage(message, delay=0, sender=1, font, fontsize=13, showTyping=false){
-    //sendMessage("flag 222", 0);
+function CustomizedMessage(message, delay=0, sender=1, font, fontsize, showTyping=false){
+    if (fontsize == null)
+    {
+        fontsize = getVar("fontsize", 13);
+    }
+    //sendMessage("flag ", 0);
+    sleep(.01);
+    //sendMessage("fs " + fontsize, 0);
     var chatHandler = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
     message = replaceVocab(message);
 
@@ -84,6 +109,7 @@ function CustomizedMessage(message, delay=0, sender=1, font, fontsize=13, showTy
             messageParts[i] = "\0" + messageParts[i];
         }
         var textVar = new javafx.scene.text.Text(messageParts[i]);
+
         if (i % 2 == 1)
         {
             var j = i - 1;
@@ -134,7 +160,14 @@ function CustomizedMessage(message, delay=0, sender=1, font, fontsize=13, showTy
             localfont = font;
 
         }
-        texts.push(textVar);
+        else
+        {
+            textVar.setFont(javafx.scene.text.Font.font(localfont, localfontsize));
+        }
+        if (textVar.getText() != null && !textVar.getText().isEmpty() && textVar.getText().length() > 1)
+        {
+            texts.push(textVar);
+        }
     }
     //sendMessage("flag 315", 0);
     if (sender < 0 || sender > 4)
@@ -163,7 +196,6 @@ function internalSendMessage(texts, sender=1, showTyping=true)
         sender = 1;
     }
     setSender(sender);
-    //sendMessage("flag 930", 0);
     var Text = javafx.scene.text.Text;
     var Color = javafx.scene.paint.Color;
     var Font = javafx.scene.text.Font;
@@ -172,35 +204,26 @@ function internalSendMessage(texts, sender=1, showTyping=true)
     var participanttype = Java.type("me.goddragon.teaseai.api.chat.ChatParticipant");
     var handler = handlertype.getHandler();
     var participant = handler.getCurrentDom();
-    //sendMessage("flag 931", 0);
     var message = "";
     for (var i = 0; i < texts.length; i++)
     {
         message += texts[i].getText();
     }
-    //sendMessage("flag 934" + participant, 0);
-<<<<<<< HEAD:chatutils.js
     if (showTyping)
     {
         var startTyping = participanttype.class.getDeclaredMethod("startTyping", java.lang.String.class);
         startTyping.setAccessible(true);
         startTyping.invoke(participant, message);
     }
-=======
-    var startTyping = participanttype.class.getDeclaredMethod("startTyping", java.lang.String.class);
-    startTyping.setAccessible(true);
-    startTyping.invoke(participant, message);
->>>>>>> origin/master:Mischevious/chatutils.js
     var dateFormat = new java.text.SimpleDateFormat("hh:mm a");
     var dateText = new Text(dateFormat.format(new java.util.Date()) + " ");
     dateText.setFill(Color.DARKGRAY);
-    dateText.setFont(Font.font(null, javafx.scene.text.FontWeight.MEDIUM, 12));
+    dateText.setFont(Font.font(null, javafx.scene.text.FontWeight.MEDIUM, getVar("fontsize", 13) - 1));
     var text = new Text(participant.getName() + ": ");
     text.setFill(participant.getChatColor());
-    text.setFont(Font.font(null, javafx.scene.text.FontWeight.BOLD, 13));
+    text.setFont(Font.font(null, javafx.scene.text.FontWeight.BOLD, getVar("fontsize", 13)));
     allTexts.push(dateText);
     allTexts.push(text);
-    //sendMessage("flag 939", 0);
     for (var i = 0; i < texts.length; i++)
     {
         allTexts.push(texts[i]);

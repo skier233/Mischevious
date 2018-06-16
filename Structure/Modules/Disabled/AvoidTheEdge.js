@@ -52,11 +52,6 @@ else
         CMessage("I have plenty of other ways to make you squirm %Grin%");
     }
 }
-<<<<<<< HEAD
-=======
-CMessage("");
-CMessage("I love making you do that %EmoteRandom%");
->>>>>>> origin/master
 
 function avoidTheEdge()
 {

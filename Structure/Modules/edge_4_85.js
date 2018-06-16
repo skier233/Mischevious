@@ -3,7 +3,7 @@ if (answer.isLike("yes", "yea", "yep"))
 {
     increaseAnger(-1);
     CMessage("Mmmm");
-    CMessage("I want you to ache MORE");
+    CMessage("I want you to ache <i>more<>");
     CMessage("%edge%");
     startEdging();
     CMessage("%stopstrokingedge%", null, false);

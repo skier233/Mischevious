@@ -7,6 +7,6 @@ if (randomInteger(0, 1) == 1)
 else
 {
     CMessage("Cause I'm not");
-    CMessage("I'm NEVER %Gonna% be done making that %Cock% suffer %EmoteRandom%");
+    CMessage("I'm <i>never<> %Gonna% be done making that %Cock% suffer %EmoteRandom%");
 }
 Stroking();

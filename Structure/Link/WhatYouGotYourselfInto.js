@@ -15,7 +15,7 @@ else
     CMessage("The more you're %Gonna% ache");
     CMessage("Until the pain in your %Cock% becomes so familiar");
     CMessage("Connects you so deeply to me");
-    CMessage("That you'll never want to be free of my trap");
+    CMessage("That you'll <i>never<> want to be free of my trap");
     CMessage("Or all the ache that comes with it %Grin%");
 }
 Stroking();

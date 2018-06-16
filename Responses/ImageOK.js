@@ -23,5 +23,5 @@ function imageOKResponse(message) {
         //moveFile(getAppPath() + getImagePath(), getAppPath() + "images\\normal\\" + fileName);
         //sendMessage("complete");
     }
-    return true;
+    return false;
 }

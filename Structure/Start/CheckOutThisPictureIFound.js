@@ -22,8 +22,8 @@ if (answer.isLike("yes", "yep", "yea", "hot", "good", "3", "like"))
         CMessage("I'll just find one that WILL drive you insane %Lol%");
         thisOne();
         CMessage("I knew I would get you with a little persistence %Grin%");
-        CMessage("And since you DID make me have to persist in finding a sexy picture");
-        CMessage("I'm going to make YOU persist in stroking that %Cock% until you're begging me for mercy %EmoteRandom%");
+        CMessage("And since you <i>did<> make me have to persist in finding a sexy picture");
+        CMessage("I'm going to make <i>you<> persist in stroking that %Cock% until you're begging me for mercy %EmoteRandom%");
     }
 }
 else if (answer.isLike("fuck", "super", "sexy", "love", "4"))
@@ -41,8 +41,8 @@ else if (answer.isLike("alright", "meh", "ok", "2", "okay"))
     CMessage("I'll just find one that WILL drive you insane %Lol%");
     thisOne();
     CMessage("I knew I would get you with a little persistence %Grin%");
-    CMessage("And since you DID make me have to persist in finding a sexy picture");
-    CMessage("I'm going to make YOU persist in stroking that %Cock% until you're begging me for mercy %EmoteRandom%");
+    CMessage("And since you <i>did<> make me have to persist in finding a sexy picture");
+    CMessage("I'm going to make <i>you<> persist in stroking that %Cock% until you're begging me for mercy %EmoteRandom%");
 }
 else
 {
@@ -52,8 +52,8 @@ else
     CMessage("I'll just find one that WILL drive you insane %Lol%");
     thisOne();
     CMessage("I knew I would get you with a little persistence %Grin%");
-    CMessage("And since you DID make me have to persist in finding a sexy picture");
-    CMessage("I'm going to make YOU persist in stroking that %Cock% until you're begging me for mercy %EmoteRandom%");
+    CMessage("And since you <i>did<> make me have to persist in finding a sexy picture");
+    CMessage("I'm going to make <i>you<> persist in stroking that %Cock% until you're begging me for mercy %EmoteRandom%");
 }
 Stroking();
 
