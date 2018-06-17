@@ -2,7 +2,7 @@ CMessage("I was just thinking about you %SubName%");
 if (randomInteger(0, 1) == 1)
 {
     CMessage("And here you are %Grin%");
-    answer = sendInput("Feel like having a little fun with me this evening?");
+    answer = getInput("Feel like having a little fun with me this evening?");
     if (answer.isLike("yes", "yea", "yep"))
     {
         CMessage("%Yay%");
@@ -14,7 +14,7 @@ if (randomInteger(0, 1) == 1)
         CMessage("You don't?");
         if (randomInteger(0, 1) == 1)
         {
-            answer2 = sendInput("Well whose cock is that between your legs?");
+            answer2 = getInput("Well whose cock is that between your legs?");
             if (answer2.isLike("you", "your", "yours"))
             {
                 CMessage("That's right %Grin%");

@@ -1,4 +1,3 @@
-//setTypeSpeed("FAST");
 CMessage("%goodeveningsub%");
 if (randomInteger(0, 1) == 1)
 {

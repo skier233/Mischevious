@@ -40,12 +40,12 @@ function picturesModeResponse(message) {
                 if (getTags(tagsFile, folderImages[currentFile].getName()) == null) {
                     var thispath = path + "\\" + folderImages[currentFile].getName();
                     getLocalTeasePicture(path, folderImages[currentFile].getName());
-                    answer = sendInput("Do you like this one? (Options: hate, ok, like, love, next (1,2,3,4,n))", 0);
+                    answer = getInput("Do you like this one? (Options: hate, ok, like, love, next (1,2,3,4,n))", 0);
                     //sendMessage("flag 47");
                     x = answer.getAnswer();
                     //sendMessage("flag 671");
                     while (x != "1" && x != "2" && x != "3" && x != "4" && x != "liked" && x != "normal" && x != "loved" && x != "hate" && x != "n" && x != "next" && x != "5" && x != "quit" && x != "exit" && x != "q" && x != "e") {
-                        answer = sendInput("Invalid answer! (Options: hate, ok, like, love, next (1,2,3,4,n))", 0);
+                        answer = getInput("Invalid answer! (Options: hate, ok, like, love, next (1,2,3,4,n))", 0);
                         x = answer.getAnswer();
                     }
                 }
@@ -75,10 +75,10 @@ function picturesModeResponse(message) {
         }
         if ((extension == "png" || extension == "jpg" || extension == "gif")) {
             DMessage("path: " + getImagePath(), 0);
-            answer = sendInput("Do you like this one? (Options: hate, ok, like, love, next (1,2,3,4,n))", 0);
+            answer = getInput("Do you like this one? (Options: hate, ok, like, love, next (1,2,3,4,n))", 0);
             x = answer.getAnswer();
             while (x != "1" && x != "2" && x != "3" && x != "4" && x != "liked" && x != "normal" && x != "loved" && x != "hate" && x != "n" && x != "next" && x != "5" && x != "quit" && x != "exit" && x != "q" && x != "e") {
-                answer = sendInput("Invalid answer! (Options: hate, ok, like, love, next (1,2,3,4,n))", 0);
+                answer = getInput("Invalid answer! (Options: hate, ok, like, love, next (1,2,3,4,n))", 0);
                 x = answer.getAnswer();
             }
             //sendMessage("flag 6713", 0);

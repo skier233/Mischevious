@@ -705,7 +705,7 @@ function customStroke(duration, bpm) {
             break;
         }
         timeLeftStroking = secThreshold - currentTime;
-        if (currentTime > (tauntTime - .1) || currentTime < (tauntTime + .1)) {
+        if (currentTime > (tauntTime - .2) && currentTime < (tauntTime + .2)) {
             DMessage("In taunt ");
             CMessage("%stroketaunt1%")
             switch (tauntFreq) {

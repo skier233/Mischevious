@@ -20,7 +20,7 @@ if (!getVar("playedavoidtheedge", false))
     CMessage("Let's play %Grin%");
     avoidTheEdge();
     CMessage("You made it!");
-    answer = sendInput("Pretty fun game, right?");
+    answer = getInput("Pretty fun game, right?");
     if (answer.isLike("yes", "yea", "yep"))
     {
         CMessage("I'm glad you think so %PetName%");
@@ -38,7 +38,7 @@ if (!getVar("playedavoidtheedge", false))
 else
 {
     CMessage("I want to play Avoid The Edge with you again");
-    answer = sendInput("Up for it? %EmoteHappy%");
+    answer = getInput("Up for it? %EmoteHappy%");
     if (answer.isLike("yes", "yea", "yep")) {
         CMessage("I was hoping you'd say that %Grin%");
         CMessage("Let's get started");

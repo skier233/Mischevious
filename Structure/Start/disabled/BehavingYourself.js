@@ -1,5 +1,5 @@
 CMessage("%goodeveningsub%");
-answer = sendInput("%haveyoubeenbehavingyourself%");
+answer = getInput("%haveyoubeenbehavingyourself%");
 if (answer.isLike("yes", "yep", "yea")) {
     CMessage("Good boy :)");
     CMessage("Since you were so good and didn't touch your %Cock% while you were gone");
@@ -9,10 +9,10 @@ if (answer.isLike("yes", "yep", "yea")) {
 else
 {
     CMessage("Oh?");
-    answer2 = sendInput("Something I should know about?");
+    answer2 = getInput("Something I should know about?");
     if (answer2.isLike("yes", "yep", "yea", "came", "cum", "accident", "orgasm", "edge"))
     {
-        answer3 = sendInput("Tell me what you did %SubName%");
+        answer3 = getInput("Tell me what you did %SubName%");
         if (answer3.isLike("came", "cum", "accident", "orgasm", "edge"))
         {
             CMessage("Awww, and I wasn't there to see it");

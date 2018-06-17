@@ -11,14 +11,6 @@ function setUpChat()
         debug = getVar("debug", null);
     }
     registerVariable("debug", "Debug Mode", "Set this to true to turn on debug mode for more info.");
-    if (getVar("fontsize", null) == null) {
-        setVar("fontsize", 13);
-    }
-    else
-    {
-        debug = getVar("fontsize", null);
-    }
-    registerVariable("fontsize", "Font Size", "The default font size of the domme's messages");
     if (getVar("responsesDisabled", null) == null) {
         setTempVar("responsesDisabled", false);
     }
@@ -77,12 +69,15 @@ function getInput(message, delay)
     {
         sleep(delay);
     }
+    DMessage("flag 123.6");
     return answer;
 }
-function CustomizedMessage(message, delay=0, sender=1, font, fontsize, showTyping=false){
+
+function getTexts(message, font, fontsize){
+    var teaseAi = Java.type("me.goddragon.teaseai.TeaseAI");
     if (fontsize == null)
     {
-        fontsize = getVar("fontsize", 13);
+        fontsize = teaseAi.application.CHAT_TEXT_SIZE;
     }
     //sendMessage("flag ", 0);
     sleep(.01);
@@ -97,8 +92,6 @@ function CustomizedMessage(message, delay=0, sender=1, font, fontsize, showTypin
     var matches = message.match(/<([ ]*[a-z]*|[0-9]*|,*|=*[ ]*)*>/ig);
     var regex = /<(?:[ ]*(?:[a-z0-9]*)[,]*[=]*[ ]*)*>/;
     var messageParts = message.split(regex);
-    var objArray = Java.type("java.lang.Object[]");
-    var dummyArray = new objArray(1);
     var texts = [];
     //var texts = new objArray(messageParts.length - 1);
     var firstArg;
@@ -169,24 +162,44 @@ function CustomizedMessage(message, delay=0, sender=1, font, fontsize, showTypin
             texts.push(textVar);
         }
     }
-    //sendMessage("flag 315", 0);
-    if (sender < 0 || sender > 4)
+    return texts;
+}
+
+function CustomizedMessage(message, delay=0, sender=1, font, fontsize, showTyping=false){
+    var texts = getTexts(message, font, fontsize);
+    var chatHandler = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
+    var participant = chatHandler.getHandler().getCurrentDom();
+    if (participant == null)
+    {
+        setSender(1);
+    }
+    sleep(.01);
+    participant = chatHandler.getHandler().getCurrentDom();
+    if (sender < 1 || sender > 4)
     {
         chatHandler.getHandler().addLine(texts);
+        if (delay >= 0)
+        {
+            sleep(delay);
+        }
+        else
+        {
+            sleep(chatHandler.getHandler().getMillisToPause(message) / 1000);
+        }
     }
     else
     {
-        internalSendMessage(texts, sender, showTyping);
-    }
-    //sendMessage("flag 312", 0);
-    if (delay >= 0)
-    {
-        sleep(delay);
-    }
-    else
-    {
-        //sendMessage("millistopause" + chatHandler.getHandler().getMillisToPause(message), 0);
-        sleep(chatHandler.getHandler().getMillisToPause(message) / 1000);
+        if (delay < 0)
+        {
+            delay = chatHandler.getHandler().getMillisToPause(message);
+        }
+        else
+        {
+            delay *= 1000;
+        }
+        participant.sendMessage(message, delay, texts);
+        //sendMessage("after part message", 0);
+        //internalSendMessage(texts, sender, showTyping);
     }
 }
 function internalSendMessage(texts, sender=1, showTyping=true)

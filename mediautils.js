@@ -15,7 +15,7 @@ function setUpMedia() {
     var file = new java.io.File(TeaseAI.class.getProtectionDomain().getCodeSource().getLocation().toURI());
     //The path to the main directory
     teasePath = file.getParent();
-    teasePath = teasePath + "\\";
+    DMessage(teasePath);
     var file2 = TeaseAI.application.getSession().getActivePersonality().getFolder();
     //The path to your personality directory
     personalityPath = file2.getAbsolutePath();
@@ -27,7 +27,7 @@ function setUpMedia() {
 * getAppPath method will return the directory path to the base directory of the app
 **/
 function getAppPath() {
-    return teasePath;
+    return teasePath + "\\";
 }
 /**
 * showTaggedImage method will show and return a random picture of the given type (2, 3 ,4 (normal, liked, loved)) with
@@ -52,7 +52,7 @@ function showTaggedImage(imageType, imageTags, delay) {
         default:
             localpath = "images\\normal";
     }
-    var path = teasePath + localpath + "\\imagetags.txt";
+    var path = teasePath + "\\" + localpath + "\\imagetags.txt";
     var tagsFile = getOrCreateFile(path);
     var fileReader = new java.io.FileReader(tagsFile);
     var bufferedReader = new java.io.BufferedReader(fileReader);
@@ -100,7 +100,7 @@ function sortPicture(file, sortPlace=2)
             myFile = new java.io.File(file);
         }
         else {
-            myFile = new java.io.File(teasePath + file);
+            myFile = new java.io.File(teasePath + "\\" + file);
         }
         var localpath = "";
         switch (sortPlace) {
@@ -566,7 +566,7 @@ function listFilesInFolder(folder) {
         folderFile = new java.io.File(folder);
     }
     else {
-        folderFile = new java.io.File(teasePath + folder);
+        folderFile = new java.io.File(teasePath + "\\" + folder);
     }
     return folderFile.listFiles();
 }
@@ -574,7 +574,7 @@ function getFileFromUrl(url)
 {
     var split = url.split("/");
     var path = split[split.length - 1];
-    path = teasePath + "images\\system\\tumblr\\" + path;
+    path = teasePath + "\\" + "images\\system\\tumblr\\" + path;
     var file = new java.io.File(path);
     if (file.exists())
     {
