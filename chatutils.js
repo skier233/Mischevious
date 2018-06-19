@@ -50,6 +50,7 @@ function getInput(message, delay)
     var answertype = Java.type("me.goddragon.teaseai.api.chat.Answer");
     var teaseAi = Java.type("me.goddragon.teaseai.api.chat.Answer");
     var answer = new answertype(0);
+
     CMessage(message, 0);
     //sendMessage("flag 123", 0);
     chatHandler.getHandler().setCurrentCallback(answer);
@@ -169,12 +170,21 @@ function CustomizedMessage(message, delay=0, sender=1, font, fontsize, showTypin
     var texts = getTexts(message, font, fontsize);
     var chatHandler = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
     var participant = chatHandler.getHandler().getCurrentDom();
+
     if (participant == null)
     {
         setSender(1);
     }
     sleep(.01);
     participant = chatHandler.getHandler().getCurrentDom();
+        
+    if (showTyping)
+    {
+        var participanttype = Java.type("me.goddragon.teaseai.api.chat.ChatParticipant");
+        var startTyping = participanttype.class.getDeclaredMethod("startTyping", java.lang.String.class);
+        startTyping.setAccessible(true);
+        startTyping.invoke(participant, message);
+    }
     if (sender < 1 || sender > 4)
     {
         chatHandler.getHandler().addLine(texts);
