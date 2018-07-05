@@ -68,6 +68,7 @@ function setUpVars() {
     if (getVar("mood", null) != null) {
         //Register something for last session mood
     }
+    timeLeftStroking = 0;
 }
 
 /*|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -370,6 +371,11 @@ function isEdging() {
 * the sub hold an edge.
 **/
 function holdEdge() {
+    if (!getVar("edging", false))
+    {
+        CMessage("%edge%");
+        startEdging();
+    }
     CMessage("%holdtheedge%", 0);
     var timeHolding = 0;
     setTempVar("edging", false);
@@ -700,11 +706,11 @@ function customStroke(duration, bpm) {
     while (currentTime < secThreshold && timeLeftStroking != -1) {
         sleep(.5);
         currentTime = getMillisPassed() / 1000;
+        timeLeftStroking = secThreshold - currentTime;
         if (timeLeftStroking == -1)
         {
             break;
         }
-        timeLeftStroking = secThreshold - currentTime;
         if (currentTime > (tauntTime - .2) && currentTime < (tauntTime + .2)) {
             DMessage("In taunt ");
             CMessage("%stroketaunt1%")

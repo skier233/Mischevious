@@ -2,6 +2,7 @@ addResponseIndicator("tags", "taglist", "tagslist", "alltags");
 run("allutils.js");
 
 function tagsListResponse(message) {
+    return false;
     if (getResponsesDisabled()) {
         return false;
     }
