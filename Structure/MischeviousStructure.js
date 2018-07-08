@@ -5,10 +5,10 @@ DMessage("Starting module");
 firstRun = true;
 while (continueSession() || firstRun)
 {
-    run("Structure\\Modules\\*.js");
+    run("Structure\\Modules\\ModuleSelector.js");
     if (randomInteger(1, 4) == 1)
     {
-        run("Structure\\Modules\\*.js");
+        run("Structure\\Modules\\ModuleSelector.js");
     }
     else
     {

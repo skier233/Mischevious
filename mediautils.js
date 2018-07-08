@@ -308,7 +308,16 @@ function listFilesInFolder(folder) {
         folderFile = new java.io.File(folder);
     }
     else {
-        folderFile = new java.io.File(teasePath + "\\" + folder);
+        folderFile = new java.io.File(personalityPath + "\\" + folder);
+    }
+    DMessage(folderFile.getPath());
+    if (!folderFile.exists())
+    {
+        EMessage("File does not exist " + folderFile.getPath());
+    }
+    if (!folderFile.isDirectory())
+    {
+        EMessage("File is not a directory " + folderFile.getPath());
     }
     return folderFile.listFiles();
 }

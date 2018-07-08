@@ -7,5 +7,4 @@ setUpMedia();
 run("personalityutils.js");
 DMessage("Setting up personality");
 setUpVars();
-showTaggedImage("3", ["boobs"]);
 run("Structure\\MischeviousStructure.js");
