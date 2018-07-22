@@ -3,7 +3,6 @@ if (randomInteger(0, 1) == 1) {
     stopStroking();
 }
 else {
-    CMessage("%edge%", 0);
     startEdging();
     CMessage("%stopstrokingedge%", null, false);
     CMessage("%lettheedgefade%");
@@ -15,7 +14,6 @@ CMessage("I would apologize for disappointing you");
 CMessage("But we both know that cumming would be the <i>true<> disappointment here");
 CMessage("And to prove it");
 CMessage("I think you should edge for me right now");
-CMessage("%edge%", 0);
 startEdging();
 CMessage("%stopstrokingedge%", null, false);
 CMessage("%lettheedgefade%");

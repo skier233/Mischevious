@@ -7,10 +7,9 @@ if (assOrTits == "none")
     if (answer.isLike("ass", "butt", "first", "former", "behind", "rear", "hienie", "bum", "booty"))
     {
         setVar("assortits", "ass");
-        CMessage("Here's an ass you can edge to right now %Grin%", 0);
         lockImages();
         showCategoryImage("BUTTS");
-        startEdging();
+        startEdging("Here's an ass you can edge to right now %Grin%");
         unlockImages();
         CMessage("%lettheedgefade%");
         CMessage("So you're an ass man...");
@@ -19,10 +18,9 @@ if (assOrTits == "none")
     else
     {
         setVar("assortits", "tits");
-        CMessage("Here's some %Boobs% you can edge to right now %Grin%", 0);
         lockImages();
         showCategoryImage("BOOBS");
-        startEdging();
+        startEdging("Here's some %Boobs% you can edge to right now %Grin%");
         unlockImages();
         CMessage("%stopstrokingedge%", null, false);
         CMessage("%lettheedgefade%");
@@ -45,8 +43,7 @@ else if (assOrTits == "ass")
         increaseAnger(1);
         CMessage("That's too bad");
     }
-    CMessage("Cause you're %Gonna% edge to it right now %Grin%", 0);
-    startEdging();
+    startEdging("Cause you're %Gonna% edge to it right now %Grin%");
     unlockImages();
     CMessage("%stopstrokingedge%", null, false);
     CMessage("%lettheedgefade%");
@@ -66,8 +63,7 @@ else
         increaseAnger(1);
         CMessage("That's too bad");
     }
-    CMessage("Cause you're %Gonna% edge to it right now %Grin%", 0);
-    startEdging();
+    startEdging("Cause you're %Gonna% edge to it right now %Grin%");
     unlockImages();
     CMessage("%stopstrokingedge%", null, false);
     CMessage("%lettheedgefade%");

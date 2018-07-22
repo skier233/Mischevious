@@ -6,7 +6,6 @@ if (randomInteger(0, 1) == 1)
 }
 else
 {
-    CMessage("%edge%", 0);
     startEdging();
     if (randomInteger(0, 9) <= 6)
     {

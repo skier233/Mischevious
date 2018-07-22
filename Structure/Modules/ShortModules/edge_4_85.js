@@ -4,7 +4,6 @@ if (answer.isLike("yes", "yea", "yep"))
     increaseAnger(-1);
     CMessage("Mmmm");
     CMessage("I want you to ache <i>more<>");
-    CMessage("%edge%");
     startEdging();
     CMessage("%stopstrokingedge%", null, false);
     CMessage("%lettheedgefade%", 0);
@@ -14,7 +13,6 @@ else
     CMessage("No?");
     CMessage("Well I can't have that %Grin%");
     increaseAnger(4);
-    CMessage("%edge%");
     startEdging();
     if (randomInteger(0, 10) <= 6)
     {
@@ -23,7 +21,6 @@ else
     }
     else
     {
-        CMessage("%Holdtheedge%", 0);
         holdEdge(randomInteger(10, 60));
         CMessage("%stopstrokingedge%", null, false);
         CMessage("%lettheedgefade%", 0);

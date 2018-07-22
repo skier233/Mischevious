@@ -1,4 +1,3 @@
-CMessage("%edge%", 0);
 startEdging();
 CMessage("%stopstrokingedge%", null, false);
 CMessage("%lettheedgefade%");

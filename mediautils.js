@@ -313,7 +313,11 @@ function listFilesInFolder(folder) {
     DMessage(folderFile.getPath());
     if (!folderFile.exists())
     {
-        EMessage("File does not exist " + folderFile.getPath());
+        folderFile = new java.io.File(teasePath + "\\" + folder);
+        if (!folderFile.exists())
+        {
+            EMessage("File does not exist " + folderFile.getPath());
+        }
     }
     if (!folderFile.isDirectory())
     {

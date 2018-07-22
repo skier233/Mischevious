@@ -1,6 +1,7 @@
 var timeLeftStroking;
 var strokeTime;
 var angereddate;
+var strokingMethodsEnabled = false;
 
 /**
 * setupVars method to setup variables used by the personality
@@ -69,6 +70,15 @@ function setUpVars() {
         //Register something for last session mood
     }
     timeLeftStroking = 0;
+    var TeaseAI = Java.type("me.goddragon.teaseai.TeaseAI");
+    var strokingMethodsFile = new java.io.File(TeaseAI.application.getSession().getActivePersonality().getFolder().getAbsolutePath() + "\/" + "strokingmethodutils.js");
+    strokingMethodsEnabled = strokingMethodsFile.exists();
+    DMessage("Stroking Methods Enabled: " + strokingMethodsEnabled);
+    if (strokingMethodsEnabled)
+    {
+        run("strokingmethodutils.js");
+        setUpStrokingMethods();
+    }
 }
 
 /*|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
@@ -79,8 +89,8 @@ function setUpVars() {
 * Stroking method to have the sub start stroking. This is the method you will primarily want to
 * call in scripts.
 **/
-function Stroking() {
-    CMessage("%startStroking%", 0);
+function StartStrokingMethod() {
+    //CMessage("%startStroking%", 0);
     var strokeMinimum = getMinStrokingLength();
     var strokeMaximum = getMaxStrokingLength();
     var apathyMoodIndex = getApathyMoodIndex();
@@ -94,7 +104,34 @@ function Stroking() {
     var duration = ((strokeMaximum - strokeMinimum) * 60) * percentFromMinToMax + (strokeMinimum * 60);
     DMessage("duration: " + duration, 0);
     //stroke 1000 for testing
-    customStroke(duration, Math.floor(bpm));
+    StrokeOtherMethods(duration, Math.floor(bpm));
+}
+
+/**
+* Stroking method to have the sub start stroking. This is the method you will primarily want to
+* call in scripts.
+**/
+function Stroking() {
+    if (strokingMethodsEnabled) {
+        StartStrokingMethod();
+    }
+    else {
+        CMessage("%startStroking%", 0);
+        var strokeMinimum = getMinStrokingLength();
+        var strokeMaximum = getMaxStrokingLength();
+        var apathyMoodIndex = getApathyMoodIndex();
+        var random = randomInteger(1, 10);
+        DMessage("random: " + random, 0);
+        var percentSession = (getMillisPassed() / 1000) / (getMinSessionLength() * 60);
+        //y = 52.2810035121697 + 6.42273993825994 * r * pS + 0.873930004197032 * r ^ 2 + 0.00137857491687123 * r * x ^ 2 - 0.00439450398010755 * x ^ 2
+        var bpm = 52.2810 + 6.4227 * random * percentSession + 0.8739 * Math.pow(random, 2) + 0.0014 * random * Math.pow(apathyMoodIndex, 2) - 0.0044 * Math.pow(apathyMoodIndex, 2);
+        var percentFromMinToMax = 0.00112 * bpm + (22.68182 / bpm) + .0000723 * apathyMoodIndex * bpm + .000098 * Math.pow(apathyMoodIndex, 2) - 0.29386 - .00000053 * Math.pow(apathyMoodIndex, 3) - .000000376389651825041 * apathyMoodIndex * Math.pow(bpm, 2);
+        DMessage("bpm: " + bpm, 0);
+        var duration = ((strokeMaximum - strokeMinimum) * 60) * percentFromMinToMax + (strokeMinimum * 60);
+        DMessage("duration: " + duration, 0);
+        //stroke 1000 for testing
+        customStroke(duration, Math.floor(bpm));
+    }
 }
 
 /**
@@ -102,21 +139,27 @@ function Stroking() {
 * call in scripts when you want a message other than the default.
 **/
 function customStroking(message) {
-    CMessage(message, 0);
-    var strokeMinimum = getMinStrokingLength();
-    var strokeMaximum = getMaxStrokingLength();
-    var apathyMoodIndex = getApathyMoodIndex();
-    var random = randomInteger(1, 10);
-    DMessage("random: " + random, 0);
-    var percentSession = (getMillisPassed() / 1000) / (getMinSessionLength() * 60);
-    //y = 52.2810035121697 + 6.42273993825994 * r * pS + 0.873930004197032 * r ^ 2 + 0.00137857491687123 * r * x ^ 2 - 0.00439450398010755 * x ^ 2
-    var bpm = 52.2810 + 6.4227 * random * percentSession + 0.8739 * Math.pow(random, 2) + 0.0014 * random * Math.pow(apathyMoodIndex, 2) - 0.0044 * Math.pow(apathyMoodIndex, 2);
-    var percentFromMinToMax = 0.00112 * bpm + (22.68182 / bpm) + .0000723 * apathyMoodIndex * bpm + .000098 * Math.pow(apathyMoodIndex, 2) - 0.29386 - .00000053 * Math.pow(apathyMoodIndex, 3) - .000000376389651825041 * apathyMoodIndex * Math.pow(bpm, 2);
-    DMessage("bpm: " + bpm, 0);
-    var duration = ((strokeMaximum - strokeMinimum) * 60) * percentFromMinToMax + (strokeMinimum * 60);
-    DMessage("duration: " + duration, 0);
-    customStroke(duration, Math.floor(bpm));
-
+    if (strokingMethodsEnabled)
+    {
+        StartStrokingMethod();
+    }
+    else
+    {
+        CMessage(message, 0);
+        var strokeMinimum = getMinStrokingLength();
+        var strokeMaximum = getMaxStrokingLength();
+        var apathyMoodIndex = getApathyMoodIndex();
+        var random = randomInteger(1, 10);
+        DMessage("random: " + random, 0);
+        var percentSession = (getMillisPassed() / 1000) / (getMinSessionLength() * 60);
+        //y = 52.2810035121697 + 6.42273993825994 * r * pS + 0.873930004197032 * r ^ 2 + 0.00137857491687123 * r * x ^ 2 - 0.00439450398010755 * x ^ 2
+        var bpm = 52.2810 + 6.4227 * random * percentSession + 0.8739 * Math.pow(random, 2) + 0.0014 * random * Math.pow(apathyMoodIndex, 2) - 0.0044 * Math.pow(apathyMoodIndex, 2);
+        var percentFromMinToMax = 0.00112 * bpm + (22.68182 / bpm) + .0000723 * apathyMoodIndex * bpm + .000098 * Math.pow(apathyMoodIndex, 2) - 0.29386 - .00000053 * Math.pow(apathyMoodIndex, 3) - .000000376389651825041 * apathyMoodIndex * Math.pow(bpm, 2);
+        DMessage("bpm: " + bpm, 0);
+        var duration = ((strokeMaximum - strokeMinimum) * 60) * percentFromMinToMax + (strokeMinimum * 60);
+        DMessage("duration: " + duration, 0);
+        customStroke(duration, Math.floor(bpm));
+    }
 }
 
 /**
@@ -291,13 +334,31 @@ function DoEdges(minEdges, maxEdges, holdChancePerEdge)
 /**
 * startEdging method that will make the sub edge.
 **/
-function startEdging() {
+function startEdging(message)
+{
+    if (strokingMethodsEnabled) {
+        if (message != undefined && message != null)
+        {
+            CMessage(message, 0);
+        }
+        EdgingMethod();
+    }
+    else {
+        var apathyMoodIndex = getApathyMoodIndex();
+        var random = randomInteger(1, 5);
+        var bpm = 174.69905 + (30.99765 * random) + (0.0002257 * Math.pow(apathyMoodIndex, 3)) + (0.10081895 * apathyMoodIndex * Math.pow(random, 2)) - (0.477098 * apathyMoodIndex * random) - (0.0325047 * Math.pow(apathyMoodIndex, 2)) - (3.1204935 * Math.pow(random, 2));
+        startEdgingBPM(bpm, message);
+    }
+}
+
+function startEdgingBPM(bpm, message) {
     setTempVar("edging", true);
-    var apathyMoodIndex = getApathyMoodIndex();
-    var random = randomInteger(1, 5);
     setTempVar("holdingedge", false);
-    var bpm = 174.69905 + (30.99765 * random) + (0.0002257 * Math.pow(apathyMoodIndex, 3)) + (0.10081895 * apathyMoodIndex * Math.pow(random, 2)) - (0.477098 * apathyMoodIndex * random) - (0.0325047 * Math.pow(apathyMoodIndex, 2)) - (3.1204935 * Math.pow(random, 2));
     DMessage("bpm: " + bpm, 0);
+    if (message != undefined && message != null)
+    {
+        CMessage(message, 0);
+    }
     if (!isStroking()) {
         startStroking(Math.floor(bpm));
     }
@@ -575,7 +636,7 @@ function getApathyMoodIndex() {
     else if (newApathyMoodIndex > 100) {
         newApathyMoodIndex = 100;
     }
-    DMessage("apathyMoodIndex: " + newApathyMoodIndex, 0);
+    //DMessage("apathyMoodIndex: " + newApathyMoodIndex, 0);
     return newApathyMoodIndex;
 }
 
@@ -591,7 +652,7 @@ function getMood() {
     var mood = getVar("mood", 50);
     if (typeof mood == "number") {
         if (mood >= 1 && mood <= 100) {
-            DMessage("Mood:" + mood);
+            //DMessage("Mood:" + mood);
             return mood;
         }
         else {

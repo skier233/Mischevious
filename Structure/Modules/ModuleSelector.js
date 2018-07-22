@@ -1,7 +1,8 @@
-var random = randomInteger(0, 4);
+var random = 0;
 var flag = true;
 while (flag)
 {
+    random = randomInteger(0, 4);
     flag = false;
     var folder = "";
     if (random == 0)
