@@ -1,6 +1,7 @@
 function setUpStrokingMethods()
 {
-    var methods = getStrokingMethods();
+    var methods = getAllMethods();
+    DMessage("Setting up methods");
     for (var i = 0; i < methods.length; i++)
     {
         if (getVar("Method" + methods[i].constructor.name, null) == null) {
