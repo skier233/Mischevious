@@ -734,7 +734,6 @@ function continueSession()
 * CustomStroke internal stroking method. Do not call this directly!
 **/
 function customStroke(duration, bpm) {
-    duration = 5;
     startStroking(bpm);
     lockImages();
     var tauntFreq = getTauntFrequency();
