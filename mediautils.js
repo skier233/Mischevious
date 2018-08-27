@@ -32,15 +32,15 @@ function showTaggedImage(imageType, imageTags, delay) {
     //TODO add functionality for what if there isnt an image with all of the tags but there is one with all but one...?
     var localpath = "";
     switch (imageType) {
-        case "2":
+        case 2:
         case "normal":
             localpath = "images\\normal";
             break;
-        case "3":
+        case 3:
         case "liked":
             localpath = "images\\liked";
             break;
-        case "4":
+        case 4:
         case "loved":
             localpath = "images\\loved";
             break;
@@ -123,9 +123,7 @@ function sortPicture(file, sortPlace=2)
     }
     return false;
 }
-/**
-* getTeasePicture method will show and return a random picture from a url file
-**/
+
 function loadUrlImages(amount, urlfilename, removed) {
     //returns mediaurl type
     var taggedPicture = Java.type("me.goddragon.teaseai.api.picture.TaggedPicture");
@@ -211,12 +209,15 @@ function getTeasePicture(flag=1, time)
         case 1:
             path = "images\\system\\tumblr\\";
             break;
+        case "normal":
         case 2:
             path = "images\\normal\\";
             break;
+        case "liked":
         case 3:
             path = "images\\liked\\";
             break;
+        case "loved":
         case 4:
             path = "images\\loved\\";
             break;

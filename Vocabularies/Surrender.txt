@@ -1,0 +1,6 @@
+surrender
+submit
+resign
+yield
+defer
+concede

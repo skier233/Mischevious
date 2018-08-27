@@ -19,6 +19,7 @@ function setUpChat()
         getVar("responsesDisabled", false);
     }
 }
+//UTILITY METHODS
 function DMessage(message, delay=0)
 {
     if (debug)
@@ -70,10 +71,11 @@ function getInput(message, delay)
     {
         sleep(delay);
     }
-    DMessage("flag 123.6");
     return answer;
 }
+//END UTILITY METHODS
 
+//INTERNAL METHODS
 function getTexts(message, font, fontsize){
     var teaseAi = Java.type("me.goddragon.teaseai.TeaseAI");
     if (fontsize == null)

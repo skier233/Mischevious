@@ -1,4 +1,4 @@
-CMessage("Time to find out if you get to cum %PetName%");
+CMessage("%TimeToFindIfYouGetToCum%");
 var cumming = calculateOrgasm();
 var ruining = false;
 if (cumming)

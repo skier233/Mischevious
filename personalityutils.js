@@ -86,8 +86,7 @@ function setUpVars() {
 *///|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 /**
-* Stroking method to have the sub start stroking. This is the method you will primarily want to
-* call in scripts.
+* Internal method to call customstrokingmethods
 **/
 function StartStrokingMethod() {
     //CMessage("%startStroking%", 0);
@@ -596,7 +595,8 @@ function increaseAnger(amount) {
             mood -= 14;
             break;
         default:
-
+            WMessage("increaseAnger called with invalid args");
+            return;
     }
     if (mood > 100) {
         mood = 100;
@@ -663,6 +663,34 @@ function getMood() {
         setTempVar("mood", 50);
     }
     return 50;
+}
+
+/**
+* getMoodTypeAmount getter method to get the dommes current moodtype amount value. 
+**/
+function getMoodTypeAmount() {
+    return getVar("moodtypeamount", null);
+}
+
+/**
+* getMoodTypeAmount getter method to get the dommes current moodtype amount value. 
+**/
+function setMoodTypeAmount() {
+    setTempVar("moodtypeamount", moodTypeAmount);
+}
+
+/**
+* setMoodType getter method to set the dommes current moodtype value. 
+**/
+function getMoodType(moodTypeAmount) {
+    return getVar("moodtype", null);
+}
+
+/**
+* setMoodType getter method to set the dommes current moodtype value. 
+**/
+function setMoodType(moodType) {
+    setTempVar("moodtype", moodType);
 }
 
 /**
