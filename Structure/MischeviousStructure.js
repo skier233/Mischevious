@@ -1,19 +1,20 @@
 preferredSessionLength = getVar("prefSessionLength");
+var separator = java.io.File.separator;
 DMessage("Starting session");
-run("Structure\\Start\\*.js");
+run("Structure" + separator + "Start" + separator + "*.js");
 DMessage("Starting module");
 firstRun = true;
 while (continueSession() || firstRun)
 {
-    run("Structure\\Modules\\ModuleSelector.js");
+    run("Structure" + separator + "Modules" + separator + "ModuleSelector.js");
     if (randomInteger(1, 4) == 1)
     {
-        run("Structure\\Modules\\ModuleSelector.js");
+        run("Structure" + separator + "Modules" + separator + "ModuleSelector.js");
     }
     else
     {
-        run("Structure\\Link\\*.js");
+        run("Structure" + separator + "Link" + separator + "*.js");
     }
     firstRun = false;
 }
-run("Structure\\End\\*.js");
+run("Structure" + separator + "End" + separator + "*.js");

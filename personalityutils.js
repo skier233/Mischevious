@@ -71,7 +71,7 @@ function setUpVars() {
     }
     timeLeftStroking = 0;
     var TeaseAI = Java.type("me.goddragon.teaseai.TeaseAI");
-    var strokingMethodsFile = new java.io.File(TeaseAI.application.getSession().getActivePersonality().getFolder().getAbsolutePath() + "\/" + "strokingmethodutils.js");
+    var strokingMethodsFile = new java.io.File(TeaseAI.application.getSession().getActivePersonality().getFolder().getAbsolutePath() + java.io.File.separator + "strokingmethodutils.js");
     strokingMethodsEnabled = strokingMethodsFile.exists();
     DMessage("Stroking Methods Enabled: " + strokingMethodsEnabled);
     if (strokingMethodsEnabled)

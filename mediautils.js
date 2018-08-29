@@ -3,6 +3,7 @@ var currentPictureUrl;
 var currentPicturePath;
 var teasePath;
 var personalityPath;
+var separator = java.io.File.separator;
 
 /**
 * setUpMedia method will set up this util class. Call this at the beginning of the personality.
@@ -22,7 +23,7 @@ function setUpMedia() {
 * getAppPath method will return the directory path to the base directory of the app
 **/
 function getAppPath() {
-    return teasePath + "\\";
+    return teasePath + separator;
 }
 /**
 * showTaggedImage method will show and return a random picture of the given type (2, 3 ,4 (normal, liked, loved)) with
@@ -34,20 +35,20 @@ function showTaggedImage(imageType, imageTags, delay) {
     switch (imageType) {
         case 2:
         case "normal":
-            localpath = "images\\normal";
+            localpath = "images" + separator + "normal";
             break;
         case 3:
         case "liked":
-            localpath = "images\\liked";
+            localpath = "images" + separator + "liked";
             break;
         case 4:
         case "loved":
-            localpath = "images\\loved";
+            localpath = "images" + separator + "loved";
             break;
         default:
-            localpath = "images\\normal";
+            localpath = "images" + separator + "normal";
     }
-    var path = teasePath + "\\" + localpath;
+    var path = teasePath + separator + localpath;
     var pictureHandler = Java.type("me.goddragon.teaseai.api.picture.PictureHandler");
     var matchingImages = pictureHandler.getHandler().getTaggedPicturesExact(new java.io.File(path), imageTags);
     //DMessage(matchingImages.toString());
@@ -84,7 +85,7 @@ function sortPicture(file, sortPlace=2)
         taggedFile = file;
     }
     else {
-        myFile = new java.io.File(teasePath + "\\" + file);
+        myFile = new java.io.File(teasePath + separator + file);
         taggedFile = new taggedPicture(myFile);
     }
     var localpath = "";
@@ -95,15 +96,15 @@ function sortPicture(file, sortPlace=2)
             break;
         case 2:
         case "normal":
-            localpath = "images\\normal\\";
+            localpath = "images" + separator + "normal" + separator;
             break;
         case 3:
         case "liked":
-            localpath = "images\\liked\\";
+            localpath = "images" + separator + "liked" + separator;
             break;
         case 4:
         case "loved":
-            localpath = "images\\loved\\";
+            localpath = "images" + separator + "loved" + separator;
             break;
         default:
             localpath = null;
@@ -197,29 +198,29 @@ function loadUrlImages(amount, urlfilename, removed) {
 **/
 function getTeasePicture(flag=1, time)
 {
-    var tumblrimages = listFilesInFolder("images\\system\\tumblr\\");
+    var tumblrimages = listFilesInFolder("images" + separator + "system" + separator + "tumblr" + separator);
     if (tumblrimages.length < 20)
     {
         DMessage("loading images");
         loadUrlImages(100 - tumblrimages.length, null, true);
     }
-    var path = "images\\system\\tumblr\\";
+    var path = "images" + separator + "system" + separator + "tumblr" + separator;
     switch(flag)
     {
         case 1:
-            path = "images\\system\\tumblr\\";
+            path = "images" + separator + "system" + separator + "tumblr" + separator;
             break;
         case "normal":
         case 2:
-            path = "images\\normal\\";
+            path = "images" + separator + "normal" + separator;
             break;
         case "liked":
         case 3:
-            path = "images\\liked\\";
+            path = "images" + separator + "liked" + separator;
             break;
         case "loved":
         case 4:
-            path = "images\\loved\\";
+            path = "images" + separator + "loved" + separator;
             break;
     }
     var directoryFiles = listFilesInFolder(path);
@@ -264,7 +265,7 @@ function getImageUrl() {
 }
 
 function getLocalTeasePicture(path, name) {
-    const image = showImage(path + "\\" + name);
+    const image = showImage(path + separator + name);
     //showImage("Images/Liked/tumblr_oah6x4ffKZ1v0oj9oo1_1280.jpg");
     //sendMessage("testmsg " + image, 0);
     if (image != null) {
@@ -309,12 +310,12 @@ function listFilesInFolder(folder) {
         folderFile = new java.io.File(folder);
     }
     else {
-        folderFile = new java.io.File(personalityPath + "\\" + folder);
+        folderFile = new java.io.File(personalityPath + separator + folder);
     }
     DMessage(folderFile.getPath());
     if (!folderFile.exists())
     {
-        folderFile = new java.io.File(teasePath + "\\" + folder);
+        folderFile = new java.io.File(teasePath + separator + folder);
         if (!folderFile.exists())
         {
             EMessage("File does not exist " + folderFile.getPath());
@@ -330,7 +331,7 @@ function getFileFromUrl(url)
 {
     var split = url.split("/");
     var path = split[split.length - 1];
-    path = teasePath + "\\" + "images\\system\\tumblr\\" + path;
+    path = teasePath + separator + "images" + separator + "system" + separator + "tumblr" + separator + path;
     var file = new java.io.File(path);
     if (file.exists())
     {

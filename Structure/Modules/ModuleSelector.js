@@ -1,4 +1,5 @@
 var random = 0;
+var separator = java.io.File.separator;
 var flag = true;
 while (flag)
 {
@@ -7,23 +8,23 @@ while (flag)
     var folder = "";
     if (random == 0)
     {
-        folder = "Structure\\Modules\\ShortModules\\";
+        folder = "Structure" + separator + "Modules" + separator + "ShortModules" + separator;
     }
     else if (random == 1)
     {
-        folder = "Structure\\Modules\\MediumModules\\";
+        folder = "Structure" + separator + "Modules" + separator + "MediumModules" + separator;
     }
     else if (random == 2)
     {
-        folder = "Structure\\Modules\\LongModules\\";
+        folder = "Structure" + separator + "Modules" + separator + "LongModules" + separator;
     }
     else if (random == 3)
     {
-        folder = "Structure\\Modules\\Games\\";
+        folder = "Structure" + separator + "Modules" + separator + "Games" + separator;
     }
     else if (random == 4)
     {
-        folder = "Structure\\Modules\\Fetishes\\";
+        folder = "Structure" + separator + "Modules" + separator + "Fetishes" + separator;
     }
     var files = listFilesInFolder(folder);
     if (files == null)

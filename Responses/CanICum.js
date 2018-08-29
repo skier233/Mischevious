@@ -2,6 +2,7 @@ addResponseIndicator("can i cum", "can i orgasm", "please cum", "please orgasm",
 //run("allutils.js");
 
 function canICumResponse(message) {
+    var separator = java.file.separator();
     if (getResponsesDisabled()) {
         return false;
     }
@@ -13,7 +14,7 @@ function canICumResponse(message) {
             (0.0006447 * apathyMood * percentSession) - (2.557387 * percentSession * Math.cos(percentSession));
         var random = randomInteger(1, 100);
         if (random >= (chance * 100)) {
-            run("Structure\\End\\*.js");
+            run("Structure" + separator + "End" + separator + "*.js");
         }
         else
         {
@@ -28,7 +29,7 @@ function canICumResponse(message) {
             (0.0006447 * apathyMood * percentSession) - (2.557387 * percentSession * Math.cos(percentSession));
         var random = randomInteger(1, 100);
         if (random >= (chance * 100)) {
-            run("Structure\\End\\*.js");
+            run("Structure" + separator + "End" + separator + "*.js");
         }
         else {
             increaseAnger(3);

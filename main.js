@@ -7,4 +7,4 @@ setUpMedia();
 run("personalityutils.js");
 DMessage("Setting up personality");
 setUpVars();
-run("Structure\\MischeviousStructure.js");
+run("Structure" + java.io.File.separator + "MischeviousStructure.js");
