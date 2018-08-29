@@ -2,7 +2,7 @@ addResponseIndicator("can i cum", "can i orgasm", "please cum", "please orgasm",
 //run("allutils.js");
 
 function canICumResponse(message) {
-    var separator = java.file.separator();
+    var separator = java.io.File.separator;
     if (getResponsesDisabled()) {
         return false;
     }
