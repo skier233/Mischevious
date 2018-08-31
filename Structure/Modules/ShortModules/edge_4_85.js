@@ -21,7 +21,7 @@ else
     }
     else
     {
-        holdEdge(randomInteger(10, 60));
+        holdEdge();
         CMessage("%stopstrokingedge%", null, false);
         CMessage("%lettheedgefade%", 0);
     }

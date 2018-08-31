@@ -55,6 +55,7 @@ function getStrokingMethods(type, amount)
     for (var i = 0; i < allmethods.length; i++)
     {
         var methodVar = getVar("Method" + allmethods[i].constructor.name, null);
+        methodVar = methodVar + "";
         if (methodVar != null)
         {
             var numberMethods = 0;
