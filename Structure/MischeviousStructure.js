@@ -1,5 +1,5 @@
+DMessage("MischeviousStructure: Beginning");
 preferredSessionLength = getVar("prefSessionLength");
-var separator = java.io.File.separator;
 DMessage("Starting session");
 run("Structure" + separator + "Start" + separator + "*.js");
 DMessage("Starting module");
@@ -18,3 +18,4 @@ while (continueSession() || firstRun)
     firstRun = false;
 }
 run("Structure" + separator + "End" + separator + "*.js");
+DMessage("MischeviousStructure: End");

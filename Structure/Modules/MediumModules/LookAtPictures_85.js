@@ -1,3 +1,4 @@
+DMessage("LookAtPictures_85: Beginning");
 CMessage("%stopstroking%", 0);
 stopStroking();
 CMessage("I think you could use a moment to calm down %Grin%");
@@ -74,3 +75,4 @@ else
 {
     CMessage("%LAPYouNeedToSufferMore_85%");
 }
+DMessage("LookAtPictures_85: End");

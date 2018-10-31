@@ -1,6 +1,7 @@
+DMessage("End_1: Beginning");
 CMessage("%TimeToFindIfYouGetToCum%");
-var cumming = calculateOrgasm();
-var ruining = false;
+let cumming = calculateOrgasm();
+let ruining = false;
 if (cumming)
 {
     ruining = calculateRuin();
@@ -54,3 +55,4 @@ else
 }
 CMessage("Thanks for giving me such a good time tonight %PetName%");
 CMessage("I can't wait to see you again %EmoteHappy%");
+DMessage("End_1: End");

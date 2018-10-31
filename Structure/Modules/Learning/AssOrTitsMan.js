@@ -1,5 +1,6 @@
+DMessage("AssOrTitsMan: Beginnning");
 CMessage("Tell me something %PetName%", 0);
-var assOrTits = getVar("assortits", "none");
+let assOrTits = getVar("assortits", "none");
 if (assOrTits == "none")
 {
     CMessage("Are you more of an ass man");
@@ -70,3 +71,4 @@ else
     CMessage("I told you I'd remember you're a tit man");
     CMessage("And this won't be the last time I remind you of that %Grin%");
 }
+DMessage("AssOrTitsMan: End");

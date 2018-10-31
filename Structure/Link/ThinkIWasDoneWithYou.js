@@ -1,3 +1,4 @@
+DMessage("ThinkIWasDoneWithYou: Beginning");
 CMessage("You didn't think I was done with you yet, did you?");
 if (randomInteger(0, 1) == 1)
 {
@@ -10,3 +11,4 @@ else
     CMessage("I'm <i>never<> %Gonna% be done making that %Cock% suffer %EmoteRandom%");
 }
 Stroking();
+DMessage("ThinkIWasDoneWithYou: End");

@@ -1,12 +1,12 @@
 addResponseIndicator("tags", "taglist", "tagslist", "alltags");
-run("allutils.js");
 
 function tagsListResponse(message) {
-    return false;
+    DMessage("TagsList: BeginningResponse");
     if (getResponsesDisabled()) {
+        DMessage("TagsList: EndResponse Response is Disabled");
         return false;
     }
-    var tagsList = "(*) after a category means required. Example tag: \"tag n p sh sf\""
+    let tagsList = "(*) after a category means required. Example tag: \"tag n p sh sf\""
     tagsList += "  \n| DressState*: ";
     tagsList += "  Naked(n)";
     tagsList += "  HalfDressed(hd)";
@@ -21,18 +21,27 @@ function tagsListResponse(message) {
     tagsList += "  Pussy(p)";
     tagsList += "  Boobs(b or t)";
     tagsList += "  Ass(a)";
+    tagsList += "  CumCoveredAss(cca)";
+    tagsList += "  CumCoveredBoobs(ccb)";
+    tagsList += "  CumCoveredCock(ccc)";
+    tagsList += "  CumCoveredFace(ccfa)";
+    tagsList += "  CumCoveredFeet(ccf)";
+    tagsList += "  CumCoveredFingers(ccfi)";
+    tagsList += "  CumCoveredLegs(cca)";
+    tagsList += "  CumCoveredPussy(ccp)";
     tagsList += "  Face(f)";
     tagsList += "  Fingers(fgs or fs)";
     tagsList += "  Feet(ft)";
     tagsList += "  Legs(l)";
     tagsList += "  Cock(ck)";
+    tagsList += "  |\n| Body Type:";
     tagsList += "  Blonde(bl)";
     tagsList += "  Brunette(bru or bro)";
     tagsList += "  RedHead(red or re)";
     tagsList += "  Slim(sl)";
     tagsList += "  Thick(th)";
     tagsList += "  |\n| Category*:";
-    tagsList += "  CloseUp(cu)";
+    tagsList += "  AllFours(allf)";
     tagsList += "  CumCovered(cc)";
     tagsList += "  Hardcore(hc)";
     tagsList += "  Softcore(sc)";
@@ -73,13 +82,22 @@ function tagsListResponse(message) {
     tagsList += "  Standing(sd or sg)";
     tagsList += "  Anal(an or al)";
     tagsList += "  GangBang(gb)";
+    tagsList += "  Glaring(gla)";
+    tagsList += "  Smiling(smi)";
+    tagsList += "  |\n| View:";
+    tagsList += "  SideView(sv)";
+    tagsList += "  CloseUp(cu)";
+
     tagsList += "  |\n| Accessory:";
 
     tagsList += "  Dildo(dd or dl)";
     tagsList += "  Vibrator(v)";
     tagsList += "  Panties(pt or py)";
     tagsList += "  WetPanties(wpant or wpa or wpt)";
-    tagsList += "  BathingSuitOrBra(br or ss)";
+    tagsList += "  Piercing(prc)";
+    tagsList += "  Bra(br)";
+    tagsList += "  BathingSuit(ss)";
     DMessage(tagsList, 0);
+    DMessage("TagsList: EndResponse");
     return true;
 }

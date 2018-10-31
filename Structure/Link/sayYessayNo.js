@@ -1,3 +1,4 @@
+DMessage("SayYesSayNo: Beginning");
 CMessage("I know how much this makes you ache");
 if (randomInteger(0, 1) == 1) {
     CMessage("How much your %Cock% wants me to say yes");
@@ -11,3 +12,4 @@ else {
     CMessage("But it will definitely turn me on %EmoteRandom%");
 }
 Stroking();
+DMessage("SayYesSayNo: End");

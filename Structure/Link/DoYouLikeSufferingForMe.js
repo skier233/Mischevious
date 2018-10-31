@@ -1,3 +1,4 @@
+DMessage("DoYouLikeSufferingForMe: Beginning");
 answer = getInput("Do you like suffering for me %SubName%?")
 if (answer.isLike("yea", "yes", "yep"))
 {
@@ -24,3 +25,4 @@ else
     }
 }
 Stroking();
+DMessage("DoYouLikeSufferingForMe: End");

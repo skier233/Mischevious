@@ -1,20 +1,20 @@
-var currentUrlFile;
-var currentPictureUrl;
-var currentPicturePath;
-var teasePath;
-var personalityPath;
-var separator = java.io.File.separator;
+DMessage("MediaUtils: Beginning");
+let currentUrlFile;
+let currentPictureUrl;
+let currentPicturePath;
+let teasePath;
+let personalityPath;
 
 /**
 * setUpMedia method will set up this util class. Call this at the beginning of the personality.
 **/
 function setUpMedia() {
-    var TeaseAI = Java.type("me.goddragon.teaseai.TeaseAI");
-    var file = new java.io.File(TeaseAI.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+    let TeaseAI = Java.type("me.goddragon.teaseai.TeaseAI");
+    let file = new java.io.File(TeaseAI.class.getProtectionDomain().getCodeSource().getLocation().toURI());
     //The path to the main directory
     teasePath = file.getParent();
     DMessage(teasePath);
-    var file2 = TeaseAI.application.getSession().getActivePersonality().getFolder();
+    let file2 = TeaseAI.application.getSession().getActivePersonality().getFolder();
     //The path to your personality directory
     personalityPath = file2.getAbsolutePath();
 }
@@ -30,35 +30,68 @@ function getAppPath() {
 * the tags provided as an array
 **/
 function showTaggedImage(imageType, imageTags, delay) {
+    if (rapidTesting)
+    {
+        delay = 0;
+    }
     //TODO add functionality for what if there isnt an image with all of the tags but there is one with all but one...?
-    var localpath = "";
+    let localpath = "";
+    let imageInt;
     switch (imageType) {
         case 2:
         case "normal":
+            imageInt = 2;
             localpath = "images" + separator + "normal";
             break;
         case 3:
         case "liked":
+            imageInt = 3;
             localpath = "images" + separator + "liked";
             break;
         case 4:
         case "loved":
+            imageInt = 4;
             localpath = "images" + separator + "loved";
             break;
         default:
             localpath = "images" + separator + "normal";
     }
-    var path = teasePath + separator + localpath;
-    var pictureHandler = Java.type("me.goddragon.teaseai.api.picture.PictureHandler");
-    var matchingImages = pictureHandler.getHandler().getTaggedPicturesExact(new java.io.File(path), imageTags);
+    let path = teasePath + separator + localpath;
+    let pictureHandler = Java.type("me.goddragon.teaseai.api.picture.PictureHandler");
+    DMessage("path " + path);
+    DMessage("imageTags " + imageTags);
+    let matchingImages = pictureHandler.getHandler().getTaggedPicturesExact(new java.io.File(path), imageTags);
+    DMessage("matchingimages " + imageInt + " " + matchingImages);
     //DMessage(matchingImages.toString());
-    if (matchingImages == null)
+    while(matchingImages == null)
     {
-        return null;
+        if (imageInt <= 2)
+        {
+            return null;
+        }
+        else
+        {
+            imageInt--;
+            switch (imageInt) {
+                case 2:
+                    localpath = "images" + separator + "normal";
+                    break;
+                case 3:
+                    localpath = "images" + separator + "liked";
+                    break;
+                case 4:
+                    localpath = "images" + separator + "loved";
+                    break;
+                default:
+                    localpath = "images" + separator + "normal";
+            }
+            let matchingImages = pictureHandler.getHandler().getTaggedPicturesExact(new java.io.File(path), imageTags);
+            DMessage("matchingimages " + imageInt + " " + matchingImages);
+        }
     }
-    var randomImage = matchingImages.get(randomInteger(0, matchingImages.length - 1));
+    let randomImage = matchingImages.get(randomInteger(0, matchingImages.length - 1));
 
-    var toReturn = showImage(randomImage.getFile().getPath());
+    let toReturn = showImage(randomImage.getFile().getPath());
     if (delay != null)
     {
         sleep(delay);
@@ -68,10 +101,10 @@ function showTaggedImage(imageType, imageTags, delay) {
 }
 function sortPicture(file, sortPlace=2)
 {
-    var taggedPicture = Java.type("me.goddragon.teaseai.api.picture.TaggedPicture");
+    let taggedPicture = Java.type("me.goddragon.teaseai.api.picture.TaggedPicture");
     DMessage("Moving file" + file, 0);
-    var myFile;
-    var taggedFile;
+    let myFile;
+    let taggedFile;
     if (file instanceof java.io.File) {
         myFile = file;
         taggedFile = new taggedPicture(myFile);
@@ -88,7 +121,7 @@ function sortPicture(file, sortPlace=2)
         myFile = new java.io.File(teasePath + separator + file);
         taggedFile = new taggedPicture(myFile);
     }
-    var localpath = "";
+    let localpath = "";
     switch (sortPlace) {
         case 1:
         case "dislike":
@@ -127,14 +160,18 @@ function sortPicture(file, sortPlace=2)
 
 function loadUrlImages(amount, urlfilename, removed) {
     //returns mediaurl type
-    var taggedPicture = Java.type("me.goddragon.teaseai.api.picture.TaggedPicture");
-    var urlfile;
+    DMessage("loadUrlImages: Loading files from url");
+    let taggedPicture = Java.type("me.goddragon.teaseai.api.picture.TaggedPicture");
+    let urlfile;
     if (urlfilename == null)
     {
+        DMessage("loadUrlImages: debug 1");
+        var counter = 0;
         urlfile = createMediaURL("../../Images/System/URL Files/*.txt");
-        while (!(urlfile.isUseForTease()))
+        while (!(urlfile.isUseForTease()) && counter < 30)
         {
             urlfile = createMediaURL("../../Images/System/URL Files/*.txt");
+            counter++;
         }
     }
     else
@@ -144,18 +181,18 @@ function loadUrlImages(amount, urlfilename, removed) {
     if (removed)
     {
         DMessage("currentUrlFile: " + urlfile);
-        var mediaUrls = urlfile.getMediaURLs();
-        var deleteFile = false;
-        var duplicates = 0;
+        let mediaUrls = urlfile.getMediaURLs();
+        let deleteFile = false;
+        let duplicates = 0;
         if (mediaUrls.length < amount)
         {
             amount = mediaUrls.length;
             deleteFile = true;
         }
-        for (var i = 0; i < amount; i++)
+        for (let i = 0; i < amount; i++)
         {
-            var myfile = getFileFromUrl(mediaUrls[i]);
-            var taggedFile = new taggedPicture(myfile);
+            let myfile = getFileFromUrl(mediaUrls[i]);
+            let taggedFile = new taggedPicture(myfile);
             if (taggedFile.isDuplicate())
             {
                 myfile.delete();
@@ -168,12 +205,12 @@ function loadUrlImages(amount, urlfilename, removed) {
     }
     else
     {
-        var consecutiveDuplicates = 0;
-        var mediaUrls = urlfile.getMediaURLs();
-        for (var i = 0; i < amount; i++)
+        let consecutiveDuplicates = 0;
+        let mediaUrls = urlfile.getMediaURLs();
+        for (let i = 0; i < amount; i++)
         {
-            var image = getFileFromUrl(mediaUrls[randomInteger(0, mediaUrls.length - 1)]);
-            var taggedFile = new taggedPicture(image);
+            let image = getFileFromUrl(mediaUrls[randomInteger(0, mediaUrls.length - 1)]);
+            let taggedFile = new taggedPicture(image);
             if (taggedFile.isDuplicate())
             {
                 consecutiveDuplicates++;
@@ -191,6 +228,7 @@ function loadUrlImages(amount, urlfilename, removed) {
             }
         }
     }
+    DMessage("loadUrlImages: End");
     return 1;
 }
 /**
@@ -198,13 +236,15 @@ function loadUrlImages(amount, urlfilename, removed) {
 **/
 function getTeasePicture(flag=1, time)
 {
-    var tumblrimages = listFilesInFolder("images" + separator + "system" + separator + "tumblr" + separator);
+    DMessage("GetTeasePicture: Debug 1");
+    let tumblrimages = listFilesInFolder("images" + separator + "system" + separator + "tumblr" + separator, true);
     if (tumblrimages.length < 20)
     {
-        DMessage("loading images");
+        DMessage("GetTeasePicture: loading images");
         loadUrlImages(100 - tumblrimages.length, null, true);
+        DMessage("GetTeasePicture: Finished loading images");
     }
-    var path = "images" + separator + "system" + separator + "tumblr" + separator;
+    let path = "images" + separator + "system" + separator + "tumblr" + separator;
     switch(flag)
     {
         case 1:
@@ -223,18 +263,19 @@ function getTeasePicture(flag=1, time)
             path = "images" + separator + "loved" + separator;
             break;
     }
-    var directoryFiles = listFilesInFolder(path);
-    var jFile = directoryFiles[randomInteger(0, directoryFiles.length - 1)];
+    DMessage("GetTeasePicture: Debug 2");
+    let directoryFiles = listFilesInFolder(path, true);
+    let jFile = directoryFiles[randomInteger(0, directoryFiles.length - 1)];
 
-    var extension = "";
-    var i = jFile.getName().lastIndexOf('.');
+    let extension = "";
+    let i = jFile.getName().lastIndexOf('.');
     if (i > 0) {
         extension = jFile.getName().substring(i+1);
     }
-    var consecutiveNotPic = 0;
+    let consecutiveNotPic = 0;
     while (jFile.isDirectory() || (extension != "png" && extension != "jpg" && extension != "gif"))
     {
-        var r = randomInteger(0, directoryFiles.length - 1);
+        let r = randomInteger(0, directoryFiles.length - 1);
         jFile = directoryFiles[r];
         consecutiveNotPic++;
         if (consecutiveNotPic >= 30)
@@ -249,7 +290,7 @@ function getTeasePicture(flag=1, time)
         }
     }
     currentPicturePath = jFile.getPath().replace(teasePath, "");
-    var toReturn = showImage(jFile);
+    let toReturn = showImage(jFile);
     if (time != null)
     {
         sleep(time);
@@ -292,7 +333,7 @@ function getCurrentUrlFile() {
 * getOrCreateFile helper method will return the java file from the path or create it if it doesnt exist
 **/
 function getOrCreateFile(path) {
-    var myFile = new java.io.File(path);
+    let myFile = new java.io.File(path);
 	new java.io.File(myFile.getParent()).mkdirs();
     myFile.createNewFile();
     return myFile;
@@ -301,8 +342,8 @@ function getOrCreateFile(path) {
 /**
 * listFilesInFolder method that will return all files in a folder. Pass in either a path or a java file.
 **/
-function listFilesInFolder(folder) {
-    var folderFile;
+function listFilesInFolder(folder,flag=false) {
+    let folderFile;
     if (folder instanceof java.io.File) {
         folderFile = folder;
     }
@@ -310,8 +351,16 @@ function listFilesInFolder(folder) {
         folderFile = new java.io.File(folder);
     }
     else {
-        folderFile = new java.io.File(personalityPath + separator + folder);
+        if (flag)
+        {
+            folderFile = new java.io.File(teasePath + separator + folder);
+        }
+        else
+        {
+            folderFile = new java.io.File(personalityPath + separator + folder);
+        }
     }
+    DMessage("filesinfolder 1");
     DMessage(folderFile.getPath());
     if (!folderFile.exists())
     {
@@ -329,27 +378,27 @@ function listFilesInFolder(folder) {
 }
 function getFileFromUrl(url)
 {
-    var split = url.split("/");
-    var path = split[split.length - 1];
+    let split = url.split("/");
+    let path = split[split.length - 1];
     path = teasePath + separator + "images" + separator + "system" + separator + "tumblr" + separator + path;
-    var file = new java.io.File(path);
+    let file = new java.io.File(path);
     if (file.exists())
     {
         return file;
     }
     try{
-        var inputstream = new java.io.BufferedInputStream(new java.net.URL(url).openStream());
-        var out = new java.io.ByteArrayOutputStream();
-        var buf = java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, 1024);
-        var n;
+        let inputstream = new java.io.BufferedInputStream(new java.net.URL(url).openStream());
+        let out = new java.io.ByteArrayOutputStream();
+        let buf = java.lang.reflect.Array.newInstance(java.lang.Byte.TYPE, 1024);
+        let n;
         while (-1 != (n = inputstream.read(buf)))
         {
             out.write(buf, 0 , n);
         }
         out.close();
         inputstream.close();
-        var response  = out.toByteArray();
-        var fos = new java.io.FileOutputStream(path);
+        let response  = out.toByteArray();
+        let fos = new java.io.FileOutputStream(path);
         fos.write(response);
         fos.close();
 
@@ -369,3 +418,4 @@ function getFileFromUrl(url)
 function randomInteger(lowest, highest) {
     return Math.floor(Math.random() * (highest - lowest + 1)) + lowest;
 }
+DMessage("MediaUtils: End");

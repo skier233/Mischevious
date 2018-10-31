@@ -1,8 +1,9 @@
+DMessage("StrokingMethodUtils: Beginning");
 function setUpStrokingMethods()
 {
-    var methods = getAllMethods();
+    let methods = getAllMethods();
     DMessage("Setting up methods");
-    for (var i = 0; i < methods.length; i++)
+    for (let i = 0; i < methods.length; i++)
     {
         if (getVar("Method" + methods[i].constructor.name, null) == null) {
             setVar("Method" + methods[i].constructor.name, "Enabled");
@@ -11,29 +12,34 @@ function setUpStrokingMethods()
     }
 }
 
-function StrokeOtherMethods(duration, speed)
+function StrokeOtherMethods()
 {
     //DMessage("debug 1");
-    var activeMethods = getStrokingMethods();
-    var methodToRun = activeMethods[randomInteger(0, activeMethods.length - 1)];
+    let activeMethods = getStrokingMethods();
+    let methodToRun = activeMethods[randomInteger(0, activeMethods.length - 1)];
     DMessage("calculated speed " + methodToRun.speed);
     DMessage("calculated duration " + methodToRun.duration);
     //DMessage("debug 2");
     CMessage(methodToRun.startStrokingMethodString, 0);
-    customStroke(methodToRun.duration, Math.floor(methodToRun.speed));
+    let duration = methodToRun.duration;
+    if (rapidTesting)
+    {
+        duration = 5;
+    }
+    customStroke(duration, Math.floor(methodToRun.speed));
 }
 
 function EdgingMethod() {
-    var methods = getStrokingMethods("close", .34);
-    var edgingMethods = [];
-    for (var i = 0; i < methods.length; i++) {
+    let methods = getStrokingMethods("close", .34);
+    let edgingMethods = [];
+    for (let i = 0; i < methods.length; i++) {
         if (methods[i].closeness > 2) {
             edgingMethods.push(methods[i]);
         }
     }
-    var methodToRun = edgingMethods[randomInteger(0, edgingMethods.length - 1)];
+    let methodToRun = edgingMethods[randomInteger(0, edgingMethods.length - 1)];
     CMessage(methodToRun.startStrokingMethodString + " until you get to the edge", 0);
-    var bpm = methodToRun.speed + 20;
+    let bpm = methodToRun.speed + 20;
     startEdgingBPM(bpm);
 }
 
@@ -51,14 +57,14 @@ function getAllMethods()
 function getStrokingMethods(type, amount)
 {
     returnmethods = [];
-    var allmethods = getAllMethods();
-    for (var i = 0; i < allmethods.length; i++)
+    let allmethods = getAllMethods();
+    for (let i = 0; i < allmethods.length; i++)
     {
-        var methodVar = getVar("Method" + allmethods[i].constructor.name, null);
+        let methodVar = getVar("Method" + allmethods[i].constructor.name, null);
         methodVar = methodVar + "";
         if (methodVar != null)
         {
-            var numberMethods = 0;
+            let numberMethods = 0;
             if (methodVar.toUpperCase() == "1")
             {
                 numberMethods = 1;
@@ -81,7 +87,7 @@ function getStrokingMethods(type, amount)
             }
             if (type != null)
             {
-                var percent = 1.00;
+                let percent = 1.00;
                 if (type == "torture")
                 {
                     if (allmethods[i].torture < 5)
@@ -112,7 +118,7 @@ function getStrokingMethods(type, amount)
                 }
                 numberMethods = Math.floor(numberMethods * percent);
             }
-            for (var j = 0; j < numberMethods; j++)
+            for (let j = 0; j < numberMethods; j++)
             {
                 returnmethods.push(allmethods[i]);
             }
@@ -133,7 +139,7 @@ function StrokingMethod(startStrokingMethodString, intensity, tease, torture, cl
     {
         this.useLube = false;
     }
-    var apm = getApathyMoodIndex();
+    let apm = getApathyMoodIndex();
     //this.duration = duration;
     if (tease >= 5) {
         apm += (5 - randomInteger(1, 10)) * 5;
@@ -148,7 +154,7 @@ function StrokingMethod(startStrokingMethodString, intensity, tease, torture, cl
         this.speed = 30;
     }
 
-    var percentFromMinToMax = .9139 + .001934 * apm + .01167 * intensity * closeness - .0429 * intensity - .111 * closeness - .00236 * Math.pow(closeness, 2);
+    let percentFromMinToMax = .9139 + .001934 * apm + .01167 * intensity * closeness - .0429 * intensity - .111 * closeness - .00236 * Math.pow(closeness, 2);
     apm += (5 - randomInteger(1, 10)) * 5;
     this.duration = ((getMaxStrokingLength() - getMinStrokingLength()) * 60) * percentFromMinToMax + (getMinStrokingLength() * 60);
     //this.speed = speed;
@@ -357,3 +363,4 @@ function OneFingerMethod()
 }
 OneFingerMethod.prototype = Object.create(StrokingMethod.prototype);
 OneFingerMethod.prototype.constructor = OneFingerMethod;
+DMessage("StrokingMethodUtils: End");

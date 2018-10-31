@@ -1,3 +1,4 @@
+DMessage("PicturesLink: Beginning");
 CMessage("%stopstroking%", 0);
 stopStroking();
 CMessage("Don't mind me, I'm just going to look through a few pictures while you relax %Grin%");
@@ -11,3 +12,4 @@ while ((randomInteger(0, 9) > 1)) {
 unlockImages();
 CMessage("Okay that's enough of that");
 Stroking();
+DMessage("PicturesLink: End");

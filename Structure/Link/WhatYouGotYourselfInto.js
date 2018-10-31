@@ -1,3 +1,4 @@
+DMessage("WhatYouGotYourselfInto: Beginning");
 CMessage("Sometimes I bet you wonder what you got yourself into");
 if (randomInteger(0, 1) == 1)
 {
@@ -19,3 +20,4 @@ else
     CMessage("Or all the ache that comes with it %Grin%");
 }
 Stroking();
+DMessage("WhatYouGotYourselfInto: End");

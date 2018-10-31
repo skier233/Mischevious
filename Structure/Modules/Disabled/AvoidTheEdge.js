@@ -1,3 +1,4 @@
+DMessage("AvoidTheEdge: Beginnning");
 CMessage("%stopstroking%", 0);
 stopStroking();
 if (!getVar("playedavoidtheedge", false))
@@ -57,3 +58,4 @@ function avoidTheEdge()
 {
 
 }
+DMessage("AvoidTheEdge: End");

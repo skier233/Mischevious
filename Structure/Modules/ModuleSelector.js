@@ -1,11 +1,10 @@
-var random = 0;
-var separator = java.io.File.separator;
+random = 0;
 var flag = true;
 while (flag)
 {
     random = randomInteger(0, 4);
     flag = false;
-    var folder = "";
+    let folder = "";
     if (random == 0)
     {
         folder = "Structure" + separator + "Modules" + separator + "ShortModules" + separator;
@@ -26,7 +25,7 @@ while (flag)
     {
         folder = "Structure" + separator + "Modules" + separator + "Fetishes" + separator;
     }
-    var files = listFilesInFolder(folder);
+    let files = listFilesInFolder(folder);
     if (files == null)
     {
         DMessage("files is null. likely a problem!");

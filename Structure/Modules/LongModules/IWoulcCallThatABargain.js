@@ -1,3 +1,4 @@
+DMessage("IWouldCallThatABargain: Beginning");
 if (randomInteger(0, 1) == 1) {
     CMessage("%stopstroking%", 0);
     stopStroking();
@@ -42,3 +43,4 @@ CMessage("And you'll give anything to have this time with me");
 CMessage("Even your %cock%, no matter how bad I treat it");
 CMessage("And that's okay, because if all it costs you to be with me is your %Cock%");
 CMessage("I would call that a bargain %Grin%");
+DMessage("IWouldCallThatABargain: End");

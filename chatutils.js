@@ -1,5 +1,6 @@
-var debug = false;
-var responsesDisabled;
+let debug = false;
+let responsesDisabled;
+let rapidTesting = false;
 
 function setUpChat()
 {
@@ -18,6 +19,15 @@ function setUpChat()
     {
         getVar("responsesDisabled", false);
     }
+    if (getVar("rapidtesting", null) == null) {
+        setVar("rapidtesting", false);
+    }
+    else
+    {
+        rapidTesting = getVar("rapidtesting", false);
+    }
+    registerVariable("rapidtesting", "Rapid Testing", "Set this to true to turn on rapid testing mode.");
+    DMessage("Finished setting up chat.");
 }
 //UTILITY METHODS
 function DMessage(message, delay=0)
@@ -43,14 +53,25 @@ function EMessage(message, delay=0)
 {
     CustomizedMessage("<c=red b fs=16>Personality Error: <><c=darkslategrey b fs=15>" + message, delay, -1);
 }
-function getInput(message, delay)
+function getInput(message, delay, disableResponses=true)
 {
-    setTempVar("responsesDisabled", true);
-    DMessage("responses disabled", 0);
-    var chatHandler = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
-    var answertype = Java.type("me.goddragon.teaseai.api.chat.Answer");
-    var teaseAi = Java.type("me.goddragon.teaseai.api.chat.Answer");
-    var answer = new answertype(0);
+    let answertype = Java.type("me.goddragon.teaseai.api.chat.Answer");
+    if (rapidTesting)
+    {
+        delay = 0;
+        CMessage(message, 0);
+        let answer = new answertype(0);
+        answer.setTimeout(false);
+        answer.setAnswer("yes");
+        answer.setStartedAt(java.lang.System.currentTimeMillis());
+        return answer;
+    }
+    if (disableResponses) {
+        setTempVar("responsesDisabled", true);
+        DMessage("responses disabled", 0);
+    }
+    let chatHandler = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
+    let answer = new answertype(0);
 
     CMessage(message, 0);
     //sendMessage("flag 123", 0);
@@ -58,11 +79,13 @@ function getInput(message, delay)
     answer.setTimeout(false);
     answer.setAnswer(null);
     answer.setStartedAt(java.lang.System.currentTimeMillis());
-    var teaseAi = Java.type("me.goddragon.teaseai.TeaseAI");
+    let teaseAi = Java.type("me.goddragon.teaseai.TeaseAI");
     teaseAi.application.waitPossibleScripThread(answer.getMillisTimeout());
     answer.checkTimeout();
-    setTempVar("responsesDisabled", false);
-    DMessage("responses enabled", 0);
+    if (disableResponses) {
+        setTempVar("responsesDisabled", false);
+        DMessage("responses enabled", 0);
+    }
     if (delay == null)
     {
         sleep(chatHandler.getHandler().getMillisToPause(message) / 1000);
@@ -77,7 +100,7 @@ function getInput(message, delay)
 
 //INTERNAL METHODS
 function getTexts(message, font, fontsize){
-    var teaseAi = Java.type("me.goddragon.teaseai.TeaseAI");
+    let teaseAi = Java.type("me.goddragon.teaseai.TeaseAI");
     if (fontsize == null)
     {
         fontsize = teaseAi.application.CHAT_TEXT_SIZE;
@@ -85,30 +108,30 @@ function getTexts(message, font, fontsize){
     //sendMessage("flag ", 0);
     sleep(.01);
     //sendMessage("fs " + fontsize, 0);
-    var chatHandler = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
+    let chatHandler = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
     message = replaceVocab(message);
 
-    var localfontsize = fontsize;
-    var localfont = font; 
-    var italics = javafx.scene.text.FontPosture.REGULAR;
-    var bold = javafx.scene.text.FontWeight.NORMAL;
-    var matches = message.match(/<([ ]*[a-z]*|[0-9]*|,*|=*[ ]*)*>/ig);
-    var regex = /<(?:[ ]*(?:[a-z0-9]*)[,]*[=]*[ ]*)*>/;
-    var messageParts = message.split(regex);
-    var texts = [];
-    //var texts = new objArray(messageParts.length - 1);
-    var firstArg;
-    for (var i = 0; i < messageParts.length; i++)
+    let localfontsize = fontsize;
+    let localfont = font; 
+    let italics = javafx.scene.text.FontPosture.REGULAR;
+    let bold = javafx.scene.text.FontWeight.NORMAL;
+    let matches = message.match(/<([ ]*[a-z]*|[0-9]*|,*|=*[ ]*)*>/ig);
+    let regex = /<(?:[ ]*(?:[a-z0-9]*)[,]*[=]*[ ]*)*>/;
+    let messageParts = message.split(regex);
+    let texts = [];
+    //let texts = new objArray(messageParts.length - 1);
+    let firstArg;
+    for (let i = 0; i < messageParts.length; i++)
     {
         if (messageParts[i].charAt(0) != ' ' | '\0')
         {
             messageParts[i] = "\0" + messageParts[i];
         }
-        var textVar = new javafx.scene.text.Text(messageParts[i]);
+        let textVar = new javafx.scene.text.Text(messageParts[i]);
 
         if (i % 2 == 1)
         {
-            var j = i - 1;
+            let j = i - 1;
             if (matches[j].search(/(^|\W)s($|\W)/i) != -1)
             {
                 textVar.setStrikethrough(true);
@@ -127,18 +150,18 @@ function getTexts(message, font, fontsize){
             }
             if (matches[j].search(/(^|\W)fs *= *[0-9]+($|\W)/i) != -1)
             {
-                var fsMatch = matches[j].match(/(^|\W)fs *= *[0-9]+($|\W)/i);
+                let fsMatch = matches[j].match(/(^|\W)fs *= *[0-9]+($|\W)/i);
                 localfontsize = parseInt(fsMatch[0].match(/[0-9]+/g)[0]);
             }
             if (matches[j].search(/(^|\W)f *= *[a-z]+($|\W)/i) != -1)
             {
-                var fsMatch = matches[j].match(/(^|\W)f *= *[a-z]+($|\W)/i);
+                let fsMatch = matches[j].match(/(^|\W)f *= *[a-z]+($|\W)/i);
                 localfont = fsMatch[0].match(/[a-z][a-z][a-z]+/g)[0];
             }
             if (matches[j].search(/(^|\W)c *= *[a-z]+($|\W)/i) != -1)
             {
-                var fsMatch = matches[j].match(/(^|\W)c *= *[a-z]+($|\W)/i);
-                var color;
+                let fsMatch = matches[j].match(/(^|\W)c *= *[a-z]+($|\W)/i);
+                let color;
                 try {
                     color = javafx.scene.paint.Color.valueOf(fsMatch[0].match(/[a-z][a-z][a-z]+/g)[0].toUpperCase());
                 } catch (e) {
@@ -169,9 +192,14 @@ function getTexts(message, font, fontsize){
 }
 
 function CustomizedMessage(message, delay=0, sender=1, font, fontsize, showTyping=false){
-    var texts = getTexts(message, font, fontsize);
-    var chatHandler = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
-    var participant = chatHandler.getHandler().getCurrentDom();
+    if (rapidTesting)
+    {
+        delay = 0;
+        showTyping = false;
+    }
+    let texts = getTexts(message, font, fontsize);
+    let chatHandler = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
+    let participant = chatHandler.getHandler().getCurrentDom();
 
     if (participant == null)
     {
@@ -182,8 +210,8 @@ function CustomizedMessage(message, delay=0, sender=1, font, fontsize, showTypin
         
     if (showTyping)
     {
-        var participanttype = Java.type("me.goddragon.teaseai.api.chat.ChatParticipant");
-        var startTyping = participanttype.class.getDeclaredMethod("startTyping", java.lang.String.class);
+        let participanttype = Java.type("me.goddragon.teaseai.api.chat.ChatParticipant");
+        let startTyping = participanttype.class.getDeclaredMethod("startTyping", java.lang.String.class);
         startTyping.setAccessible(true);
         startTyping.invoke(participant, message);
     }
@@ -221,44 +249,44 @@ function internalSendMessage(texts, sender=1, showTyping=true)
         sender = 1;
     }
     setSender(sender);
-    var Text = javafx.scene.text.Text;
-    var Color = javafx.scene.paint.Color;
-    var Font = javafx.scene.text.Font;
-    var allTexts = [];
-    var handlertype = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
-    var participanttype = Java.type("me.goddragon.teaseai.api.chat.ChatParticipant");
-    var handler = handlertype.getHandler();
-    var participant = handler.getCurrentDom();
-    var message = "";
-    for (var i = 0; i < texts.length; i++)
+    let Text = javafx.scene.text.Text;
+    let Color = javafx.scene.paint.Color;
+    let Font = javafx.scene.text.Font;
+    let allTexts = [];
+    let handlertype = Java.type("me.goddragon.teaseai.api.chat.ChatHandler");
+    let participanttype = Java.type("me.goddragon.teaseai.api.chat.ChatParticipant");
+    let handler = handlertype.getHandler();
+    let participant = handler.getCurrentDom();
+    let message = "";
+    for (let i = 0; i < texts.length; i++)
     {
         message += texts[i].getText();
     }
     if (showTyping)
     {
-        var startTyping = participanttype.class.getDeclaredMethod("startTyping", java.lang.String.class);
+        let startTyping = participanttype.class.getDeclaredMethod("startTyping", java.lang.String.class);
         startTyping.setAccessible(true);
         startTyping.invoke(participant, message);
     }
-    var dateFormat = new java.text.SimpleDateFormat("hh:mm a");
-    var dateText = new Text(dateFormat.format(new java.util.Date()) + " ");
+    let dateFormat = new java.text.SimpleDateFormat("hh:mm a");
+    let dateText = new Text(dateFormat.format(new java.util.Date()) + " ");
     dateText.setFill(Color.DARKGRAY);
     dateText.setFont(Font.font(null, javafx.scene.text.FontWeight.MEDIUM, getVar("fontsize", 13) - 1));
-    var text = new Text(participant.getName() + ": ");
+    let text = new Text(participant.getName() + ": ");
     text.setFill(participant.getChatColor());
     text.setFont(Font.font(null, javafx.scene.text.FontWeight.BOLD, getVar("fontsize", 13)));
     allTexts.push(dateText);
     allTexts.push(text);
-    for (var i = 0; i < texts.length; i++)
+    for (let i = 0; i < texts.length; i++)
     {
         allTexts.push(texts[i]);
     }
-    var responseHandler = Java.type("me.goddragon.teaseai.api.chat.response.ResponseHandler");
-    var senderType = Java.type("me.goddragon.teaseai.api.chat.SenderType");
-    var mediaHandler = Java.type("me.goddragon.teaseai.api.media.MediaHandler");
-    var teaseAi = Java.type("me.goddragon.teaseai.TeaseAI");
+    let responseHandler = Java.type("me.goddragon.teaseai.api.chat.response.ResponseHandler");
+    let senderType = Java.type("me.goddragon.teaseai.api.chat.SenderType");
+    let mediaHandler = Java.type("me.goddragon.teaseai.api.media.MediaHandler");
+    let teaseAi = Java.type("me.goddragon.teaseai.TeaseAI");
 
-    var response = responseHandler.getHandler().getLatestQueuedResponse();
+    let response = responseHandler.getHandler().getLatestQueuedResponse();
     if (response != null)
     {
         responseHandler.getHandler().removeQueuedResponse(response);
@@ -271,8 +299,8 @@ function internalSendMessage(texts, sender=1, showTyping=true)
     //DMessage(/*participant.type + " " + mediaHandler.getHandler().isImagesLocked() + " " + */participant.pictureSet != null);
     if (participant.type != senderType.SUB && !mediaHandler.getHandler().isImagesLocked() && participant.pictureSet != null)
     {
-        var session = teaseAi.application.getSession();
-        var taggedPicture = session.getActivePersonality().getPictureSelector().getPicture(session, participant);
+        let session = teaseAi.application.getSession();
+        let taggedPicture = session.getActivePersonality().getPictureSelector().getPicture(session, participant);
         if (taggedPicture != null)
         {
             mediaHandler.getHandler().showPicture(session.getActivePersonality().getPictureSelector().getPicture(session, participant).getFile());

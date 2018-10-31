@@ -1,3 +1,4 @@
+DMessage("Edge_4_85: Beginning");
 answer = getInput("Are you aching a lot right now %subname%?", 0);
 if (answer.isLike("yes", "yea", "yep"))
 {
@@ -28,3 +29,4 @@ else
 }
 CMessage("Don't worry %PetName%");
 CMessage("There's plenty more ache where that came from %Grin%");
+DMessage("Edge_4_85: End");

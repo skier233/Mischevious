@@ -1,243 +1,345 @@
-addResponseRegex("^tag([ ]+[a-z|0-9]+)+", "^tagpicture([ ]+[a-z|0-9]+)+", "^t([ ]+[a-z|0-9]+)+");
-run("allutils.js");
+addResponseRegex("^tag([ ]+[a-z|0-9]+)+", "^tagpicture([ ]+[a-z|0-9]+)+", "^t([ ]+[a-z|0-9]+)+", "^tag");
 
 function tagPictureResponse(message) {
-    return false;
+    DMessage("TagPicture: BeginningResponse");
     if (getResponsesDisabled()) {
+        DMessage("TagPicture: EndResponse Response is Disabled");
         return false;
     }
-    if (getImageUrl() != null || getImagePath() != null)
-    {
-        var tagsList = "|";
+    if (message == "tag") {
+        let taggedPicture = Java.type("me.goddragon.teaseai.api.picture.TaggedPicture");
+        let z = getImagePath();
+        z = "" + z;
+        z = z.substr(1);
+        DMessage("TagPicture: Image path " + z);
+        //Try 2
+        let thisFile = new java.io.File(z);
+        let thisPicture = new taggedPicture(thisFile);
+        CMessage("Tags: " + thisPicture.getTags(), 0);
+    }
+    if (getImageUrl() != null || getImagePath() != null) {
+        message = message.toLowerCase();
+        let tagsList = [];
         //First comes the dressState of the image
-        if (message.search("[ ]+(naked|n|nude)($| )") != -1)
-        {
-            tagsList += " #Naked";
+        if (message.search("[ ]+(naked|n|nude)($| )") != -1) {
+            tagsList.push("Naked");
         }
         else if (message.search("[ ]+(halfdressed|half|hd)($| )") != -1) {
-            tagsList += " #HalfDressed";
+            tagsList.push("Half_Dressed");
         }
         else if (message.search("[ ]+(dressed|clothes|d)($| )") != -1) {
-            tagsList += " #Dressed";
+            tagsList.push("Fully_Dressed");
         }
         else if (message.search("[ ]+(garmetcovering|gcovering|gc)($| )") != -1) {
-            tagsList += " #GarmetCovering";
+            tagsList.push("Garmet_Covering");
         }
-        else if (message.search("[ ]+(handsvoering|hcovering|h)($| )") != -1) {
-            tagsList += " #HandsCovering";
+        else if (message.search("[ ]+(handscovering|hcovering|h)($| )") != -1) {
+            tagsList.push("Hands_Covering");
         }
         else if (message.search("[ ]+(seethrough|sthrough|st)($| )") != -1) {
-            tagsList += " #SeeThrough";
+            tagsList.push("See_Through");
         }
-        tagsList += " |";
         //Now the body parts visible
         if (message.search("[ ]+(wetpussy|wp)($| )") != -1) {
-            tagsList += " #WetPussy";
+            tagsList.push("WetPussy");
         }
         if (message.search("[ ]+(creamypussy|cp)($| )") != -1) {
-            tagsList += " #CreamyPussy";
+            tagsList.push("CreamyPussy");
         }
         if (message.search("[ ]+(drippussy|drippingpussy|dp)($| )") != -1) {
-            tagsList += " #DrippingPussy";
+            tagsList.push("DrippingPussy");
         }
         if (message.search("[ ]+(pussy|p|vagina)($| )") != -1) {
-            tagsList += " #Pussy";
+            tagsList.push("Pussy");
         }
         if (message.search("[ ]+(boobs|tits|t|b)($| )") != -1) {
-            tagsList += " #Boobs";
+            tagsList.push("Boobs");
         }
         if (message.search("[ ]+(ass|butt|booty|a)($| )") != -1) {
-            tagsList += " #Ass";
+            tagsList.push("Ass");
+        }
+        if (message.search("[ ]+(cumcoveredass|cca)($| )") != -1) {
+            tagsList.push("CumCoveredAss");
+        }
+        if (message.search("[ ]+(cumcoveredboobs|ccb)($| )") != -1) {
+            tagsList.push("CumCoveredBoobs");
+        }
+        if (message.search("[ ]+(cumcoveredcock|ccc)($| )") != -1) {
+            tagsList.push("CumCoveredCock");
+        }
+        if (message.search("[ ]+(cumcoveredface|ccfa)($| )") != -1) {
+            tagsList.push("CumCoveredFace");
+        }
+        if (message.search("[ ]+(cumcoveredfeet|ccf)($| )") != -1) {
+            tagsList.push("CumCoveredFeet");
+        }
+        if (message.search("[ ]+(cumcoveredfingers|ccfi)($| )") != -1) {
+            tagsList.push("CumCoveredFingers");
+        }
+        if (message.search("[ ]+(cumcoveredlegs|ccl)($| )") != -1) {
+            tagsList.push("CumCoveredLegs");
+        }
+        if (message.search("[ ]+(cumcoveredpussy|ccp)($| )") != -1) {
+            tagsList.push("CumCoveredPussy");
         }
         if (message.search("[ ]+(face|f)($| )") != -1) {
-            tagsList += " #Face";
+            tagsList.push("Face");
         }
         if (message.search("[ ]+(fingers|fgs|fs)($| )") != -1) {
-            tagsList += " #Fingers";
+            tagsList.push("Fingers");
         }
         if (message.search("[ ]+(feet|foot|ft)($| )") != -1) {
-            tagsList += " #Feet";
+            tagsList.push("Feet");
         }
         if (message.search("[ ]+(legs|lg|ls|l)($| )") != -1) {
-            tagsList += " #Legs";
+            tagsList.push("Legs");
         }
         if (message.search("[ ]+(cock|ck)($| )") != -1) {
-            tagsList += " #Cock";
+            tagsList.push("Cock");
         }
+        //Body Type
         if (message.search("[ ]+(blonde|bl)($| )") != -1) {
-            tagsList += " #Blonde";
+            tagsList.push("Blonde");
         }
         if (message.search("[ ]+(brunette|bru|bro|brown)($| )") != -1) {
-            tagsList += " #Brunette";
+            tagsList.push("Brunette");
         }
         if (message.search("[ ]+(redhead|red|re|ginger)($| )") != -1) {
-            tagsList += " #Redhead";
+            tagsList.push("Redhead");
         }
         if (message.search("[ ]+(skinny|sl|slim)($| )") != -1) {
-            tagsList += " #Slim";
+            tagsList.push("Slim");
         }
         if (message.search("[ ]+(thick|th|thk)($| )") != -1) {
-            tagsList += " #Thick";
+            tagsList.push("Thick");
         }
-        tagsList += " |";
         //Now the category associated to the image
+        if (message.search("[ ]+(allfours|allf)($| )") != -1) {
+            tagsList.push("AllFours");
+        }
         if (message.search("[ ]+(hardcore|hc|hard)($| )") != -1) {
-            tagsList += " #Hardcore";
+            tagsList.push("Hardcore");
         }
         if (message.search("[ ]+(softcore|sc|soft)($| )") != -1) {
-            tagsList += " #SoftCore";
+            tagsList.push("SoftCore");
         }
         if (message.search("[ ]+(lesbian|les|ls)($| )") != -1) {
-            tagsList += " #Lesbian";
+            tagsList.push("Lesbian");
         }
         if (message.search("[ ]+(femdom|fd|fdom)($| )") != -1) {
-            tagsList += " #FemDom";
+            tagsList.push("FemDom");
         }
         if (message.search("[ ]+(lezdom|ld|lesdom|ldom)($| )") != -1) {
-            tagsList += " #LezDom";
+            tagsList.push("LezDom");
         }
         if (message.search("[ ]+(gay|g)($| )") != -1) {
-            tagsList += " #Gay";
+            tagsList.push("Gay");
         }
         if (message.search("[ ]+(maledom|md|mdom)($| )") != -1) {
-            tagsList += " #MaleDom";
+            tagsList.push("MaleDom");
         }
         if (message.search("[ ]+(captions|c|cap)($| )") != -1) {
-            tagsList += " #Captions";
+            tagsList.push("Captions");
         }
         if (message.search("[ ]+(pointofview|pov)($| )") != -1) {
-            tagsList += " #POV";
+            tagsList.push("PointOfView");
         }
         if (message.search("[ ]+(bondage|bd|bg)($| )") != -1) {
-            tagsList += " #Bondage";
+            tagsList.push("Bondage");
         }
         if (message.search("[ ]+(shower|sh)($| )") != -1) {
-            tagsList += " #Shower";
+            tagsList.push("Shower");
         }
         if (message.search("[ ]+(bath|bt|bh)($| )") != -1) {
-            tagsList += " #Bath";
+            tagsList.push("Bath");
         }
         if (message.search("[ ]+(outside|outdoors|out|od|os)($| )") != -1) {
-            tagsList += " #Outdoors";
-        }
-        if (message.search("[ ]+(closeup|cu)($| )") != -1) {
-            tagsList += " #CloseUp";
+            tagsList.push("Outdoors");
         }
         if (message.search("[ ]+(cumcovered|cc)($| )") != -1) {
-            tagsList += " #CumCovered";
+            tagsList.push("CumCovered");
         }
-        tagsList += " |";
         //Now the people involved
         if (message.search("[ ]+(solofemale|sologirl|solowoman|solof|sf|sg|sw)($| )") != -1) {
-            tagsList += " #SoloFemale";
+            tagsList.push("OneFemale");
         }
         if (message.search("[ ]+(solomale|soloman|soloboy|solom|sm|sb)($| )") != -1) {
-            tagsList += " #SoloMan";
+            tagsList.push("OneMale");
         }
         if (message.search("[ ]+(couple|cpl)($| )") != -1) {
-            tagsList += " #Couple";
+            tagsList.push("OneMaleOneFemale");
         }
         if (message.search("[ ]+(2female|female2|2f|f2)($| )") != -1) {
-            tagsList += " #2Female";
+            tagsList.push("TwoFemale");
         }
         if (message.search("[ ]+(3female|female3|3f|f3)($| )") != -1) {
-            tagsList += " #3Female";
+            tagsList.push("ThreeeMale");
         }
         if (message.search("[ ]+(2male|male2|2m|m2)($| )") != -1) {
-            tagsList += " #2Male";
+            tagsList.push("TwoMale");
         }
         if (message.search("[ ]+(3male|male3|3m|m3)($| )") != -1) {
-            tagsList += " #3Male";
+            tagsList.push("ThreeMale");
         }
         if (message.search("[ ]+(2male1female|1female2male|2m1f|1f2m)($| )") != -1) {
-            tagsList += " #2Male1Female";
+            tagsList.push("OneFemaleTwoMale");
         }
         if (message.search("[ ]+(1male2female|2female1male|1m2f|2f1m)($| )") != -1) {
-            tagsList += " #2Female1Male";
+            tagsList.push("OneMaleTwoFemale");
         }
         //Any amount of people not listed above is classified as orgy
         if (message.search("[ ]+(orgy|or|o)($| )") != -1) {
-            tagsList += " #Orgy";
+            tagsList.push("Orgy");
         }
-        tagsList += " |";
         //Now the action associated with the image
         if (message.search("[ ]+(blowjob|bj|blow)($| )") != -1) {
-            tagsList += " #BlowJob";
+            tagsList.push("BlowJob");
         }
         if (message.search("[ ]+(masturbating|mb|m)($| )") != -1) {
-            tagsList += " #Masturbating";
+            tagsList.push("Masturbating");
         }
         if (message.search("[ ]+(sucking|sck|sk|s)($| )") != -1) {
-            tagsList += " #Sucking";
+            tagsList.push("Sucking");
         }
         if (message.search("[ ]+(handjob|hj|hjob)($| )") != -1) {
-            tagsList += " #Handjob";
+            tagsList.push("Handjob");
         }
         if (message.search("[ ]+(fingering|fg)($| )") != -1) {
-            tagsList += " #Fingering";
+            tagsList.push("Fingering");
         }
         if (message.search("[ ]+(rubbing|rb)($| )") != -1) {
-            tagsList += " #Rubbing";
+            tagsList.push("Rubbing");
         }
         if (message.search("[ ]+(licking|lk|lck)($| )") != -1) {
-            tagsList += " #Licking";
+            tagsList.push("Licking");
         }
         if (message.search("[ ]+(facesitting|fs)($| )") != -1) {
-            tagsList += " #FaceSitting";
+            tagsList.push("FaceSitting");
         }
         if (message.search("[ ]+(missionary|sx|ms)($| )") != -1) {
-            tagsList += " #Missionary";
+            tagsList.push("Missionary");
         }
         if (message.search("[ ]+(doggystyle|dogstyle|ds)($| )") != -1) {
-            tagsList += " #DoggyStyle";
+            tagsList.push("DoggyStyle");
         }
         if (message.search("[ ]+(cowgirl|cg)($| )") != -1) {
-            tagsList += " #CowGirl";
+            tagsList.push("CowGirl");
         }
         if (message.search("[ ]+(standing|sd|sg)($| )") != -1) {
-            tagsList += " #Standing";
+            tagsList.push("Standing");
         }
         if (message.search("[ ]+(anal|an|al)($| )") != -1) {
-            tagsList += " #Anal";
+            tagsList.push("Anal");
         }
         if (message.search("[ ]+(gangbang|gb)($| )") != -1) {
-            tagsList += " #GangBang";
+            tagsList.push("GangBang");
         }
-        tagsList += " |";
+        if (message.search("[ ]+(glaring|gla)($| )") != -1) {
+            tagsList.push("Glaring");
+        }
+        if (message.search("[ ]+(smiling|smi)($| )") != -1) {
+            tagsList.push("Smiling");
+        }
+        //Views
+        if (message.search("[ ]+(closeup|cu)($| )") != -1) {
+            tagsList.push("Close_Up");
+        }
+        if (message.search("[ ]+(sideview|sv)($| )") != -1) {
+            tagsList.push("Side_View");
+        }
+
         //finally comes accessories
         if (message.search("[ ]+(dildo|dd|dl)($| )") != -1) {
-            tagsList += " #Dildo";
+            tagsList.push("Dildo");
         }
         if (message.search("[ ]+(vibrator|vb|v)($| )") != -1) {
-            tagsList += " #Vibrator";
+            tagsList.push("Vibrator");
         }
         if (message.search("[ ]+(panties|panty|pt|py)($| )") != -1) {
-            tagsList += " #Panties";
+            tagsList.push("Panties");
         }
         else if (message.search("[ ]+(wetpanties|wpant|wpa|wpt)($| )") != -1) {
-            tagsList += " #WetPanties";
+            tagsList.push("Wet_Panties");
         }
-        if (message.search("[ ]+(bra|bathingsuit|swimtrunks|br|ss|ssuit)($| )") != -1) {
-            tagsList += " #BathingSuitOrBra";
+        if (message.search("[ ]+(bra|br)($| )") != -1) {
+            tagsList.push("Bra");
         }
-
-
-        var z = getImagePath();
+        if (message.search("[ ]+(bathingsuit|swimtrunks|ss|ssuit)($| )") != -1) {
+            tagsList.push("Bathing_Suit");
+        }
+        if (message.search("[ ]+(piercing|prc)($| )") != -1) {
+            tagsList.push("Piercing");
+        }
+        let TeaseAI = Java.type("me.goddragon.teaseai.TeaseAI");
+        let taggedPicture = Java.type("me.goddragon.teaseai.api.picture.TaggedPicture");
+        let z = getImagePath();
         z = "" + z;
-        var x = z.split("\\");
+        z = z.substr(1);
+        DMessage("TagPicture: Image path " + z);
+        //Try 2
         DMessage("Tags: " + tagsList, 0);
-        var currentDir = "";
-        for (var i = 0; i < x.length - 1; i++)
+        let thisFile = new java.io.File(z);
+        let thisPicture = new taggedPicture(thisFile);
+
+        //Converting tagsList from array of string to array of picturetags
+        let pictureTagsList = [];
+        let imageDressState = null;
+        let dressStateType = Java.type("me.goddragon.teaseai.api.picture.DressState");
+        let PictureTag = Java.type("me.goddragon.teaseai.api.picture.PictureTag");
+        for (var i = 0; i < tagsList.length; i++)
+        {
+            if (tagsList[i].length < 2) {
+                continue;
+            }
+
+            let dressState = dressStateType.getByTag("Tag" + tagsList[i]);
+            if (dressState != null) {
+                imageDressState = dressState;
+                continue;
+            }
+            let thisPictureTag = PictureTag.getByTag(thisFile, "Tag" + tagsList[i]);
+            if (thisPictureTag != null) {
+                pictureTagsList.push(thisPictureTag);
+            }
+
+        }
+        thisPicture.addTags(pictureTagsList);
+        /*if (imageDressState != null) {
+            thisPicture.setDressState(imageDressState);
+        }*/
+        /*let x = z.split(java.io.File.separator);
+        DMessage("Tags: " + tagsList, 0);
+        let currentDir = "";
+        for (let i = 0; i < x.length - 1; i++)
+        {
+            currentDir += x[i] + java.io.File.separator;
+        }
+        let fileName = x[x.length - 1];
+        DMessage("TagPicture: Filename " + fileName);
+        DMessage("TagPicture: Folder " + getAppPath() + currentDir);
+        let thisPicture = new taggedPicture(fileName, tagsList, getAppPath() + currentDir);*/
+
+        DMessage("TagPicture: EndResponse");
+        return true;
+    }
+    DMessage("TagPicture: EndResponse");
+    return false;
+        /*let z = getImagePath();
+        z = "" + z;
+        let x = z.split("\\");
+        DMessage("Tags: " + tagsList, 0);
+        let currentDir = "";
+        for (let i = 0; i < x.length - 1; i++)
         {
             currentDir += x[i] + "\\";
         }
-        var fileName = x[x.length-1];
-        var tagsFile = getOrCreateFile(getAppPath() + currentDir + "imagetags.txt");
-        var fileReader = new java.io.FileReader(tagsFile);
-        var bufferedReader = new java.io.BufferedReader(fileReader);
-        var line = bufferedReader.readLine();
-        var lines = [];
-        var isTagged = false;
+        let fileName = x[x.length-1];
+        let tagsFile = getOrCreateFile(getAppPath() + currentDir + "imagetags.txt");
+        let fileReader = new java.io.FileReader(tagsFile);
+        let bufferedReader = new java.io.BufferedReader(fileReader);
+        let line = bufferedReader.readLine();
+        let lines = [];
+        let isTagged = false;
         while (line != null)
         {
             if (line.search(fileName) != -1)
@@ -254,9 +356,9 @@ function tagPictureResponse(message) {
         {
             lines.push(fileName + ":" + tagsList);
         }
-        var fileWriter = new java.io.FileWriter(tagsFile);
-        var bufferedWriter = new java.io.BufferedWriter(fileWriter);
-        for (var i = 0; i < lines.length; i++)
+        let fileWriter = new java.io.FileWriter(tagsFile);
+        let bufferedWriter = new java.io.BufferedWriter(fileWriter);
+        for (let i = 0; i < lines.length; i++)
         {
             bufferedWriter.write(lines[i]);
             bufferedWriter.newLine();
@@ -264,6 +366,6 @@ function tagPictureResponse(message) {
         bufferedWriter.flush();
         bufferedWriter.close();
 
-    }
-    return true;
+    }*/
+
 }

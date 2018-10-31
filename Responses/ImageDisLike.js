@@ -1,18 +1,17 @@
-addResponseRegex("dont like", "don't like", "bad", "^1$", "^1 ", " 1$", " 1 ", "hate", "awful");
+addResponseRegex("^1$", "^1 ", " 1$", " 1 ");
 //run("allutils.js");
 
 function imageDisLikeResponse(message) {
+    DMessage("ImageDislike: BeginningResponse");
     if (getResponsesDisabled()) {
-        return false;
-    }
-    if (message.toLowerCase().search("pic") != -1) {
-        sendMessage("false pic");
+        DMessage("ImageDislike: EndResponse Response is Disabled");
         return false;
     }
     if (getImageUrl() != null || getImagePath() != null)
     {
-        var myFile = new java.io.File(getAppPath() + getImagePath());
+        let myFile = new java.io.File(getAppPath() + getImagePath());
         myFile.delete();
     }
+    DMessage("ImageDislike: EndResponse");
     return false;
 }

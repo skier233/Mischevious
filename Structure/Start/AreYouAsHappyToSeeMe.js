@@ -1,3 +1,4 @@
+DMessage("AreYouAsHappyToSeeMe: Beginnning");
 CMessage("%goodeveningsub%");
 if (randomInteger(0, 1) == 1)
 {
@@ -46,3 +47,4 @@ else
     }
 }
 Stroking();
+DMessage("AreYouAsHappyToSeeMe: End");

@@ -1,3 +1,4 @@
+DMessage("png nostroke: Beginning");
 CMessage("I know you are eager to start stroking again");
 CMessage("But I want to play a very very fun game before we do that");
 CMessage("You'll see it's easy");
@@ -39,7 +40,7 @@ CMessage("And I know you want to thrust your %Cock% in your hand");
 CMessage("But, you're not allowed, you're only allowed to %Ache%");
 CMessage("Feel the %Ache%, the %Aching% deep inside your %Cock%");
 CMessage("If I let you stroke your %Cock% just once right now...");
-var answer = getInput("Would it be worth a week without an orgasm %PetName%?");
+answer = getInput("Would it be worth a week without an orgasm %PetName%?");
 if (answer.isLike("yes"))
 {
     CMessage("%Emote% I'll keep that in mind, but for now, just %Surrender% to me");
@@ -71,7 +72,7 @@ CMessage("%EmoteRandom%");
 CMessage("And I'm not going to let you cum, %PetName%");
 CMessage("Take your hand off of your cock");
 CMessage("%Surrender%");
-var answer = getInput("Wasn't it a fun game? %Grin%");
+answer = getInput("Wasn't it a fun game? %Grin%");
 if (answer.isLike("yes"))
 {
     CMessage("I knew you'd like it! %lol%");
@@ -82,3 +83,4 @@ else if (answer.isLike("no"))
 }
 customStroking("And now it's time to stroke again %EmoteHappy%");
 //Info: in this one the dom makes you hold your cock but forbid you to move while she teases you a lot! Based on a module made by Opiate
+DMessage("png nostroke: End");

@@ -1,3 +1,4 @@
+DMessage("PicturesSolo_85: Beginning");
 CMessage("%stopstroking%", 0);
 stopStroking();
 CMessage("Don't mind me, I'm just going to look through a few pictures while you relax %Grin%");
@@ -13,3 +14,4 @@ startEdging();
 unlockImages();
 CMessage("%stopstrokingedge%", null, false);
 CMessage("%lettheedgefade%");
+DMessage("PicturesSolo_85: End");

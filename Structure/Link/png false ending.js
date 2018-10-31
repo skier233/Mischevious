@@ -1,3 +1,4 @@
+DMessage("png false ending: Beginning");
 CMessage("%TimeToFindIfYouGetToCum%");
 CMessage("Bring yourself to the edge one more time");
 startEdging();
@@ -10,3 +11,4 @@ CMessage("I find it quite good %Grin%");
 CMessage("At least now you've got another chance later");
 customStroking("For now start %Stroking% %PetName%");
 //Info: The dom makes you think it's the end of the session while it's not
+DMessage("png false ending: End");
