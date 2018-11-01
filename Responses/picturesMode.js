@@ -6,6 +6,7 @@ function picturesModeResponse(message) {
         DMessage("PicturesMode: EndResponse Response is Disabled");
         return false;
     }
+    lockImages();
     let folderNumber;
     DMessage(message, 0);
     let path = "images" + separator + "system" + separator + "tumblr";
@@ -59,6 +60,7 @@ function picturesModeResponse(message) {
             }
             //sendMessage("flag 672");
         }
+        unlockImages();
         return true;
     }
 
@@ -81,7 +83,8 @@ function picturesModeResponse(message) {
             DMessage("path: " + getImagePath(), 0);
             answer = getInput("Do you like this one? (Options: hate, ok, like, love, next (1,2,3,4,n))", 0, false);
             x = answer.getAnswer();
-            while (x != "1" && x != "2" && x != "3" && x != "4" && x != "liked" && x != "normal" && x != "loved" && x != "hate" && x != "n" && x != "next" && x != "5" && x != "quit" && x != "exit" && x != "q" && x != "e") {
+            while (x != "1" && x != "2" && x != "3" && x != "4" && x != "liked" && x != "normal" && x != "loved" && x != "hate" && x != "n" && x != "next" && x != "5" && x != "quit" && x != "exit" && x != "q" && x != "e" &&
+                !x.includes("tag") && x != "t" && !x.includes("t ")) {
                 answer = getInput("Invalid answer! (Options: hate, ok, like, love, next (1,2,3,4,n))", 0, false);
                 x = answer.getAnswer();
             }
@@ -90,5 +93,6 @@ function picturesModeResponse(message) {
         //sendMessage("flag 6714",0);
     }
     DMessage("PicturesMode: EndResponse");
+    unlockImages();
     return true;
 }

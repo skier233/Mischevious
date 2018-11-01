@@ -6,6 +6,7 @@ function tagPictureResponse(message) {
         DMessage("TagPicture: EndResponse Response is Disabled");
         return false;
     }
+    lockImages();
     if (message.toLowerCase() == "tag" || message.toLowerCase() == "t") {
         let taggedPicture = Java.type("me.goddragon.teaseai.api.picture.TaggedPicture");
         let z = getImagePath();
@@ -22,6 +23,7 @@ function tagPictureResponse(message) {
         }
         SMessage("<c=darkgreen b>Dress State: <> <c=indigo>" + dressStateText, 0);
         SMessage("<c=darkgreen b>Tags: <> <c=indigo>" + thisPicture.getTags(), 0);
+        unlockImages();
         return;
     }
     if (getImageUrl() != null || getImagePath() != null) {
@@ -320,9 +322,11 @@ function tagPictureResponse(message) {
         thisPicture.addTags(pictureTagsList);
 
         DMessage("TagPicture: EndResponse");
+        unlockImages();
         return true;
     }
     DMessage("TagPicture: EndResponse");
+    unlockImages();
     return false;
 
 }
