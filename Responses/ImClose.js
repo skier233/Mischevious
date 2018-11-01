@@ -1,9 +1,10 @@
 addResponseIndicator("edge", "close", "there");
-run("allutils.js");
 
-var timesClose;
+let timesClose;
 function imCloseResponse(message) {
+    DMessage("ImClose: BeginningResponse");
     if (getResponsesDisabled()) {
+        DMessage("ImClose: EndResponse Response is Disabled");
         return false;
     }
     if (timesClose == null) {
@@ -17,10 +18,10 @@ function imCloseResponse(message) {
     else if (isStroking())
     {
         timesClose++;
-        var apmIndex = getApathyMoodIndex();
-        var random = randomInteger(1, 5);
-        var percentStroking = getStrokingPercent();
-        var decision = 1.054196 + (0.004457 * apmIndex * random) + (0.470061 * percentStroking * Math.pow(random, 2)) - (0.105613 * random) - (1.553526 * percentStroking * random)
+        let apmIndex = getApathyMoodIndex();
+        let random = randomInteger(1, 5);
+        let percentStroking = getStrokingPercent();
+        let decision = 1.054196 + (0.004457 * apmIndex * random) + (0.470061 * percentStroking * Math.pow(random, 2)) - (0.105613 * random) - (1.553526 * percentStroking * random)
         if (decision < 0) {
             decision = 0;
         }
@@ -67,5 +68,6 @@ function imCloseResponse(message) {
     {
         CMessage("You shouldnt even be stroking %petname%");
     }
+    DMessage("ImClose: EndResponse");
     return true;
 }

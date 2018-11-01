@@ -1,3 +1,4 @@
+DMessage("IGetTooExcited: Beginning");
 CMessage("Hello %SubName% %EmoteHappy%");
 if (getVar("waitingisnotmystrongsuit", null) != null && !getVar("waitingisnotmystrongsuit", null).addDay(3).hasPassed())
 {
@@ -16,3 +17,4 @@ else
     setDate("waitingisnotmystrongsuit");
 }
 Stroking();
+DMessage("IGetTooExcited: End");

@@ -1,17 +1,16 @@
-addResponseRegex("meh", "it's ok", "its alright", "^2$", "^2 ", " 2$", " 2 ", "it's alright", "its ok");
+addResponseRegex("^2$", "^2 ", " 2$", " 2 ");
 //run("allutils.js");
 
 function imageOKResponse(message) {
+    DMessage("ImageOK: BeginningResponse");
     if (getResponsesDisabled()) {
-        return false;
-    }
-    if (message.toLowerCase().search("pic") != -1) {
-        sendMessage("false pic");
+        DMessage("ImageOK: EndResponse Response is Disabled");
         return false;
     }
     if (getImageUrl() != null || getImagePath() != null)
     {
         sortPicture(getImagePath(), 2);
     }
+    DMessage("ImageOK: EndResponse");
     return false;
 }

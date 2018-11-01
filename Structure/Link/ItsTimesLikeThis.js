@@ -1,3 +1,4 @@
+DMessage("ItsTimesLikeThis: Beginning");
 CMessage("It's times like this I bet you wonder");
 if (randomInteger(0, 1) == 1)
 {
@@ -18,3 +19,4 @@ else
     CMessage("Is %Gonna% be as much a surprise to me as it is to you %EmoteRandom%");
 }
 Stroking();
+DMessage("ItsTimesLikeThis: End");

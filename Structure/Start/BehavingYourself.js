@@ -1,3 +1,4 @@
+DMessage("BehavingYourself: Beginnning");
 CMessage("%goodeveningsub%");
 answer = getInput("%haveyoubeenbehavingyourself%");
 if (answer.isLike("yes", "yep", "yea")) {
@@ -42,3 +43,4 @@ else
     }
 }
 Stroking();
+DMessage("BehavingYourself: End");

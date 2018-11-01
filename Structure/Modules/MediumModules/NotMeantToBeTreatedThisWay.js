@@ -1,3 +1,4 @@
+DMessage("NotMeantToBeTreatedThisWay: Beginning");
 CMessage("%stopstroking%", 0);
 stopStroking();
 CMessage("You know, if you're being honest with yourself");
@@ -28,3 +29,4 @@ CMessage("I'm %Gonna% make sure your %Cock% feels every ounce of my arousal");
 CMessage("Every degree of my heat");
 CMessage("And every bit of my wickedness");
 CMessage("I just can't promise it will enjoy it %Grin%");
+DMessage("NotMeantToBeTreatedThisWay: End");

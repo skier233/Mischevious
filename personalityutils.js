@@ -1,7 +1,8 @@
-var timeLeftStroking;
-var strokeTime;
-var angereddate;
-var strokingMethodsEnabled = false;
+DMessage("PersonalityUtils: Beginning");
+let timeLeftStroking;
+let strokeTime;
+let angereddate;
+let strokingMethodsEnabled = false;
 
 /**
 * setupVars method to setup variables used by the personality
@@ -70,8 +71,8 @@ function setUpVars() {
         //Register something for last session mood
     }
     timeLeftStroking = 0;
-    var TeaseAI = Java.type("me.goddragon.teaseai.TeaseAI");
-    var strokingMethodsFile = new java.io.File(TeaseAI.application.getSession().getActivePersonality().getFolder().getAbsolutePath() + java.io.File.separator + "strokingmethodutils.js");
+    let TeaseAI = Java.type("me.goddragon.teaseai.TeaseAI");
+    let strokingMethodsFile = new java.io.File(TeaseAI.application.getSession().getActivePersonality().getFolder().getAbsolutePath() + java.io.File.separator + "strokingmethodutils.js");
     strokingMethodsEnabled = strokingMethodsFile.exists();
     DMessage("Stroking Methods Enabled: " + strokingMethodsEnabled);
     if (strokingMethodsEnabled)
@@ -89,21 +90,7 @@ function setUpVars() {
 * Internal method to call customstrokingmethods
 **/
 function StartStrokingMethod() {
-    //CMessage("%startStroking%", 0);
-    var strokeMinimum = getMinStrokingLength();
-    var strokeMaximum = getMaxStrokingLength();
-    var apathyMoodIndex = getApathyMoodIndex();
-    var random = randomInteger(1, 10);
-    DMessage("random: " + random, 0);
-    var percentSession = (getMillisPassed() / 1000) / (getMinSessionLength() * 60);
-    //y = 52.2810035121697 + 6.42273993825994 * r * pS + 0.873930004197032 * r ^ 2 + 0.00137857491687123 * r * x ^ 2 - 0.00439450398010755 * x ^ 2
-    var bpm = 52.2810 + 6.4227 * random * percentSession + 0.8739 * Math.pow(random, 2) + 0.0014 * random * Math.pow(apathyMoodIndex, 2) - 0.0044 * Math.pow(apathyMoodIndex, 2);
-    var percentFromMinToMax = 0.00112 * bpm + (22.68182 / bpm) + .0000723 * apathyMoodIndex * bpm + .000098 * Math.pow(apathyMoodIndex, 2) - 0.29386 - .00000053 * Math.pow(apathyMoodIndex, 3) - .000000376389651825041 * apathyMoodIndex * Math.pow(bpm, 2);
-    DMessage("bpm: " + bpm, 0);
-    var duration = ((strokeMaximum - strokeMinimum) * 60) * percentFromMinToMax + (strokeMinimum * 60);
-    DMessage("duration: " + duration, 0);
-    //stroke 1000 for testing
-    StrokeOtherMethods(duration, Math.floor(bpm));
+    StrokeOtherMethods();
 }
 
 /**
@@ -116,17 +103,20 @@ function Stroking() {
     }
     else {
         CMessage("%startStroking%", 0);
-        var strokeMinimum = getMinStrokingLength();
-        var strokeMaximum = getMaxStrokingLength();
-        var apathyMoodIndex = getApathyMoodIndex();
-        var random = randomInteger(1, 10);
+        let strokeMinimum = getMinStrokingLength();
+        let strokeMaximum = getMaxStrokingLength();
+        let apathyMoodIndex = getApathyMoodIndex();
+        let random = randomInteger(1, 10);
         DMessage("random: " + random, 0);
-        var percentSession = (getMillisPassed() / 1000) / (getMinSessionLength() * 60);
+        let percentSession = (getMillisPassed() / 1000) / (getMinSessionLength() * 60);
         //y = 52.2810035121697 + 6.42273993825994 * r * pS + 0.873930004197032 * r ^ 2 + 0.00137857491687123 * r * x ^ 2 - 0.00439450398010755 * x ^ 2
-        var bpm = 52.2810 + 6.4227 * random * percentSession + 0.8739 * Math.pow(random, 2) + 0.0014 * random * Math.pow(apathyMoodIndex, 2) - 0.0044 * Math.pow(apathyMoodIndex, 2);
-        var percentFromMinToMax = 0.00112 * bpm + (22.68182 / bpm) + .0000723 * apathyMoodIndex * bpm + .000098 * Math.pow(apathyMoodIndex, 2) - 0.29386 - .00000053 * Math.pow(apathyMoodIndex, 3) - .000000376389651825041 * apathyMoodIndex * Math.pow(bpm, 2);
+        let bpm = 52.2810 + 6.4227 * random * percentSession + 0.8739 * Math.pow(random, 2) + 0.0014 * random * Math.pow(apathyMoodIndex, 2) - 0.0044 * Math.pow(apathyMoodIndex, 2);
+        let percentFromMinToMax = 0.00112 * bpm + (22.68182 / bpm) + .0000723 * apathyMoodIndex * bpm + .000098 * Math.pow(apathyMoodIndex, 2) - 0.29386 - .00000053 * Math.pow(apathyMoodIndex, 3) - .000000376389651825041 * apathyMoodIndex * Math.pow(bpm, 2);
         DMessage("bpm: " + bpm, 0);
-        var duration = ((strokeMaximum - strokeMinimum) * 60) * percentFromMinToMax + (strokeMinimum * 60);
+        let duration = ((strokeMaximum - strokeMinimum) * 60) * percentFromMinToMax + (strokeMinimum * 60);
+        if (rapidTesting) {
+            duration = 5;
+        }
         DMessage("duration: " + duration, 0);
         //stroke 1000 for testing
         customStroke(duration, Math.floor(bpm));
@@ -145,17 +135,20 @@ function customStroking(message) {
     else
     {
         CMessage(message, 0);
-        var strokeMinimum = getMinStrokingLength();
-        var strokeMaximum = getMaxStrokingLength();
-        var apathyMoodIndex = getApathyMoodIndex();
-        var random = randomInteger(1, 10);
+        let strokeMinimum = getMinStrokingLength();
+        let strokeMaximum = getMaxStrokingLength();
+        let apathyMoodIndex = getApathyMoodIndex();
+        let random = randomInteger(1, 10);
         DMessage("random: " + random, 0);
-        var percentSession = (getMillisPassed() / 1000) / (getMinSessionLength() * 60);
+        let percentSession = (getMillisPassed() / 1000) / (getMinSessionLength() * 60);
         //y = 52.2810035121697 + 6.42273993825994 * r * pS + 0.873930004197032 * r ^ 2 + 0.00137857491687123 * r * x ^ 2 - 0.00439450398010755 * x ^ 2
-        var bpm = 52.2810 + 6.4227 * random * percentSession + 0.8739 * Math.pow(random, 2) + 0.0014 * random * Math.pow(apathyMoodIndex, 2) - 0.0044 * Math.pow(apathyMoodIndex, 2);
-        var percentFromMinToMax = 0.00112 * bpm + (22.68182 / bpm) + .0000723 * apathyMoodIndex * bpm + .000098 * Math.pow(apathyMoodIndex, 2) - 0.29386 - .00000053 * Math.pow(apathyMoodIndex, 3) - .000000376389651825041 * apathyMoodIndex * Math.pow(bpm, 2);
+        let bpm = 52.2810 + 6.4227 * random * percentSession + 0.8739 * Math.pow(random, 2) + 0.0014 * random * Math.pow(apathyMoodIndex, 2) - 0.0044 * Math.pow(apathyMoodIndex, 2);
+        let percentFromMinToMax = 0.00112 * bpm + (22.68182 / bpm) + .0000723 * apathyMoodIndex * bpm + .000098 * Math.pow(apathyMoodIndex, 2) - 0.29386 - .00000053 * Math.pow(apathyMoodIndex, 3) - .000000376389651825041 * apathyMoodIndex * Math.pow(bpm, 2);
         DMessage("bpm: " + bpm, 0);
-        var duration = ((strokeMaximum - strokeMinimum) * 60) * percentFromMinToMax + (strokeMinimum * 60);
+        let duration = ((strokeMaximum - strokeMinimum) * 60) * percentFromMinToMax + (strokeMinimum * 60);
+        if (rapidTesting) {
+            duration = 5;
+        }
         DMessage("duration: " + duration, 0);
         customStroke(duration, Math.floor(bpm));
     }
@@ -278,15 +271,15 @@ function DoEdges(minEdges, maxEdges, holdChancePerEdge)
     {
         holdChancePerEdge = holdChancePerEdge * 100;
     }
-    var ap = getApathyMoodIndex();
-    var r = randomInteger(1, 5);
-    var edgesPercent = 0.004027 * ap + 0.00235 * ap * r + 0.016498 * Math.pow(r, 2) - 0.086467 - 0.0003822 * ap * Math.pow(r, 2);
-    var numEdges = edgesPercent * (maxEdges - minEdges) + minEdges;
-    for (var i = 0; i < Math.round(numEdges) ; i++)
+    let ap = getApathyMoodIndex();
+    let r = randomInteger(1, 5);
+    let edgesPercent = 0.004027 * ap + 0.00235 * ap * r + 0.016498 * Math.pow(r, 2) - 0.086467 - 0.0003822 * ap * Math.pow(r, 2);
+    let numEdges = edgesPercent * (maxEdges - minEdges) + minEdges;
+    for (let i = 0; i < Math.round(numEdges) ; i++)
     {
         if (i != 0)
         {
-            var random = randomInteger(1, 3);
+            let random = randomInteger(1, 3);
             switch (random) {
                 case 1:
                     CMessage("The question is...", 2);
@@ -304,10 +297,9 @@ function DoEdges(minEdges, maxEdges, holdChancePerEdge)
                     break;
             }
         }
-        CMessage("%startEdging%");
-        startEdging();
+        startEdging("%startEdging%");
         if (randomInteger(1, 100) <= holdChancePerEdge) {
-            var random = randomInteger(1, 3);
+            let random = randomInteger(1, 3);
             switch (random)
             {
                 case 1:
@@ -335,22 +327,32 @@ function DoEdges(minEdges, maxEdges, holdChancePerEdge)
 **/
 function startEdging(message)
 {
+    if (rapidTesting) {
+        CMessage(message);
+        sleep(2);
+        return;
+    }
     if (strokingMethodsEnabled) {
         if (message != undefined && message != null)
         {
-            CMessage(message, 0);
+            //CMessage(message, 0);
         }
         EdgingMethod();
     }
     else {
-        var apathyMoodIndex = getApathyMoodIndex();
-        var random = randomInteger(1, 5);
-        var bpm = 174.69905 + (30.99765 * random) + (0.0002257 * Math.pow(apathyMoodIndex, 3)) + (0.10081895 * apathyMoodIndex * Math.pow(random, 2)) - (0.477098 * apathyMoodIndex * random) - (0.0325047 * Math.pow(apathyMoodIndex, 2)) - (3.1204935 * Math.pow(random, 2));
+        let apathyMoodIndex = getApathyMoodIndex();
+        let random = randomInteger(1, 5);
+        let bpm = 174.69905 + (30.99765 * random) + (0.0002257 * Math.pow(apathyMoodIndex, 3)) + (0.10081895 * apathyMoodIndex * Math.pow(random, 2)) - (0.477098 * apathyMoodIndex * random) - (0.0325047 * Math.pow(apathyMoodIndex, 2)) - (3.1204935 * Math.pow(random, 2));
         startEdgingBPM(bpm, message);
     }
 }
 
 function startEdgingBPM(bpm, message) {
+    if (rapidTesting) {
+        CMessage(message);
+        sleep(2);
+        return;
+    }
     setTempVar("edging", true);
     setTempVar("holdingedge", false);
     DMessage("bpm: " + bpm, 0);
@@ -365,9 +367,9 @@ function startEdgingBPM(bpm, message) {
         stopStroking();
         startStroking(Math.floor(bpm));
     }
-    var timeSoFar = 0;
-    var tauntFreq = getTauntFrequency();
-    var tauntIncrement = 1;
+    let timeSoFar = 0;
+    let tauntFreq = getTauntFrequency();
+    let tauntIncrement = 1;
     switch (tauntFreq) {
         case 5:
             tauntIncrement = randomInteger(1, 3);
@@ -388,7 +390,7 @@ function startEdgingBPM(bpm, message) {
             tauntIncrement = 0;
     }
 
-    var tauntTime = tauntIncrement;
+    let tauntTime = tauntIncrement;
     while (isEdging()) {
         sleep(.5);
         timeSoFar += .5;
@@ -437,11 +439,11 @@ function holdEdge() {
         startEdging();
     }
     CMessage("%holdtheedge%", 0);
-    var timeHolding = 0;
+    let timeHolding = 0;
     setTempVar("edging", false);
     setTempVar("holdingedge", true);
-    var tauntFreq = getTauntFrequency();
-    var tauntIncrement = 1;
+    let tauntFreq = getTauntFrequency();
+    let tauntIncrement = 1;
     switch (tauntFreq) {
         case 5:
             tauntIncrement = randomInteger(1, 3);
@@ -461,14 +463,17 @@ function holdEdge() {
         default:
             tauntIncrement = 0;
     }
-    var amiIndex = getApathyMoodIndex();
-    var lengthPercent = 0.00091684 * amiIndex + .00000083317 * Math.pow(amiIndex, 3);
+    let amiIndex = getApathyMoodIndex();
+    let lengthPercent = 0.00091684 * amiIndex + .00000083317 * Math.pow(amiIndex, 3);
     if (lengthPercent < 0) {
         lengthPercent = 0;
     }
-    var length = lengthPercent * (getMaxHoldingLength() - getMinHoldingLength()) + getMinHoldingLength();
+    let length = lengthPercent * (getMaxHoldingLength() - getMinHoldingLength()) + getMinHoldingLength();
 
-    var tauntTime = tauntIncrement;
+    let tauntTime = tauntIncrement;
+    if (rapidTesting) {
+        tauntTime = 1;
+    }
     while (timeHolding < length) {
         sleep(.5);
         timeHolding += .5;
@@ -522,10 +527,10 @@ function startHoldEdge() {
 * calculateOrgasm method to calculate if the sub will cum right now
 **/
 function calculateOrgasm() {
-    var defChance = getOrgasmChance() / 100;
-    var mood = getMood();
-    var chance = 1.39117 * defChance + 0.006631 * mood * Math.pow(defChance, 3) - 0.0083217 - 0.006919 * mood * defChance - 0.37457 * Math.pow(defChance, 3);
-    var random = randomInteger(1, 100);
+    let defChance = getOrgasmChance() / 100;
+    let mood = getMood();
+    let chance = 1.39117 * defChance + 0.006631 * mood * Math.pow(defChance, 3) - 0.0083217 - 0.006919 * mood * defChance - 0.37457 * Math.pow(defChance, 3);
+    let random = randomInteger(1, 100);
     if (random <= (chance * 100)) {
         return true;
     }
@@ -537,10 +542,10 @@ function calculateOrgasm() {
 * ruined
 **/
 function calculateRuin() {
-    var defChance = getRuinChance() / 100;
-    var mood = getMood();
-    var chance = 0.456827 * defChance + 0.009303 * mood * defChance + 0.50545 * Math.pow(defChance, 2) - 0.008689 * mood * Math.pow(defChance, 2);
-    var random = randomInteger(1, 100);
+    let defChance = getRuinChance() / 100;
+    let mood = getMood();
+    let chance = 0.456827 * defChance + 0.009303 * mood * defChance + 0.50545 * Math.pow(defChance, 2) - 0.008689 * mood * Math.pow(defChance, 2);
+    let random = randomInteger(1, 100);
     if (random <= (chance * 100)) {
         return true;
     }
@@ -562,7 +567,7 @@ function calculateRuin() {
 * A low value means the domme is happy. 50 is neutral.
 **/
 function increaseAnger(amount) {
-    var mood = getMood();
+    let mood = getMood();
     switch (amount) {
         case 1:
             mood += 5;
@@ -627,9 +632,9 @@ function increaseAnger(amount) {
 * cause errors.
 **/
 function getApathyMoodIndex() {
-    var apathy = getApathyLevel();
-    var mood = getMood();
-    var newApathyMoodIndex = 5.8329 + (3.0536 * apathy) - (95.3855 / mood) + (0.0951 * apathy * mood) - (0.0029 * mood * Math.pow(apathy, 2))
+    let apathy = getApathyLevel();
+    let mood = getMood();
+    let newApathyMoodIndex = 5.8329 + (3.0536 * apathy) - (95.3855 / mood) + (0.0951 * apathy * mood) - (0.0029 * mood * Math.pow(apathy, 2))
     if (newApathyMoodIndex < 1) {
         newApathyMoodIndex = 1;
     }
@@ -649,7 +654,7 @@ function getMood() {
         angereddate = setDate().addMinute(3);
         increaseAnger(-2);
     }
-    var mood = getVar("mood", 50);
+    let mood = getVar("mood", 50);
     if (typeof mood == "number") {
         if (mood >= 1 && mood <= 100) {
             //DMessage("Mood:" + mood);
@@ -700,7 +705,7 @@ function setMoodType(moodType) {
 * like that.
 **/
 function getApathyLevel() {
-    var apathyLevel = getVar("apathylevel", 5);
+    let apathyLevel = getVar("apathylevel", 5);
     if (typeof apathyLevel == "number") {
         if (apathyLevel >= 1 && apathyLevel <= 10) {
             return apathyLevel;
@@ -720,8 +725,8 @@ function getApathyLevel() {
 * simple helper method to calculate the time passed since the beginning of the session
 **/
 function getMillisPassed() {
-    var startedAt = getVariable("startDate").getTimeInMillis();
-    var n = new Date().getTime();
+    let startedAt = getVariable("startDate").getTimeInMillis();
+    let n = new Date().getTime();
     return n - startedAt;
 }
 //lowest inclusive to highest inclusive
@@ -731,7 +736,7 @@ function randomInteger(lowest, highest) {
 
 function continueSession()
 {
-    var secsPassed = (getMillisPassed() / 1000);
+    let secsPassed = (getMillisPassed() / 1000);
     if (getMinSessionLength() * 60 <= secsPassed)
     {
         if (getMaxSessionLength() * 60 <= secsPassed)
@@ -739,10 +744,10 @@ function continueSession()
             DMessage("overmax session return true");
             return false;
         }
-        var percMinToMax = (secsPassed - (getMinSessionLength() * 60)) / ((getMaxSessionLength() * 60) - (getMinSessionLength() * 60));
-        var random = randomInteger(1, 5);
-        var api = getApathyMoodIndex();
-        var percThreshold = 0.3657209 + 0.00629 * api + 0.03762 * Math.pow(random, 2) + 0.000102 * api * Math.pow(random, 3) - 0.044676 * random - 0.00826 * Math.pow(random, 3) -
+        let percMinToMax = (secsPassed - (getMinSessionLength() * 60)) / ((getMaxSessionLength() * 60) - (getMinSessionLength() * 60));
+        let random = randomInteger(1, 5);
+        let api = getApathyMoodIndex();
+        let percThreshold = 0.3657209 + 0.00629 * api + 0.03762 * Math.pow(random, 2) + 0.000102 * api * Math.pow(random, 3) - 0.044676 * random - 0.00826 * Math.pow(random, 3) -
             0.00056 * api * Math.pow(random, 2);
         DMessage("percmintomax: " + percMinToMax + " out of percthreshold " + percThreshold);
         if (percMinToMax > percThreshold)
@@ -764,9 +769,9 @@ function continueSession()
 function customStroke(duration, bpm) {
     startStroking(bpm);
     lockImages();
-    var tauntFreq = getTauntFrequency();
-    var tauntIncrement = 1;
-    var currentTime;
+    let tauntFreq = getTauntFrequency();
+    let tauntIncrement = 1;
+    let currentTime;
     switch (tauntFreq) {
         case 5:
             tauntIncrement = randomInteger(2, 4);
@@ -788,10 +793,10 @@ function customStroke(duration, bpm) {
     }
 
     currentTime = getMillisPassed() / 1000;
-    var tauntTime = tauntIncrement + currentTime;
+    let tauntTime = tauntIncrement + currentTime;
     timeLeftStroking = duration;
     strokeTime = duration;
-    var secThreshold = currentTime + duration;
+    let secThreshold = currentTime + duration;
     while (currentTime < secThreshold && timeLeftStroking != -1) {
         sleep(.5);
         currentTime = getMillisPassed() / 1000;
@@ -801,7 +806,6 @@ function customStroke(duration, bpm) {
             break;
         }
         if (currentTime > (tauntTime - .2) && currentTime < (tauntTime + .2)) {
-            DMessage("In taunt ");
             CMessage("%stroketaunt1%")
             switch (tauntFreq) {
                 case 5:
@@ -823,8 +827,6 @@ function customStroke(duration, bpm) {
                     tauntIncrement = 0;
             }
             tauntTime = currentTime + tauntIncrement;
-            DMessage("current time " + currentTime);
-            DMessage("next taunt time " + tauntTime);
         }
     }
     timeLeftStroking = 0;
@@ -847,14 +849,14 @@ function endStroking() {
 * directly.
 **/
 function getMaxHoldingLength() {
-    var maxHoldingLength = getVar("maxholdinglength", "3m");
+    let maxHoldingLength = getVar("maxholdinglength", "3m");
     if (typeof maxHoldingLength == "number") {
         if (maxHoldingLength >= 1 && maxHoldingLength > getMinHoldingLength()) {
             return maxHoldingLength * 60;
         }
     }
     else {
-        var regEx = new RegExp("^([0-9]+)[s,m]")
+        let regEx = new RegExp("^([0-9]+)[s,m]")
         if (regEx.test(maxHoldingLength)) {
             if (maxHoldingLength.search("s") != -1 && (parseInt(maxHoldingLength.substr(0, maxHoldingLength.length - 1))) > getMinHoldingLength()) {
                 return parseInt(maxHoldingLength.substr(0, maxHoldingLength.length - 1));
@@ -879,7 +881,7 @@ function getMaxHoldingLength() {
 * directly.
 **/
 function getMaxSessionLength() {
-    var maxSessionLength = getVar("maxsessionlength", 40);
+    let maxSessionLength = getVar("maxsessionlength", 40);
     if (typeof maxSessionLength == "number") {
         if (maxSessionLength > 0 && maxSessionLength > getMinSessionLength()) {
             return maxSessionLength;
@@ -899,7 +901,7 @@ function getMaxSessionLength() {
 * directly.
 **/
 function getMaxStrokingLength() {
-    var maxStrokingLength = getVar("maxstrokinglength", 4);
+    let maxStrokingLength = getVar("maxstrokinglength", 4);
     if (typeof maxStrokingLength == "number") {
         if (maxStrokingLength > 0 && maxStrokingLength > getMinStrokingLength()) {
             return maxStrokingLength;
@@ -919,14 +921,14 @@ function getMaxStrokingLength() {
 * directly.
 **/
 function getMinHoldingLength() {
-    var minHoldingLength = getVar("minholdinglength", "10s");
+    let minHoldingLength = getVar("minholdinglength", "10s");
     if (typeof minHoldingLength == "number") {
         if (minHoldingLength >= 1) {
             return minHoldingLength * 60;
         }
     }
     else {
-        var regEx = new RegExp("^([0-9]+)[s,m]")
+        let regEx = new RegExp("^([0-9]+)[s,m]")
         if (regEx.test(minHoldingLength)) {
             if (minHoldingLength.search("s") != -1) {
                 return parseInt(minHoldingLength.substr(0, minHoldingLength.length - 1));
@@ -947,7 +949,7 @@ function getMinHoldingLength() {
 * directly.
 **/
 function getMinSessionLength() {
-    var minSessionLength = getVar("minsessionlength", 20);
+    let minSessionLength = getVar("minsessionlength", 20);
     if (typeof minSessionLength == "number") {
         if (minSessionLength > 0) {
             return minSessionLength;
@@ -962,7 +964,7 @@ function getMinSessionLength() {
 * directly.
 **/
 function getMinStrokingLength() {
-    var minStrokingLength = getVar("minstrokinglength", 1);
+    let minStrokingLength = getVar("minstrokinglength", 1);
     if (typeof minStrokingLength == "number") {
         if (minStrokingLength > 0) {
             return minStrokingLength;
@@ -976,7 +978,7 @@ function getMinStrokingLength() {
 * getRuinChance getter method to get the personality variable "ruinchance". You probably won't want to call this directly.
 **/
 function getRuinChance() {
-    var ruinChance = getVar("ruinchance", 20);
+    let ruinChance = getVar("ruinchance", 20);
     if (typeof ruinChance == "number") {
         if (ruinChance >= 0 && ruinChance <= 100) {
             return ruinChance;
@@ -990,7 +992,7 @@ function getRuinChance() {
 * getOrgasmChance getter method to get the personality variable "orgasmchance". You probably won't want to call this directly.
 **/
 function getOrgasmChance() {
-    var orgasmChance = getVar("orgasmchance", 70);
+    let orgasmChance = getVar("orgasmchance", 70);
     if (typeof orgasmChance == "number") {
         if (orgasmChance >= 0 && orgasmChance <= 100) {
             return orgasmChance;
@@ -1005,7 +1007,7 @@ function getOrgasmChance() {
 * directly.
 **/
 function getTauntFrequency() {
-    var tauntFrequency = getVar("tauntFrequency", 3);
+    let tauntFrequency = getVar("tauntFrequency", 3);
     if (typeof tauntFrequency == "number") {
         if (tauntFrequency >= 0 && tauntFrequency <= 5) {
             return tauntFrequency;
@@ -1022,4 +1024,6 @@ function getTauntFrequency() {
 function stopEdging() {
     stopStroking();
     setTempVar("holdingedge", false);
+    setTempVar("edging", false);
 }
+DMessage("PersonalitUtils: End");

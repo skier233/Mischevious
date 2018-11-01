@@ -1,3 +1,4 @@
+DMessage("IKnowYouLoveTheFeeling: Beginning");
 CMessage("I know you love how this feels %PetName%");
 if (randomInteger(0, 1) == 1)
 {
@@ -11,3 +12,4 @@ else
     CMessage("That you hate it just a little bit too %EmoteRandom%");
 }
 Stroking();
+DMessage("IKnowYouLoveTheFeeling: End");

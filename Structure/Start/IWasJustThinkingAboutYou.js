@@ -1,3 +1,4 @@
+DMessage("IWasJustThinkingAboutYou: Beginning");
 CMessage("I was just thinking about you %SubName%");
 if (randomInteger(0, 1) == 1)
 {
@@ -60,3 +61,4 @@ else
     }
 }
 customStroking("and %startstroking%");
+DMessage("IWasJustThinkingAboutYou: End");

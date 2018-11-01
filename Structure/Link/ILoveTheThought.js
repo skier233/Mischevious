@@ -1,3 +1,4 @@
+DMessage("ILoveTheThought: Beginning");
 CMessage("I love the thought of you sitting there in your chair");
 if (randomInteger(0, 1) == 1)
 {
@@ -16,3 +17,4 @@ else
     CMessage("I'm going to make you suffer %EmoteRandom%");
 }
 Stroking();
+DMessage("ILoveTheThought: End");

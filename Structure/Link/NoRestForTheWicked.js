@@ -1,3 +1,4 @@
+DMessage("NoRestForTheWicked: Beginning");
 CMessage("After all that I bet your %Cock% could use a little break");
 if (randomInteger(0, 1) == 1) {
     CMessage("But the thing is");
@@ -8,3 +9,4 @@ else {
     CMessage("But it's not %Gonna% get it %EmoteRandom%");
 }
 Stroking();
+DMessage("NoRestForTheWicked: End");

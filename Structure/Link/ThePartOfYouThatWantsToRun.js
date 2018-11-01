@@ -1,3 +1,4 @@
+DMessage("ThePartOfYouThatWantsToRun: Beginning");
 CMessage("%Subname%...");
 CMessage("I know you enjoy this, otherwise you wouldn't be here");
 CMessage("But I know that sometimes");
@@ -21,3 +22,4 @@ CMessage("And you feel how hard it gets at my words");
 CMessage("You'll know that you'll never be safe from me");
 CMessage("And you'll never <i>want<> to be %Grin%");
 Stroking();
+DMessage("ThePartOfYouThatWantsToRun: End");

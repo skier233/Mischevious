@@ -1,3 +1,4 @@
+DMessage("png vampire: Beginning");
 CMessage("Sometimes I feel like a vampire");
 CMessage("But instead of your blood, I feed on your ache! %Grin%");
 CMessage("Tasting all its flavours");
@@ -21,3 +22,4 @@ CMessage("And making you a perfect %PetName% %Grin%");
 CMessage("And right now, I need a snack...");
 customStroking("So let's get you %Stroking% for me %lol%");
 //Info: The dom describes your relation as a Symbiosis that feeds her and makes you a better person
+DMessage("png vampire: End");

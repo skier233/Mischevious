@@ -1,3 +1,4 @@
+DMessage("BallsAreLikeAHardDrive: Beginnning");
 CMessage("You know what just occurred to me?");
 if (getVar("balldiskspace", false))
 {
@@ -46,3 +47,4 @@ else
     CMessage("No thanks %Lol%");
 }
 Stroking();
+DMessage("BallsAreLikeAHardDrive: End");

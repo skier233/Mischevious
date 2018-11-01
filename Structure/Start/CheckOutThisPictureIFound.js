@@ -1,3 +1,4 @@
+DMessage("CheckOutThisPictureIFound: Beginning");
 CMessage("%SubName%, I'm glad you're here");
 CMessage("Check out this picture I found earlier today");
 lockImages();
@@ -70,9 +71,8 @@ function thisOne()
             CMessage("I'm not giving up");
             sortPicture(getImagePath(), 1);
         }
-        CMessage("Do you like this one?", 0);
         getTeasePicture();
-        answer3.loop();
+        answer3 = getInput("Do you like this one more?");
     }
     if (answer3.isLike("fuck", "super", "sexy", "love", "4")) {
         sortPicture(getImagePath(), 4);
@@ -83,3 +83,4 @@ function thisOne()
     }
 
 }
+DMessage("CheckOutThisPictureIFound: End");

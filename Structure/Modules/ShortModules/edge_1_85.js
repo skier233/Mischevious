@@ -1,3 +1,4 @@
+DMessage("Edge_1_85: Beginning");
 CMessage("%subname%", 0);
 if (randomInteger(0, 1) == 1)
 {
@@ -18,3 +19,4 @@ else
         holdEdge(randomInteger(10, 60));
     }
 }
+DMessage("Edge_1_85: End");

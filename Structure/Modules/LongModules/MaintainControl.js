@@ -1,3 +1,4 @@
+DMessage("MaintainControl: Beginning");
 CMessage("%stopstroking%", 0);
 stopStroking();
 CMessage("You know what I really love?");
@@ -55,3 +56,4 @@ CMessage("And no matter how much agony you're in");
 CMessage("Or how badly you need relief, you'll wrap those fingers around that %Cock%");
 CMessage("And you'll stroke");
 CMessage("Just to make me happy %EmoteHappy%");
+DMessage("MaintainControl: End");
