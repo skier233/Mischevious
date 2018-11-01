@@ -282,7 +282,6 @@ function tagPictureResponse(message) {
         let z = getImagePath();
         z = "" + z;
         z = z.substr(1);
-        //Try 2
         let thisFile = new java.io.File(z);
         let thisPicture = new taggedPicture(thisFile);
 
@@ -319,65 +318,11 @@ function tagPictureResponse(message) {
         SMessage("<c=darkgreen b>Dress State: <> <c=indigo>" + imageDressState, 0);
         SMessage("<c=darkgreen b>Tags: <> <c=indigo>" + pictureTagsList, 0);
         thisPicture.addTags(pictureTagsList);
-        /*let x = z.split(java.io.File.separator);
-        DMessage("Tags: " + tagsList, 0);
-        let currentDir = "";
-        for (let i = 0; i < x.length - 1; i++)
-        {
-            currentDir += x[i] + java.io.File.separator;
-        }
-        let fileName = x[x.length - 1];
-        DMessage("TagPicture: Filename " + fileName);
-        DMessage("TagPicture: Folder " + getAppPath() + currentDir);
-        let thisPicture = new taggedPicture(fileName, tagsList, getAppPath() + currentDir);*/
 
         DMessage("TagPicture: EndResponse");
         return true;
     }
     DMessage("TagPicture: EndResponse");
     return false;
-        /*let z = getImagePath();
-        z = "" + z;
-        let x = z.split("\\");
-        DMessage("Tags: " + tagsList, 0);
-        let currentDir = "";
-        for (let i = 0; i < x.length - 1; i++)
-        {
-            currentDir += x[i] + "\\";
-        }
-        let fileName = x[x.length-1];
-        let tagsFile = getOrCreateFile(getAppPath() + currentDir + "imagetags.txt");
-        let fileReader = new java.io.FileReader(tagsFile);
-        let bufferedReader = new java.io.BufferedReader(fileReader);
-        let line = bufferedReader.readLine();
-        let lines = [];
-        let isTagged = false;
-        while (line != null)
-        {
-            if (line.search(fileName) != -1)
-            {
-                line = fileName + ":" + tagsList;
-                isTagged = true;
-            }
-            lines.push(line);
-            line = bufferedReader.readLine();
-        }
-        fileReader.close();
-        bufferedReader.close();
-        if (!isTagged)
-        {
-            lines.push(fileName + ":" + tagsList);
-        }
-        let fileWriter = new java.io.FileWriter(tagsFile);
-        let bufferedWriter = new java.io.BufferedWriter(fileWriter);
-        for (let i = 0; i < lines.length; i++)
-        {
-            bufferedWriter.write(lines[i]);
-            bufferedWriter.newLine();
-        }
-        bufferedWriter.flush();
-        bufferedWriter.close();
-
-    }*/
 
 }

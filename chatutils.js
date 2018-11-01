@@ -198,7 +198,7 @@ function getTexts(message, font, fontsize){
     return texts;
 }
 
-function CustomizedMessage(message, delay=5, sender=1, font, fontsize, showTyping=false){
+function CustomizedMessage(message, delay=0, sender=1, font, fontsize, showTyping=false){
     if (rapidTesting)
     {
         delay = 0;

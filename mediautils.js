@@ -263,6 +263,7 @@ function getTeasePicture(flag=1, time)
             path = "images" + separator + "loved" + separator;
             break;
     }
+    DMessage("GetTeasePicture: Debug 2");
     let directoryFiles = listFilesInFolder(path, true);
     let jFile = directoryFiles[randomInteger(0, directoryFiles.length - 1)];
 
