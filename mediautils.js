@@ -85,7 +85,8 @@ function showTaggedImage(imageType, imageTags, delay) {
                 default:
                     localpath = "images" + separator + "normal";
             }
-            let matchingImages = pictureHandler.getHandler().getTaggedPicturesExact(new java.io.File(path), imageTags);
+            path = teasePath + separator + localpath;
+            matchingImages = pictureHandler.getHandler().getTaggedPicturesExact(new java.io.File(path), imageTags);
             DMessage("matchingimages " + imageInt + " " + matchingImages);
         }
     }
