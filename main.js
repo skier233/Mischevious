@@ -9,5 +9,7 @@ setUpMedia();
 run("personalityutils.js");
 DMessage("Setting up personality");
 setUpVars();
+playVideo("https://cv.phncdn.com/videos/201806/22/171460431/720P_1500K_171460431.mp4?a5dcae8e1adc0bdaed975f0d67fb5e0527c20903c5bb57a6cad7e6cb50bc41fbb1152c24e90eef019e6ed143d2bfe65a9f747a246cfbb34381b42f2a9658ac4607820682bffe39ae108aa16daafc6d61eb4134b5068128ca57ec43b38a1ab699699d39ea8b357e73040c4d964929bd862df77ea4a2d03e161b92abb1");
+getInput("Paused program for testing");
 run("Structure" + separator + "MischeviousStructure.js");
 DMessage("main: End");

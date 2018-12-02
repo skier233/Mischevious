@@ -10,7 +10,7 @@ let personalityPath;
 **/
 function setUpMedia() {
     let TeaseAI = Java.type("me.goddragon.teaseai.TeaseAI");
-    let file = new java.io.File(TeaseAI.class.getProtectionDomain().getCodeSource().getLocation().toURI());
+    let file = new java.io.File(TeaseAI.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
     //The path to the main directory
     teasePath = file.getParent();
     DMessage(teasePath);
