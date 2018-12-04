@@ -153,7 +153,7 @@ function sortPicture(file, sortPlace=2)
         }
         else
         {
-            getOrCreateFolder((getAppPath() + localpath);
+            getOrCreateFolder((getAppPath() + localpath));
             return taggedFile.move(getAppPath() + localpath + myFile.getName());
         }
         return false;
@@ -169,7 +169,7 @@ function sortPicture(file, sortPlace=2)
             let mediaUrls = urlfile.getMediaURLs();
             for (let i = 0; i < mediaUrls.length; i++)
             {
-                let image = getFileFromUrl(mediaUrls[i]);
+                let image = getFileFromUrl(mediaUrls[i], urlFile.getName().replaceAll(".tumblr.com.txt"));
                 let taggedFile = new taggedPicture(image);
                 if (taggedFile.isDuplicate())
                 {
@@ -426,7 +426,7 @@ function sortPicture(file, sortPlace=2)
                 let path = split[split.length - 1];
                 if (path2 != null)
                 {
-                    path = teasePath + separator + "Images" + separator + path;
+                    path = teasePath + separator + "Images" + separator + path2 + path;
                 }
                 else
                 {
