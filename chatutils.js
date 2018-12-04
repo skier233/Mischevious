@@ -219,6 +219,10 @@ function CustomizedMessage(message, delay=0, sender=1, font, fontsize, showTypin
     {
         participant = chatHandler.getHandler().getParticipantById(sender);
     }
+    else
+    {
+        showTyping = false;
+    }
     if (showTyping)
     {
         let participanttype = Java.type("me.goddragon.teaseai.api.chat.ChatParticipant");

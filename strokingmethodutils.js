@@ -10,6 +10,7 @@ function setUpStrokingMethods()
         }
         registerVariable(("Method" + methods[i].constructor.name), ("Method" + methods[i].constructor.name), "How often should this stroking method be used? (Options: Enabled, Disabled, 1 (rarely used), 2 (uncommonly used), 3 (commonly used), 4 (very commonly used))");
     }
+    DMessage("Finished Setting up methods");
 }
 
 function StrokeOtherMethods()

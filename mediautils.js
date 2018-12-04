@@ -16,6 +16,7 @@ function setUpMedia() {
     let file2 = TeaseAI.application.getSession().getActivePersonality().getFolder();
     //The path to your personality directory
     personalityPath = file2.getAbsolutePath();
+    setVar("stopdownloading", false);
 }
 
 /**
@@ -159,38 +160,99 @@ function sortPicture(file, sortPlace=2)
         return false;
     }
 
-    function downloadAllUrlContent()
+    function downloadUrlContent(thisurl)
     {
+        let fileUtils = Java.type("me.goddragon.teaseai.utils.FileUtils");
+        fileUtils.disableSslVerification();
         let taggedPicture = Java.type("me.goddragon.teaseai.api.picture.TaggedPicture");
         var urlFiles = listFilesInFolder("Images" + separator + "System" + separator + "URL files", true);
         for (var i = 0; i < urlFiles.length; i++)
         {
-            var urlFile = urlFiles[i];
-            let mediaUrls = urlfile.getMediaURLs();
-            for (let i = 0; i < mediaUrls.length; i++)
+            if (urlFiles[i].getName().contains(thisurl))
             {
-                let image = getFileFromUrl(mediaUrls[i], urlFile.getName().replaceAll(".tumblr.com.txt"));
-                let taggedFile = new taggedPicture(image);
-                if (taggedFile.isDuplicate())
+                var urlFile2 = urlFiles[i];
+                if (!urlFile2.getName().contains(".com.txt"))
                 {
-                    consecutiveDuplicates++;
-                    image.delete();
-                    i--;
+                    continue;
                 }
-                else
+                var thisPath = ".." + separator + ".." + separator + "Images" + separator + "System" + separator + "URL files" + separator + urlFile2.getName();
+                urlFile2 = createMediaURL(thisPath);
+                let mediaUrls = urlFile2.getMediaURLs();
+                var fileLength = listFilesInFolder("Images" + separator + urlFiles[i].getName().replaceAll(".tumblr.com.txt", ""), true);
+                if (fileLength != null && fileLength.length >= (mediaUrls.length * 0.90))
                 {
-                    consecutiveDuplicates = 0;
+                    SMessage("<c=chocolate b>" + urlFiles[i].getName() + " is already downloaded.");
+                    continue;
                 }
-                if (consecutiveDuplicates >= 30)
+                SMessage("<c=green b>Downloading Images from:" + thisPath);
+                var previousPercent = -1;
+                for (let j = 0; j < mediaUrls.length; j++)
                 {
-                    WMessage("This file does not have enough images for the amount requested", 0);
-                    break;
+                    var percent = (j * 100.0) / (mediaUrls.length * 1.0);
+                    if (getVar("stopdownloading", false))
+                    {
+                        setVar("stopdownloading", false);
+                        return;
+                    }
+                    if ((Math.round(percent) % 5 == 0) && (Math.round(percent) != previousPercent))
+                    {
+                        SMessage("<c=indianred b>" + Math.round(percent) + "% of " + urlFiles[i].getName() + "Downloaded: " + (j+1) + " of " + (mediaUrls.length + 1));
+                        previousPercent = Math.round(percent);
+                    }
+                    let image = getFileFromUrl(mediaUrls[j], urlFiles[i].getName().replaceAll(".tumblr.com.txt", ""));
                 }
+                SMessage("<c=indianred b>100% of " + urlFiles[i].getName() + "Downloaded");
             }
-            if (usePaths)
+        }
+    }
+
+    function downloadAllUrlContent()
+    {
+        DMessage("in download");
+        let taggedPicture = Java.type("me.goddragon.teaseai.api.picture.TaggedPicture");
+        let fileUtils = Java.type("me.goddragon.teaseai.utils.FileUtils");
+        fileUtils.disableSslVerification();
+        var urlFiles = listFilesInFolder("Images" + separator + "System" + separator + "URL files", true);
+        DMessage("in download all content2" + urlFiles.length);
+        for (var i = 0; i < urlFiles.length; i++)
+        {
+            var urlFile2 = urlFiles[i];
+            if (!urlFile2.getName().contains(".com.txt"))
             {
-                var imagePath = getOrCreateFolder(path);
+                continue;
             }
+            var thisPath = ".." + separator + ".." + separator + "Images" + separator + "System" + separator + "URL files" + separator + urlFile2.getName();
+            urlFile2 = createMediaURL(thisPath);
+            let mediaUrls = urlFile2.getMediaURLs();
+            var fileLength = listFilesInFolder("Images" + separator + urlFiles[i].getName().replaceAll(".tumblr.com.txt", ""), true);
+            if (fileLength != null && fileLength.length >= (mediaUrls.length * 0.90))
+            {
+                SMessage("<c=chocolate b>" + urlFiles[i].getName() + " is already downloaded.");
+                if (getVar("stopdownloading", false))
+                {
+                    setVar("stopdownloading", false);
+                    return;
+                }
+                continue;
+            }
+            SMessage("<c=green b>Downloading Images from:" + thisPath);
+            var previousPercent = -1;
+            for (let j = 0; j < mediaUrls.length; j++)
+            {
+                var percent = (j * 100.0) / (mediaUrls.length * 1.0);
+                if ((Math.round(percent) % 5 == 0) && (Math.round(percent) != previousPercent))
+                {
+                    if (getVar("stopdownloading", false))
+                    {
+                        setVar("stopdownloading", false);
+                        return;
+                    }
+                    SMessage("<c=indianred b>" + Math.round(percent) + "% of " + urlFiles[i].getName() + "Downloaded: " + (j+1) + " of " + (mediaUrls.length + 1));
+                    previousPercent = Math.round(percent);
+                }
+                let image = getFileFromUrl(mediaUrls[j], urlFiles[i].getName().replaceAll(".tumblr.com.txt", ""));
+            }
+            SMessage("<c=indianred b>100% of " + urlFiles[i].getName() + "Downloaded");
         }
     }
 
@@ -411,7 +473,8 @@ function sortPicture(file, sortPlace=2)
                 folderFile = new java.io.File(teasePath + separator + folder);
                 if (!folderFile.exists())
                 {
-                    EMessage("File does not exist " + folderFile.getPath());
+                    WMessage("File does not exist " + folderFile.getPath());
+                    return;
                 }
             }
             if (!folderFile.isDirectory())
@@ -426,7 +489,8 @@ function sortPicture(file, sortPlace=2)
                 let path = split[split.length - 1];
                 if (path2 != null)
                 {
-                    path = teasePath + separator + "Images" + separator + path2 + path;
+                    getOrCreateFolder(teasePath + separator + "Images" + separator + path2);
+                    path = teasePath + separator + "Images" + separator + path2 + separator + path;
                 }
                 else
                 {
