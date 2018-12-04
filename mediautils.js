@@ -153,6 +153,7 @@ function sortPicture(file, sortPlace=2)
         }
         else
         {
+            getOrCreateFolder((getAppPath() + localpath);
             return taggedFile.move(getAppPath() + localpath + myFile.getName());
         }
         return false;
@@ -372,6 +373,7 @@ function sortPicture(file, sortPlace=2)
             {
                 myFile.mkdirs();
             }
+            return myFile;
         }
         /**
         * getOrCreateFile helper method will return the java file from the path or create it if it doesnt exist
