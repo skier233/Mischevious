@@ -9,18 +9,18 @@ function picturesModeResponse(message) {
     lockImages();
     let folderNumber;
     DMessage(message, 0);
-    let path = "images" + separator + "system" + separator + "tumblr";
+    let path = "Images" + separator + "System" + separator + "Tumblr";
     folderNumber = 1;
     if (message.search("liked") != -1 || message.search("3") != -1) {
-        path = "images" + separator + "liked";
+        path = "Images" + separator + "Liked";
         folderNumber = 3;
     }
     else if (message.search("normal") != -1 || message.search("2") != -1) {
-        path = "images" + separator + "normal";
+        path = "Images" + separator + "Normal";
         folderNumber = 2;
     }
     else if (message.search("loved") != -1 || message.search("4") != -1) {
-        path = "images" + separator + "loved";
+        path = "Images" + separator + "Loved";
         folderNumber = 4;
     }
     DMessage("Picturesmode going through files");

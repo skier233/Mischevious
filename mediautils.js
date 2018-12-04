@@ -38,29 +38,29 @@ function showTaggedImage(imageType, imageTags, delay) {
     let imageInt;
     switch (imageType) {
         case 2:
-        case "normal":
+        case "Normal":
             imageInt = 2;
-            localpath = "images" + separator + "normal";
+            localpath = "Images" + separator + "Normal";
             break;
         case 3:
-        case "liked":
+        case "Liked":
             imageInt = 3;
-            localpath = "images" + separator + "liked";
+            localpath = "Images" + separator + "Liked";
             break;
         case 4:
-        case "loved":
+        case "Loved":
             imageInt = 4;
-            localpath = "images" + separator + "loved";
+            localpath = "Images" + separator + "Loved";
             break;
         default:
-            localpath = "images" + separator + "normal";
+            localpath = "Images" + separator + "Normal";
     }
     let path = teasePath + separator + localpath;
     let pictureHandler = Java.type("me.goddragon.teaseai.api.picture.PictureHandler");
     DMessage("path " + path);
     DMessage("imageTags " + imageTags);
     let matchingImages = pictureHandler.getHandler().getTaggedPicturesExact(new java.io.File(path), imageTags);
-    DMessage("matchingimages " + imageInt + " " + matchingImages);
+    DMessage("matchingImages " + imageInt + " " + matchingImages);
     //DMessage(matchingImages.toString());
     while(matchingImages == null)
     {
@@ -73,20 +73,20 @@ function showTaggedImage(imageType, imageTags, delay) {
             imageInt--;
             switch (imageInt) {
                 case 2:
-                    localpath = "images" + separator + "normal";
+                    localpath = "Images" + separator + "Normal";
                     break;
                 case 3:
-                    localpath = "images" + separator + "liked";
+                    localpath = "Images" + separator + "Liked";
                     break;
                 case 4:
-                    localpath = "images" + separator + "loved";
+                    localpath = "Images" + separator + "Loved";
                     break;
                 default:
-                    localpath = "images" + separator + "normal";
+                    localpath = "Images" + separator + "Normal";
             }
             path = teasePath + separator + localpath;
             matchingImages = pictureHandler.getHandler().getTaggedPicturesExact(new java.io.File(path), imageTags);
-            DMessage("matchingimages " + imageInt + " " + matchingImages);
+            DMessage("matchingImages " + imageInt + " " + matchingImages);
         }
     }
     let randomImage = matchingImages.get(randomInteger(0, matchingImages.length - 1));
@@ -128,16 +128,16 @@ function sortPicture(file, sortPlace=2)
                 localpath = "delete";
                 break;
             case 2:
-            case "normal":
-                localpath = "images" + separator + "normal" + separator;
+            case "Normal":
+                localpath = "Images" + separator + "Normal" + separator;
                 break;
             case 3:
-            case "liked":
-                localpath = "images" + separator + "liked" + separator;
+            case "Liked":
+                localpath = "Images" + separator + "Liked" + separator;
                 break;
             case 4:
-            case "loved":
-                localpath = "images" + separator + "loved" + separator;
+            case "Loved":
+                localpath = "Images" + separator + "Loved" + separator;
                 break;
             default:
                 localpath = null;
@@ -158,6 +158,41 @@ function sortPicture(file, sortPlace=2)
         return false;
     }
 
+    function downloadAllUrlContent()
+    {
+        let taggedPicture = Java.type("me.goddragon.teaseai.api.picture.TaggedPicture");
+        var urlFiles = listFilesInFolder("Images" + separator + "System" + separator + "URL files", true);
+        for (var i = 0; i < urlFiles.length; i++)
+        {
+            var urlFile = urlFiles[i];
+            let mediaUrls = urlfile.getMediaURLs();
+            for (let i = 0; i < mediaUrls.length; i++)
+            {
+                let image = getFileFromUrl(mediaUrls[i]);
+                let taggedFile = new taggedPicture(image);
+                if (taggedFile.isDuplicate())
+                {
+                    consecutiveDuplicates++;
+                    image.delete();
+                    i--;
+                }
+                else
+                {
+                    consecutiveDuplicates = 0;
+                }
+                if (consecutiveDuplicates >= 30)
+                {
+                    WMessage("This file does not have enough images for the amount requested", 0);
+                    break;
+                }
+            }
+            if (usePaths)
+            {
+                var imagePath = getOrCreateFolder(path);
+            }
+        }
+    }
+
     function loadUrlImages(amount, urlfilename, removed) {
         //returns mediaurl type
         DMessage("loadUrlImages: Loading files from url");
@@ -167,16 +202,16 @@ function sortPicture(file, sortPlace=2)
         {
             DMessage("loadUrlImages: debug 1");
             var counter = 0;
-            urlfile = createMediaURL("../../Images/System/URL Files/*.txt");
+            urlfile = createMediaURL("../../Images/System/URL files/*.txt");
             while (!(urlfile.isUseForTease()) && counter < 30)
             {
-                urlfile = createMediaURL("../../Images/System/URL Files/*.txt");
+                urlfile = createMediaURL("../../Images/System/URL files/*.txt");
                 counter++;
             }
         }
         else
         {
-            urlfile = createMediaURL("../../Images/System/URL Files/" + urlfilename);
+            urlfile = createMediaURL("../../Images/System/URL files/" + urlfilename);
         }
         if (removed)
         {
@@ -237,30 +272,30 @@ function sortPicture(file, sortPlace=2)
     function getTeasePicture(flag=1, time)
         {
             DMessage("GetTeasePicture: Beginning");
-            let tumblrimages = listFilesInFolder("images" + separator + "system" + separator + "tumblr" + separator, true);
+            let tumblrimages = listFilesInFolder("Images" + separator + "System" + separator + "Tumblr" + separator, true);
             if (tumblrimages.length < 20)
             {
                 DMessage("GetTeasePicture: loading images");
                 loadUrlImages(100 - tumblrimages.length, null, true);
                 DMessage("GetTeasePicture: Finished loading images");
             }
-            let path = "images" + separator + "system" + separator + "tumblr" + separator;
+            let path = "Images" + separator + "System" + separator + "Tumblr" + separator;
             switch(flag)
             {
                 case 1:
-                    path = "images" + separator + "system" + separator + "tumblr" + separator;
+                    path = "Images" + separator + "System" + separator + "Tumblr" + separator;
                     break;
-                case "normal":
+                case "Normal":
                 case 2:
-                    path = "images" + separator + "normal" + separator;
+                    path = "Images" + separator + "Normal" + separator;
                     break;
-                case "liked":
+                case "Liked":
                 case 3:
-                    path = "images" + separator + "liked" + separator;
+                    path = "Images" + separator + "Liked" + separator;
                     break;
-                case "loved":
+                case "Loved":
                 case 4:
-                    path = "images" + separator + "loved" + separator;
+                    path = "Images" + separator + "Loved" + separator;
                     break;
             }
             DMessage("GetTeasePicture: Debug 2");
@@ -330,6 +365,14 @@ function sortPicture(file, sortPlace=2)
             return currentUrlFile;
         }
 
+        function getOrCreateFolder(path)
+        {
+            let myFile = new java.io.File(path);
+            if (!myFile.exists())
+            {
+                myFile.mkdirs();
+            }
+        }
         /**
         * getOrCreateFile helper method will return the java file from the path or create it if it doesnt exist
         **/
@@ -375,11 +418,18 @@ function sortPicture(file, sortPlace=2)
             }
             return folderFile.listFiles();
         }
-            function getFileFromUrl(url)
+            function getFileFromUrl(url, path2)
             {
                 let split = url.split("/");
                 let path = split[split.length - 1];
-                path = teasePath + separator + "images" + separator + "system" + separator + "tumblr" + separator + path;
+                if (path2 != null)
+                {
+                    path = teasePath + separator + "Images" + separator + path;
+                }
+                else
+                {
+                    path = teasePath + separator + "Images" + separator + "System" + separator + "Tumblr" + separator + path;
+                }
                 let file = new java.io.File(path);
                 if (file.exists())
                 {
