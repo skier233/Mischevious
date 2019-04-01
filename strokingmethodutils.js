@@ -1,16 +1,17 @@
-DMessage("StrokingMethodUtils: Beginning");
+//DMessage("StrokingMethodUtils: Beginning");
 function setUpStrokingMethods()
 {
     let methods = getAllMethods();
-    DMessage("Setting up methods");
+    //DMessage("Setting up methods");
     for (let i = 0; i < methods.length; i++)
     {
         if (getVar("Method" + methods[i].constructor.name, null) == null) {
             setVar("Method" + methods[i].constructor.name, "Enabled");
         }
         registerVariable(("Method" + methods[i].constructor.name), ("Method" + methods[i].constructor.name), "How often should this stroking method be used? (Options: Enabled, Disabled, 1 (rarely used), 2 (uncommonly used), 3 (commonly used), 4 (very commonly used))");
+        addOptionsList("Stroking Settings", ("Method" + methods[i].constructor.name), "Enabled", "Disabled", "Rarely Used", "Infrequently Used", "Commonly Used", "Very Commonly Used")
     }
-    DMessage("Finished Setting up methods");
+    //DMessage("Finished Setting up methods");
 }
 
 function StrokeOtherMethods()
@@ -364,4 +365,4 @@ function OneFingerMethod()
 }
 OneFingerMethod.prototype = Object.create(StrokingMethod.prototype);
 OneFingerMethod.prototype.constructor = OneFingerMethod;
-DMessage("StrokingMethodUtils: End");
+//DMessage("StrokingMethodUtils: End");

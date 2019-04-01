@@ -335,18 +335,18 @@ function sortPicture(file, sortPlace=2)
     function getTeasePicture(flag=1, time)
         {
             DMessage("GetTeasePicture: Beginning");
-            let tumblrimages = listFilesInFolder("Images" + separator + "System" + separator + "Tumblr" + separator, true);
+            let tumblrimages = listFilesInFolder("Images" + separator + "System" + separator + "Downloaded Images" + separator, true);
             if (tumblrimages.length < 20)
             {
                 DMessage("GetTeasePicture: loading images");
                 loadUrlImages(100 - tumblrimages.length, null, true);
                 DMessage("GetTeasePicture: Finished loading images");
             }
-            let path = "Images" + separator + "System" + separator + "Tumblr" + separator;
+            let path = "Images" + separator + "System" + separator + "Downloaded Images" + separator;
             switch(flag)
             {
                 case 1:
-                    path = "Images" + separator + "System" + separator + "Tumblr" + separator;
+                    path = "Images" + separator + "System" + separator + "Downloaded Images" + separator;
                     break;
                 case "Normal":
                 case 2:
@@ -494,7 +494,7 @@ function sortPicture(file, sortPlace=2)
                 }
                 else
                 {
-                    path = teasePath + separator + "Images" + separator + "System" + separator + "Tumblr" + separator + path;
+                    path = teasePath + separator + "Images" + separator + "System" + separator + "Downloaded Images" + separator + path;
                 }
                 let file = new java.io.File(path);
                 if (file.exists())

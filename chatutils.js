@@ -13,6 +13,7 @@ function setUpChat()
         debug = getVar("debug", null);
     }
     registerVariable("debug", "Debug Mode", "Set this to true to turn on debug mode for more info.");
+    addCheckBox("Debug Settings", "debug");
     if (getVar("responsesDisabled", null) == null) {
         setTempVar("responsesDisabled", false);
     }
@@ -28,7 +29,14 @@ function setUpChat()
         rapidTesting = getVar("rapidtesting", false);
     }
     registerVariable("rapidtesting", "Rapid Testing", "Set this to true to turn on rapid testing mode.");
-    DMessage("Finished setting up chat.");
+    addCheckBox("Debug Settings", "rapidtesting");
+    //DMessage("Finished setting up chat.");
+}
+
+function setUpChat2()
+{
+    rapidTesting = getVar("rapidtesting", false);
+    debug = getVar("debug", null);
 }
 //UTILITY METHODS
 function DMessage(message, delay=0)

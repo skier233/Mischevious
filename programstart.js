@@ -1,0 +1,10 @@
+//run("chatutils.js");
+addSettingsPanel("Personality Settings");
+addSettingsPanel("Stroking Settings");
+addSettingsPanel("Debug Settings");
+run("chatutils.js");
+setUpChat();
+run("personalityutils.js");
+setUpGUI();
+run("strokingmethodutils.js");
+setUpStrokingMethods();

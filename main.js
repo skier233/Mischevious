@@ -1,7 +1,6 @@
 let separator = java.io.File.separator;
 run("chatutils.js");
-DMessage("Setting up chat");
-setUpChat();
+setUpChat2();
 DMessage("main: Beginning");
 run("mediautils.js");
 DMessage("Setting up media");

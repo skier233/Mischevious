@@ -1,71 +1,85 @@
-DMessage("PersonalityUtils: Beginning");
+//DMessage("PersonalityUtils: Beginning");
 let timeLeftStroking;
 let strokeTime;
 let angereddate;
 let strokingMethodsEnabled = false;
 
+function setUpGUI()
+{
+    if (getVar("apathylevel", null) == null) {
+        setVar("apathylevel", 4);
+    }
+    registerVariable("apathylevel", "Apathy Level", "How mean/aggresive the dom will be. Can be a number between 1-10. WARNING: 8-10 will be very intense. Don't be afraid to start with a lower level like 3-6.");
+    addSpinner("Personality Settings", "apathylevel", 1, 10);
+
+    if (getVar("orgasmchance", null) == null) {
+        setVar("orgasmchance", 70);
+    }
+    registerVariable("orgasmChance", "Orgasm Chance", "The average percent chance the domme will allow an orgasm. NOTE: This isnt the exact percent chance. That will vary some with the domme's mood and apathy level.");
+    addSpinner("Personality Settings", "orgasmChance", 1, 100);
+
+    if (getVar("ruinchance", null) == null) {
+        setVar("ruinchance", 22);
+    }
+    registerVariable("ruinChance", "Ruin Chance", "The average percent chance the domme will ruin an orgasm. NOTE: This is the percentage an orgasm" +
+        "will be ruined after the domme has decided you will cum. Basically, to have an orgasm ruined, first the dom would have to decide to let you cum. Furthermore, " +
+        "if orgasm chance is 50% and orgasm ruined chance is 50%, 25% of the time you will get a ruined orgasm. This isnt the exact percent chance. That will vary some with the domme's mood and apathy level.");
+    addSpinner("Personality Settings", "ruinChance", 1, 100);
+
+    if (getVar("minsessionlength", null) == null) {
+        setVar("minsessionlength", 15);
+    }
+    registerVariable("minsessionlength", "Minimum Session Length", "The minimum time in minutes that a session will last. NOTE: Session length will vary between min and max length based on domme's mood " +
+        "and apathy level. If either are left blank, the session will last the length as preferred tease duration.");
+    addSpinner("Personality Settings", "minsessionlength", 1, 300);
+
+    if (getVar("maxsessionlength", null) == null) {
+        setVar("maxsessionlength", 30);
+    }
+    registerVariable("maxsessionlength", "Maximum Session Length", "The maximum time in minutes that a session will last. NOTE: Session length will vary between min and max length based on domme's mood " +
+        "and apathy level. If either are left blank, the session will last the length as preferred tease duration.");
+    addSpinner("Personality Settings", "maxsessionlength", 1, 300);
+
+    if (getVar("minstrokinglength", null) == null) {
+        setVar("minstrokinglength", 2);
+    }
+    registerVariable("minstrokinglength", "Minimum Stroking Length", "The minimum time in minutes that a stroking cycle will last. NOTE: Stroking cycle length will vary between min and max length based on domme's mood " +
+        "and apathy level.");
+    addSpinner("Stroking Settings", "minstrokinglength", 1, 60);
+
+    if (getVar("maxstrokinglength", null) == null) {
+        setVar("maxstrokinglength", 5);
+    }
+    registerVariable("maxstrokinglength", "Maximum Stroking Length", "The maximum time in minutes that a stroking cycle will last. NOTE: Stroking cycle length will vary between min and max length based on domme's mood " +
+        "and apathy level.");
+    addSpinner("Stroking Settings", "maxstrokinglength", 1, 60);
+
+    if (getVar("minholdinglength", null) == null) {
+        setVar("minholdinglength", 5);
+    }
+    registerVariable("minholdinglength", "Minimum Edge Holding Length", "The minimum time in seconds that an edge holding cycle will last. NOTE: Edge holding cycle length will vary between min and max length based on domme's mood " +
+        "and apathy level. The domme will choose closer to the minimum most of the time unless they are pissed so make the maximum your absolute max limit.");
+    addSpinner("Stroking Settings", "minholdinglength", 5, 1200);
+
+    if (getVar("maxholdinglength", null) == null) {
+        setVar("maxholdinglength", 120);
+    }
+    registerVariable("maxholdinglength", "Maximum Edge Holding Length", "The maximum time in seconds that an edge holding cycle will last. NOTE: Edge holding cycle length will vary between min and max length based on domme's mood " +
+        "and apathy level. The domme will choose closer to the minimum most of the time unless they are pissed so make the maximum your absolute max limit.");
+    addSpinner("Stroking Settings", "maxholdinglength", 5, 1200);
+
+    if (getVar("tauntfrequency", null) == null) {
+        setVar("tauntfrequency", 3);
+    }
+    registerVariable("tauntfrequency", "Taunt Frequency", "The frequency of taunts (0-5) that the domme will say while you are stroking or edging. NOTE: Inputting 0 will disable taunts entirely");
+    addSpinner("Stroking Settings", "tauntfrequency", 0, 5);
+}
+
 /**
 * setupVars method to setup variables used by the personality
 **/
 function setUpVars() {
-    if (getVar("apathylevel", null) == null) {
-        setVar("apathylevel", "Please enter a number between 1 and 10");
-    }
-    registerVariable("apathylevel", "Apathy Level", "How mean/aggresive the dom will be. Can be a number between 1-10. WARNING: 8-10 will be very intense. Don't be afraid to start with a lower level like 3-6.");
-
-    if (getVar("orgasmchance", null) == null) {
-        setVar("orgasmchance", "Please enter a 2 digit percentage. Ex: 56");
-    }
-    registerVariable("orgasmChance", "Orgasm Chance", "The average percent chance the domme will allow an orgasm. NOTE: This isnt the exact percent chance. That will vary some with the domme's mood and apathy level.");
-
-    if (getVar("ruinchance", null) == null) {
-        setVar("ruinchance", "Please enter a 2 digit percentage. Ex: 56");
-    }
-    registerVariable("ruinChance", "Orgasm Ruined Chance", "The average percent chance the domme will ruin an orgasm. NOTE: This is the percentage an orgasm" +
-        "will be ruined after the domme has decided you will cum. Basically, to have an orgasm ruined, first the dom would have to decide to let you cum. Furthermore, " +
-        "if orgasm chance is 50% and orgasm ruined chance is 50%, 25% of the time you will get a ruined orgasm. This isnt the exact percent chance. That will vary some with the domme's mood and apathy level.");
-
-    if (getVar("minsessionlength", null) == null) {
-        setVar("minsessionlength", "Please enter a number in minutes");
-    }
-    registerVariable("minsessionlength", "Minimum Session Length", "The minimum time in minutes that a session will last. NOTE: Session length will vary between min and max length based on domme's mood" +
-        "and apathy level. If either are left blank, the session will last the length as preferred tease duration.");
-
-    if (getVar("maxsessionlength", null) == null) {
-        setVar("maxsessionlength", "Please enter a number in minutes");
-    }
-    registerVariable("maxsessionlength", "Maximum Session Length", "The maximum time in minutes that a session will last. NOTE: Session length will vary between min and max length based on domme's mood" +
-        "and apathy level. If either are left blank, the session will last the length as preferred tease duration.");
-
-    if (getVar("minstrokinglength", null) == null) {
-        setVar("minstrokinglength", "Please enter a number in minutes");
-    }
-    registerVariable("minstrokinglength", "Minimum Stroking Length", "The minimum time in minutes that a stroking cycle will last. NOTE: Stroking cycle length will vary between min and max length based on domme's mood" +
-        "and apathy level.");
-
-    if (getVar("maxstrokinglength", null) == null) {
-        setVar("maxstrokinglength", "Please enter a number in minutes");
-    }
-    registerVariable("maxstrokinglength", "Maximum Stroking Length", "The maximum time in minutes that a stroking cycle will last. NOTE: Stroking cycle length will vary between min and max length based on domme's mood" +
-        "and apathy level.");
-
-    if (getVar("minholdinglength", null) == null) {
-        setVar("minholdinglength", "Please enter a number followed by an 's' for s or an 'm' for m. ex: 56s or 5m If no s or m is provided will assume minutes.");
-    }
-    registerVariable("minholdinglength", "Minimum Edge Holding Length", "The minimum time in seconds or minutes (enter 'm' or 's' after the number) that an edge holding cycle will last. NOTE: Edge holding cycle length will vary between min and max length based on domme's mood" +
-        "and apathy level. The domme will choose closer to the minimum most of the time unless they are pissed so make the maximum your absolute max limit.");
-
-    if (getVar("maxholdinglength", null) == null) {
-        setVar("maxholdinglength", "Please enter a number followed by an 's' for s or an 'm' for m. ex: 56s or 5m If no s or m is provided will assume minutes.");
-    }
-    registerVariable("maxholdinglength", "Maximum Edge Holding Length", "The maximum time in seconds or minutes (enter 'm' or 's' after the number) that an edge holding cycle will last. NOTE: Edge holding cycle length will vary between min and max length based on domme's mood" +
-        "and apathy level. The domme will choose closer to the minimum most of the time unless they are pissed so make the maximum your absolute max limit.");
-
-    if (getVar("tauntfrequency", null) == null) {
-        setVar("tauntfrequency", "Please enter a number between 0 and 5.");
-    }
-    registerVariable("tauntfrequency", "Taunt Frequency", "The frequency of taunts (0-5) that the domme will say while you are stroking or edging. NOTE: Inputting 0 will disable taunts entirely");
-
+    
     setTempVar("mood", 50);
     if (getVar("mood", null) != null) {
         //Register something for last session mood
@@ -1026,4 +1040,3 @@ function stopEdging() {
     setTempVar("holdingedge", false);
     setTempVar("edging", false);
 }
-DMessage("PersonalitUtils: End");
