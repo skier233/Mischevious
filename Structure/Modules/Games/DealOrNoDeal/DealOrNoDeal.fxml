@@ -1,0 +1,1035 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="650.0" minWidth="1280.0" prefHeight="857.0" prefWidth="1171.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane prefHeight="150.0" prefWidth="1113.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="857.0" fitWidth="1281.0">
+               <image>
+                  <Image url="@Game%20Background.jpg" />
+               </image>
+            </ImageView>
+            <GridPane fx:id="mainGridPane" prefWidth="1474.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="60.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <GridPane layoutX="10.0" layoutY="10.0" GridPane.columnIndex="2">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <StackPane>
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel14" alignment="CENTER_RIGHT" text="asdasdasdasdasdasd" textAlignment="RIGHT" StackPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="11">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel25" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="10">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel24" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="9">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel23" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="8">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel22" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="7">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel21" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="6">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel20" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="5">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel19" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="4">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel18" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="3">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel17" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel16" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel15" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="12">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel26" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </GridPane>
+                  <GridPane prefHeight="714.0" prefWidth="292.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <StackPane>
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel1" alignment="CENTER_RIGHT" text="asdasdasdasdasdasd" textAlignment="RIGHT" StackPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="11">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel12" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="10">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel11" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="9">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel10" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="8">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel9" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="7">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel8" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="6">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel7" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="5">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel6" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="4">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel5" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="3">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel4" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="2">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel3" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="1">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel2" text="ss">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="12">
+                           <children>
+                              <ImageView fitHeight="40.0" fitWidth="200.0">
+                                 <image>
+                                    <Image url="@gold%20bar%20icon%20png%20-%20640x320%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="sidelabel13" text="Label">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </GridPane>
+                  <StackPane prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1">
+                     <children>
+                        <GridPane>
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <GridPane GridPane.rowIndex="2">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <StackPane fx:id="briefcase9" prefHeight="150.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView disable="true" fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="9" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase10" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="10" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase11" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="11" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase12" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="12" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase13" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="13" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </GridPane>
+                              <GridPane layoutX="10.0" layoutY="252.0" GridPane.rowIndex="3">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <StackPane fx:id="briefcase14" prefHeight="150.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="14" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase15" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="15" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase16" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="16" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase17" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="17" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase18" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="4">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="18" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </GridPane>
+                              <GridPane>
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <StackPane fx:id="briefcase1" prefHeight="150.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="1" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase4" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="4" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase3" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="3" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase2" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="2" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </GridPane>
+                              <GridPane layoutX="10.0" layoutY="10.0" GridPane.rowIndex="1">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <StackPane fx:id="briefcase5" prefHeight="150.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="5" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase8" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="8" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase7" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="7" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase6" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="6" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </GridPane>
+                              <GridPane layoutX="10.0" layoutY="132.0" GridPane.rowIndex="4">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <StackPane fx:id="briefcase19" prefHeight="150.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="19" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase22" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="22" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase21" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="21" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase20" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="20" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </GridPane>
+                              <GridPane layoutX="10.0" layoutY="496.0" GridPane.rowIndex="5">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                 </rowConstraints>
+                                 <children>
+                                    <StackPane fx:id="briefcase23" prefHeight="150.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="23" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase26" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="3">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="26" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase25" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="25" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                    <StackPane fx:id="briefcase24" layoutX="10.0" layoutY="10.0" prefHeight="150.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                       <children>
+                                          <ImageView fitHeight="126.0" fitWidth="141.0" preserveRatio="true">
+                                             <image>
+                                                <Image url="@image%20(2).png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label text="24" translateY="5.0">
+                                             <font>
+                                                <Font name="System Bold" size="52.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </StackPane>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </GridPane>
+                        <StackPane fx:id="caseOpeningPane" prefHeight="150.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <ImageView fitHeight="592.0" fitWidth="703.0" preserveRatio="true">
+                                 <image>
+                                    <Image url="@abstract-squares-pattern-texture-gold-background_78474-15.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="caseRevealValue" text="100 edges">
+                                 <font>
+                                    <Font name="System Bold" size="31.0" />
+                                 </font>
+                              </Label>
+                              <StackPane fx:id="caseReveal" prefHeight="150.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fitHeight="313.0" fitWidth="393.0" preserveRatio="true">
+                                       <image>
+                                          <Image url="@image%20(2).png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="caseRevealNumber" text="15" translateY="15.0">
+                                       <font>
+                                          <Font name="System Bold" size="150.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </StackPane>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="dealStackPane" prefHeight="150.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <ImageView fitHeight="529.0" fitWidth="699.0" preserveRatio="true">
+                                 <image>
+                                    <Image url="@dond_blank.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="offerText" text="30 Edges and 89 Tokens" textFill="WHITE">
+                                 <font>
+                                    <Font size="48.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Do you accept this offer?" textFill="WHITE" translateY="-70.0">
+                                 <font>
+                                    <Font size="42.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="dealButton" mnemonicParsing="false" prefHeight="34.0" prefWidth="144.0" style="-fx-background-color: GREEN;" text="DEAL" textFill="WHITE" translateX="-100.0" translateY="80.0">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="noDealButton" layoutX="290.0" layoutY="418.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="144.0" style="-fx-background-color: RED;" text="NO DEAL" textFill="WHITE" translateX="100.0" translateY="80.0">
+                                 <font>
+                                    <Font name="System Bold" size="19.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </StackPane>
+                        <StackPane fx:id="finalChoicePane" prefHeight="150.0" prefWidth="200.0" visible="false">
+                           <children>
+                              <ImageView fitHeight="529.0" fitWidth="699.0" preserveRatio="true">
+                                 <image>
+                                    <Image url="@dond_blank.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="finalCaseValue" prefHeight="127.0" prefWidth="204.0" text="100 edges and 10 tokens" textFill="WHITE" translateX="150.0" translateY="10.0" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="yourCaseValue" layoutX="236.0" layoutY="351.0" prefHeight="140.0" prefWidth="210.0" text="100 edges and 10 tokens" textFill="WHITE" translateX="-150.0" translateY="15.0" wrapText="true">
+                                 <font>
+                                    <Font name="System Bold" size="28.0" />
+                                 </font>
+                              </Label>
+                              <StackPane fx:id="finalCasePane" prefHeight="671.0" prefWidth="652.0" scaleX="0.1" translateX="150.0">
+                                 <children>
+                                    <ImageView fitHeight="248.0" fitWidth="295.0" preserveRatio="true" scaleX="10.0">
+                                       <image>
+                                          <Image url="@image%20(2).png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="finalCaseLabel2" scaleX="10.0" text="1" translateY="10.0">
+                                       <font>
+                                          <Font name="System Bold" size="130.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </StackPane>
+                              <StackPane fx:id="yourCasePane" prefHeight="686.0" prefWidth="570.0" scaleX="0.1" translateX="-150.0">
+                                 <children>
+                                    <ImageView fitHeight="248.0" fitWidth="295.0" preserveRatio="true" scaleX="10.0">
+                                       <image>
+                                          <Image url="@image%20(2).png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="finalCaseLabel1" scaleX="10.0" text="1" translateY="10.0">
+                                       <font>
+                                          <Font name="System Bold" size="130.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </StackPane>
+                              <Label text="YOUR CASE" textFill="WHITE" translateX="-150.0" translateY="-150.0">
+                                 <font>
+                                    <Font name="System Bold" size="49.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="228.0" layoutY="404.0" text="FINAL CASE" textFill="WHITE" translateX="150.0" translateY="-150.0">
+                                 <font>
+                                    <Font name="System Bold" size="49.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </StackPane>
+                  <StackPane GridPane.columnSpan="3" GridPane.rowIndex="1">
+                     <children>
+                        <ScrollPane fx:id="dealScrollPane" style="-fx-border-color: lightgrey; -fx-background: lightgrey;" translateY="1.0">
+                           <content>
+                              <TextFlow fx:id="dealTextFlow" style="-fx-background-color: lightgrey;" />
+                           </content>
+                        </ScrollPane>
+                     </children>
+                  </StackPane>
+               </children>
+            </GridPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
